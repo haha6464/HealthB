@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baseaccompanying.dao.CityMapper">
+
+    <resultMap type="huice.accompaniment.common.domain.City" id="CityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CityMap">
+        select id,
+               province,
+               city,
+               status,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               del_flag
+        from city
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CityMap">
+        select
+        id, province, city, status, create_by, create_time, update_by, update_time, del_flag
+        from city
+        <where>
+            <if test="obj.id != null">
+                and id = #{obj.id}
+            </if>
+            <if test="obj.province != null and obj.province != ''">
+                and province = #{province}
+            </if>
+            <if test="obj.city != null and obj.city != ''">
+                and city = #{obj.city}
+            </if>
+            <if test="obj.status != null">
+                and status = #{obj.status}
+            </if>
+            <if test="obj.createBy != null">
+                and create_by = #{obj.createBy}
+            </if>
+            <if test="obj.createTime != null">
+                and create_time = #{obj.createTime}
+            </if>
+            <if test="obj.updateBy != null">
+                and update_by = #{obj.updateBy}
+            </if>
+            <if test="obj.updateTime != null">
+                and update_time = #{obj.updateTime}
+            </if>
+            <if test="obj.delFlag != null">
+                and del_flag = #{obj.delFlag}
+            </if>
+        </where>
+        order by id desc
+        limit #{offset}, #{size}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from city
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="province != null and province != ''">
+                and province = #{province}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into city(province, city, status, create_by, create_time, update_by, update_time, del_flag)
+        values (#{province}, #{city},0, #{createBy}, now(), #{updateBy}, null, 0)
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into city(province, city, status, create_by, create_time, update_by, update_time, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.province}, #{entity.city}, 0, #{entity.createBy}, now(),
+            #{entity.updateBy}, #null, 0)
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into city(province, city, status, create_by, create_time, update_by, update_time, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.province}, #{entity.city}, #{entity.status}, #{entity.createBy}, #{entity.createTime},
+            #{entity.updateBy}, #{entity.updateTime}, #{entity.delFlag})
+        </foreach>
+        on duplicate key update
+        province = values(province),
+        city = values(city),
+        status = values(status),
+        create_by = values(create_by),
+        create_time = values(create_time),
+        update_by = values(update_by),
+        update_time = values(update_time),
+        del_flag = values(del_flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update city
+        <set>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="1 == 1">
+                update_time = now(),
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from city
+        where id = #{id}
+    </delete>
+
+</mapper>
+

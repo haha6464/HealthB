@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baseaccompanying.dao.HospitalMapper">
+
+    <resultMap type="huice.accompaniment.common.domain.Hospital" id="HospitalMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="hospitalIntroduction" column="hospital_introduction" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="adminGetHospitalList" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
+        SELECT id, NAME,( SELECT city FROM city WHERE STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+            hospital_introduction,
+            address,
+            `status`
+        FROM
+            hospital
+       <where>
+           <if test="1 == 1">
+               del_flag = 0
+               AND id IN (
+               SELECT
+               hospital_id
+               FROM
+               to_hospital
+               WHERE
+               user_id = #{userId}
+               )
+           </if>
+            <if test="status != null">
+               and  status = #{status}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+       </where>
+
+        limit #{offset},#{size}
+
+    </select>
+
+
+    <select id="adminGetCount" resultType="long">
+        SELECT  count(*)
+        FROM
+        hospital
+        <where>
+            <if test="1 == 1">
+                del_flag = 0
+                AND id IN (
+                SELECT
+                hospital_id
+                FROM
+                to_hospital
+                WHERE
+                user_id = #{userId}
+                )
+            </if>
+            <if test="status != null">
+                and  status = #{status}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+        </where>
+
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HospitalMap">
+        select id,
+               name,
+               city_id,
+               address,
+               hospital_introduction,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               status,
+               del_flag
+        from hospital
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HospitalMap">
+        select
+        id, name, city_id, address, hospital_introduction, create_by, create_time, update_by, update_time, status,
+        del_flag
+        from hospital
+        <where>
+            <if test="obj.id != null">
+                and id = #{obj.id}
+            </if>
+            <if test="obj.name != null and obj.name != ''">
+                and name = #{obj.name}
+            </if>
+            <if test="obj.cityId != null">
+                and city_id = #{obj.cityId}
+            </if>
+            <if test="obj.address != null and obj.address != ''">
+                and address = #{obj.address}
+            </if>
+            <if test="obj.hospitalIntroduction != null and obj.hospitalIntroduction != ''">
+                and hospital_introduction = #{obj.hospitalIntroduction}
+            </if>
+            <if test="obj.createBy != null">
+                and create_by = #{obj.createBy}
+            </if>
+            <if test="obj.createTime != null">
+                and create_time = #{obj.createTime}
+            </if>
+            <if test="obj.updateBy != null">
+                and update_by = #{obj.updateBy}
+            </if>
+            <if test="obj.updateTime != null">
+                and update_time = #{obj.updateTime}
+            </if>
+            <if test="obj.status != null">
+                and status = #{obj.status}
+            </if>
+            <if test="obj.delFlag != null">
+                and del_flag = #{obj.delFlag}
+            </if>
+        </where>
+        limit #{offset}, #{size}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from hospital
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="hospitalIntroduction != null and hospitalIntroduction != ''">
+                and hospital_introduction = #{hospitalIntroduction}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hospital(name, city_id, address, hospital_introduction, create_by, create_time, update_by,
+                             update_time, status, del_flag)
+        values (#{name}, #{cityId}, #{address}, #{hospitalIntroduction}, #{createBy}, now(), null, null, 0, 0)
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into hospital(name, city_id, address, hospital_introduction, create_by, create_time, update_by,
+        update_time, status, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.cityId}, #{entity.address}, #{entity.hospitalIntroduction}, #{entity.createBy},
+            now(), null, null, 0, 0)
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into hospital(name, city_id, address, hospital_introduction, create_by, create_time, update_by,
+        update_time, status, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.cityId}, #{entity.address}, #{entity.hospitalIntroduction}, #{entity.createBy},
+            #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.status}, #{entity.delFlag})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        city_id = values(city_id),
+        address = values(address),
+        hospital_introduction = values(hospital_introduction),
+        create_by = values(create_by),
+        create_time = values(create_time),
+        update_by = values(update_by),
+        update_time = values(update_time),
+        status = values(status),
+        del_flag = values(del_flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hospital
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="hospitalIntroduction != null and hospitalIntroduction != ''">
+                hospital_introduction = #{hospitalIntroduction},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="1 == 1">
+                update_time = now(),
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from hospital
+        where id = #{id}
+    </delete>
+
+</mapper>
+

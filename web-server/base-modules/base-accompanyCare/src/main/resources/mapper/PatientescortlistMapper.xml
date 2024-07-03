@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baseaccompanying.dao.PatientescortlistMapper">
+
+    <resultMap type="huice.accompaniment.common.domain.Patientescortlist" id="PatientescortlistMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
+        <result property="icFrontImageUrl" column="ic_front_image_url" jdbcType="VARCHAR"/>
+        <result property="icBackImageUrl" column="ic_back_image_url" jdbcType="VARCHAR"/>
+        <result property="healthCertificateImageUrl" column="health_certificate_image_url" jdbcType="VARCHAR"/>
+        <result property="rating" column="rating" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="PatientescortlistMap">
+        select id,
+               city_id,
+               user_id,
+               name,
+               phone_number,
+               gender,
+               id_card,
+               ic_front_image_url,
+               ic_back_image_url,
+               health_certificate_image_url,
+               rating,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               status,
+               del_flag
+        from patient_escort_list
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="PatientescortlistMap">
+        select
+        id, city_id, user_id, name, phone_number, gender, id_card, ic_front_image_url, ic_back_image_url,
+        health_certificate_image_url, rating, create_by, create_time, update_by, update_time, status, del_flag
+        from patient_escort_list
+        <where>
+            <if test="obj.id != null">
+                and id = #{obj.id}
+            </if>
+            <if test="obj.cityId != null">
+                and city_id = #{obj.cityId}
+            </if>
+            <if test="obj.userId != null">
+                and user_id = #{obj.userId}
+            </if>
+            <if test="obj.name != null and obj.name != ''">
+                and name = #{obj.name}
+            </if>
+            <if test="obj.phoneNumber != null and obj.phoneNumber != ''">
+                and phone_number = #{obj.phoneNumber}
+            </if>
+            <if test="obj.gender != null">
+                and gender = #{obj.gender}
+            </if>
+            <if test="obj.idCard != null and obj.idCard != ''">
+                and id_card = #{obj.idCard}
+            </if>
+            <if test="obj.icFrontImageUrl != null and obj.icFrontImageUrl != ''">
+                and ic_front_image_url = #{obj.icFrontImageUrl}
+            </if>
+            <if test="obj.icBackImageUrl != null and obj.icBackImageUrl != ''">
+                and ic_back_image_url = #{obj.icBackImageUrl}
+            </if>
+            <if test="obj.healthCertificateImageUrl != null and obj.healthCertificateImageUrl != ''">
+                and health_certificate_image_url = #{obj.healthCertificateImageUrl}
+            </if>
+            <if test="obj.rating != null">
+                and rating = #{obj.rating}
+            </if>
+            <if test="obj.createBy != null">
+                and create_by = #{obj.createBy}
+            </if>
+            <if test="obj.createTime != null">
+                and create_time = #{obj.createTime}
+            </if>
+            <if test="obj.updateBy != null">
+                and update_by = #{obj.updateBy}
+            </if>
+            <if test="obj.updateTime != null">
+                and update_time = #{obj.updateTime}
+            </if>
+            <if test="obj.status != null">
+                and status = #{obj.status}
+            </if>
+            <if test="obj.delFlag != null">
+                and del_flag = #{obj.delFlag}
+            </if>
+        </where>
+        limit #{offset}, #{size}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from patient_escort_list
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and id_card = #{idCard}
+            </if>
+            <if test="icFrontImageUrl != null and icFrontImageUrl != ''">
+                and ic_front_image_url = #{icFrontImageUrl}
+            </if>
+            <if test="icBackImageUrl != null and icBackImageUrl != ''">
+                and ic_back_image_url = #{icBackImageUrl}
+            </if>
+            <if test="healthCertificateImageUrl != null and healthCertificateImageUrl != ''">
+                and health_certificate_image_url = #{healthCertificateImageUrl}
+            </if>
+            <if test="rating != null">
+                and rating = #{rating}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into patient_escort_list(city_id, user_id, name, phone_number, gender, id_card, ic_front_image_url,
+                                      ic_back_image_url, health_certificate_image_url, rating, create_by, create_time,
+                                      update_by, update_time, status, del_flag)
+        values (#{cityId}, #{userId}, #{name}, #{phoneNumber}, #{gender}, #{idCard}, #{icFrontImageUrl},
+                #{icBackImageUrl}, #{healthCertificateImageUrl}, #{rating}, #{createBy}, now(), #{updateBy},
+                #{updateTime}, 0, 0)
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into patient_escort_list(city_id, user_id, name, phone_number, gender, id_card, ic_front_image_url,
+        ic_back_image_url, health_certificate_image_url, rating, create_by, create_time, update_by, update_time, status,
+        del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.cityId}, #{entity.userId}, #{entity.name}, #{entity.phoneNumber}, #{entity.gender},
+            #{entity.idCard}, #{entity.icFrontImageUrl}, #{entity.icBackImageUrl}, #{entity.healthCertificateImageUrl},
+            #{entity.rating}, #{entity.createBy}, now(), #{entity.updateBy}, #{entity.updateTime}, 0, 0)
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into patient_escort_list(city_id, user_id, name, phone_number, gender, id_card, ic_front_image_url,
+        ic_back_image_url, health_certificate_image_url, rating, create_by, create_time, update_by, update_time, status,
+        del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.cityId}, #{entity.userId}, #{entity.name}, #{entity.phoneNumber}, #{entity.gender},
+            #{entity.idCard}, #{entity.icFrontImageUrl}, #{entity.icBackImageUrl}, #{entity.healthCertificateImageUrl},
+            #{entity.rating}, #{entity.createBy}, #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime},
+            #{entity.status}, #{entity.delFlag})
+        </foreach>
+        on duplicate key update
+        city_id = values(city_id),
+        user_id = values(user_id),
+        name = values(name),
+        phone_number = values(phone_number),
+        gender = values(gender),
+        id_card = values(id_card),
+        ic_front_image_url = values(ic_front_image_url),
+        ic_back_image_url = values(ic_back_image_url),
+        health_certificate_image_url = values(health_certificate_image_url),
+        rating = values(rating),
+        create_by = values(create_by),
+        create_time = values(create_time),
+        update_by = values(update_by),
+        update_time = values(update_time),
+        status = values(status),
+        del_flag = values(del_flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update patient_escort_list
+        <set>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="idCard != null and idCard != ''">
+                id_card = #{idCard},
+            </if>
+            <if test="icFrontImageUrl != null and icFrontImageUrl != ''">
+                ic_front_image_url = #{icFrontImageUrl},
+            </if>
+            <if test="icBackImageUrl != null and icBackImageUrl != ''">
+                ic_back_image_url = #{icBackImageUrl},
+            </if>
+            <if test="healthCertificateImageUrl != null and healthCertificateImageUrl != ''">
+                health_certificate_image_url = #{healthCertificateImageUrl},
+            </if>
+            <if test="rating != null">
+                rating = #{rating},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from patient_escort_list
+        where id = #{id}
+    </delete>
+
+</mapper>
+

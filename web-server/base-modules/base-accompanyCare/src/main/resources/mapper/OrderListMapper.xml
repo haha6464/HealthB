@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baseaccompanying.dao.OrderListMapper">
+
+    <resultMap type="huice.accompaniment.common.domain.OrderList" id="OrderListMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="oderId" column="oder_id" jdbcType="VARCHAR"/>
+        <result property="serviceType" column="service_type" jdbcType="INTEGER"/>
+        <result property="amount" column="amount" jdbcType="VARCHAR"/>
+        <result property="patientescortId" column="patientEscort_id" jdbcType="INTEGER"/>
+        <result property="income" column="income" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+        <result property="hospitalId" column="hospital_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderListMap">
+        select
+          id, city_id, oder_id, service_type, amount, patientEscort_id, income, phone_number, start_time, end_time, patient_id, create_by, create_time, update_by, update_time, status, del_flag
+        from order_list
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderListMap">
+        select
+          id, city_id, oder_id, service_type, amount, patientEscort_id, income, phone_number, start_time, end_time, patient_id, create_by, create_time, update_by, update_time, status, del_flag
+        from order_list
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="oderId != null">
+                and oder_id = #{oderId}
+            </if>
+            <if test="serviceType != null">
+                and service_type = #{serviceType}
+            </if>
+            <if test="amount != null">
+                and amount = #{amount}
+            </if>
+            <if test="patientescortId != null">
+                and patientEscort_id = #{patientescortId}
+            </if>
+            <if test="income != null">
+                and income = #{income}
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="patientId != null">
+                and patient_id = #{patientId}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from order_list
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="oderId != null">
+                and oder_id = #{oderId}
+            </if>
+            <if test="serviceType != null">
+                and service_type = #{serviceType}
+            </if>
+            <if test="amount != null">
+                and amount = #{amount}
+            </if>
+            <if test="patientescortId != null">
+                and patientEscort_id = #{patientescortId}
+            </if>
+            <if test="income != null">
+                and income = #{income}
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="patientId != null">
+                and patient_id = #{patientId}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into order_list(city_id, oder_id, service_type, amount, patientEscort_id, income, phone_number, start_time, end_time, patient_id, create_by, create_time, update_by, update_time, status, del_flag)
+        values (#{cityId}, #{oderId}, #{serviceType}, #{amount}, #{patientescortId}, #{income}, #{phoneNumber}, #{startTime}, #{endTime}, #{patientId}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{status}, #{delFlag})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into order_list(city_id, oder_id, service_type, amount, patientEscort_id, income, phone_number, start_time, end_time, patient_id, create_by, create_time, update_by, update_time, status, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.cityId}, #{entity.oderId}, #{entity.serviceType}, #{entity.amount}, #{entity.patientescortId}, #{entity.income}, #{entity.phoneNumber}, #{entity.startTime}, #{entity.endTime}, #{entity.patientId}, #{entity.createBy}, #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.status}, #{entity.delFlag})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into order_list(city_id, oder_id, service_type, amount, patientEscort_id, income, phone_number, start_time, end_time, patient_id, create_by, create_time, update_by, update_time, status, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.cityId}, #{entity.oderId}, #{entity.serviceType}, #{entity.amount}, #{entity.patientescortId}, #{entity.income}, #{entity.phoneNumber}, #{entity.startTime}, #{entity.endTime}, #{entity.patientId}, #{entity.createBy}, #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.status}, #{entity.delFlag})
+        </foreach>
+        on duplicate key update
+        city_id = values(city_id),
+        oder_id = values(oder_id),
+        service_type = values(service_type),
+        amount = values(amount),
+        patientEscort_id = values(patientEscort_id),
+        income = values(income),
+        phone_number = values(phone_number),
+        start_time = values(start_time),
+        end_time = values(end_time),
+        patient_id = values(patient_id),
+        create_by = values(create_by),
+        create_time = values(create_time),
+        update_by = values(update_by),
+        update_time = values(update_time),
+        status = values(status),
+        del_flag = values(del_flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update order_list
+        <set>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="oderId != null">
+                oder_id = #{oderId},
+            </if>
+            <if test="serviceType != null">
+                service_type = #{serviceType},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="patientescortId != null">
+                patientEscort_id = #{patientescortId},
+            </if>
+            <if test="income != null">
+                income = #{income},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="patientId != null">
+                patient_id = #{patientId},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from order_list where id = #{id}
+    </delete>
+
+
+    <select id="adminGetListData"  resultType="huice.accompaniment.common.domain.vo.AdminGetListDataVo">
+        select
+            (select city from city where id = city_id limit 1) as 'city',
+            oder_id,
+            service_type,
+            amount,
+            (select name from patient_escort_list where id = patientEscort_id limit 1) as 'patientEscortName',
+                income,
+            phone_number,
+               status
+        from
+            order_list
+        <where>
+            <if test="serviceType != null">
+                and service_type = #{serviceType}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="patientEscortName != null and patientEscortName != ''">
+                and patientEscort_id in
+               (select id from patient_escort_list where name = #{patientEscortName})
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="patientEscortNameForVague != null and patientEscortNameForVague != ''">
+                and patientEscort_id in
+                (select id from patient_escort_list where name like CONCAT('%', #{patientEscortNameForVague}, '%'))
+            </if>
+            <if test="orderIdForVague != null and orderIdForVague != ''">
+                and oder_id like CONCAT('%', #{orderIdForVague}, '%')
+            </if>
+            <if test="1 == 1">
+                and hospital_id = #{hospitalId}
+            </if>
+        </where>
+        limit #{page},#{size}
+    </select>
+
+    <select id="adminGetCount"  resultType="long">
+        select
+            count(*)
+        from
+        order_list
+        <where>
+            <if test="serviceType != null">
+                and service_type = #{serviceType}
+            </if>
+            <if test="cityId != null">
+                and city_id = #{cityId}
+            </if>
+            <if test="patientEscortName != null and patientEscortName != ''">
+                and patientEscort_id in
+                (select id from patient_escort_list where name = #{patientEscortName})
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="patientEscortNameForVague != null and patientEscortNameForVague != ''">
+                and patientEscort_id in
+                (select id from patient_escort_list where name like CONCAT('%', #{patientEscortNameForVague}, '%'))
+            </if>
+            <if test="orderIdForVague != null and orderIdForVague != ''">
+                and oder_id like CONCAT('%', #{orderIdForVague}, '%')
+            </if>
+            <if test="1 == 1">
+                and hospital_id = #{hospitalId}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
+
