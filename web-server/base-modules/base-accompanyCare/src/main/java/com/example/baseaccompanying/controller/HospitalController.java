@@ -6,6 +6,7 @@ import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Hospital;
 import com.example.baseaccompanying.service.HospitalService;
+import huice.accompaniment.common.domain.bo.HospitalBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,6 +82,7 @@ public class HospitalController {
     @WhiteApi
     @PostMapping("/add")
     public String add(Hospital hospital) {
+
         Hospital insert = this.hospitalService.insert(hospital);
         return JSONArray.toJSONString(new ResponseVo<>("200", insert, "ok"));
     }

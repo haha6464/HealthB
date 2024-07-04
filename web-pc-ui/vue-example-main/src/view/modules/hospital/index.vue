@@ -132,6 +132,16 @@ export default {
     };
   },
   methods: {
+    reset(){
+      this.$refs.list.seach = {
+        status: null,
+        name: "",
+        page: 1,
+        size: 16,
+      }
+
+      this.seachButton();
+    },
     //状态选择
     chosseStatus(val) {
       if (val == -1) {

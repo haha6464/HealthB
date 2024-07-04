@@ -2,6 +2,7 @@ package com.example.baseaccompanying.service;
 
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Hospital;
+import huice.accompaniment.common.domain.bo.HospitalBo;
 import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;

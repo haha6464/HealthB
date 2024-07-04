@@ -17,27 +17,40 @@
 
       <el-form ref="form" label-width="80px">
         <el-form-item label="医院昵称">
-          <el-input placeholder="请输入医院昵称"></el-input>
+          <el-input
+            placeholder="请输入医院昵称"
+            v-model="hospitalBo.hospital.name"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="城市">
-          <el-select placeholder="请选择" style="width:100%">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+          <el-select
+            placeholder="请选择"
+            style="width:100%"
+            v-model="hospitalBo.hospital.cityId"
+          >
+            <el-option
+              v-for="item in cityList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="医院地址">
-          <el-input placeholder="请输入医院地址"></el-input>
+          <el-input
+            placeholder="请输入医院地址"
+            v-model="hospitalBo.hospital.address"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="医院标签">
           <el-select
             style="width: 100%;"
-            v-model="value"
+            v-model="hospitalBo.labelList"
             multiple
             filterable
-            allow-create
             default-first-option
             placeholder="请选择文章标签"
           >
@@ -52,24 +65,29 @@
         </el-form-item>
 
         <el-form-item label="医院简介">
-          <el-input placeholder="请输入医院简介"></el-input>
+          <el-input
+            placeholder="请输入医院简介"
+            v-model="hospitalBo.hospital.hospitalIntroduction"
+          ></el-input>
         </el-form-item>
 
         <template>
-          <el-radio-group v-model="hospital.radio" style="margin-left: 80px;">
+          <el-radio-group
+            v-model="hospitalBo.hospital.status"
+            style="margin-left: 80px;"
+          >
             <el-radio :label="0" class="custom-radio">正常</el-radio>
             <el-radio :label="1" class="custom-radio">停用</el-radio>
           </el-radio-group>
         </template>
         <div
-
           style="width: 91%; display: flex; justify-content: center;margin-top:40px"
         >
           <div>
             <div style="float:left" @click="dialogFormVisible = false">
               <CancelButton value="取消"></CancelButton>
             </div>
-            <div style="float:left;margin-left:90px">
+            <div style="float:left;margin-left:90px" @click="edtion">
               <Button value="确定"></Button>
             </div>
           </div>
@@ -82,6 +100,9 @@
 <script>
 import Button from "../../../../components/button/Button.vue";
 import CancelButton from "../../../../components/button/CancelButton.vue";
+import { add } from "@/api/hospital.js";
+import { labeladd } from "@/api/hospitalLabel.js";
+import { getCityList } from "@/api/city.js";
 
 export default {
   props: ["userinfo"],
@@ -99,12 +120,16 @@ export default {
       dialogFormVisible: false,
 
       hospitalBo: {
-        name: "",
-        cityId: -1,
-        address,
-        hospitalIntroduction,
-        status: 0,
-        delFlag: 0,
+        hospital: {
+          id: null,
+          name: "",
+          cityId: null,
+          address: null,
+          hospitalIntroduction: null,
+          status: 0,
+          delFlag: 0,
+        },
+
         labelList: [],
       },
 
@@ -112,20 +137,53 @@ export default {
         radio: 0,
       },
 
+      cityList: [
+        {
+          value: "1",
+          label: "南京",
+        },
+        {
+          value: "2",
+          label: "天津",
+        },
+        {
+          value: "3",
+          label: "上海",
+        },
+        {
+          value: "4",
+          label: "日本",
+        },
+        {
+          value: "5",
+          label: "宇宙",
+        },
+      ],
+
       value: [],
 
       hospitalLabel: [
         {
-          value: "HTML",
-          label: "HTML",
+          value: "三甲医院",
+          label: "三甲医院",
         },
         {
-          value: "CSS",
-          label: "CSS",
+          value: "儿童医院",
+          label: "儿童医院",
         },
         {
-          value: "JavaScript",
-          label: "JavaScript",
+          value: "综合医院",
+          label: "综合医院",
+        },
+
+        {
+          value: "医保定点",
+          label: "医保定点",
+        },
+
+        {
+          value: "专科医院",
+          label: "专科医院",
         },
       ],
 
@@ -138,7 +196,42 @@ export default {
     console.log("userinfo prop:", this.userinfo);
   },
 
-  methods: {},
+  methods: {
+    //获取城市集合
+    getCityList() {
+      getCityList().then((res) => {
+        this.cityList = res.data;
+      });
+    },
+
+    //操作数据
+    async edtion() {
+      console.log("直接父组件:", this.$parent.$options.name);
+      console.log("间接父组件:", this.$parent.$parent.$options.name);
+      console.log("间接父组件:", this.$parent.$parent.$parent.$options.name);
+ 
+      //添加
+      if (this.hospitalBo.hospital.id == null) {
+        let id = 0;
+        await add(this.hospitalBo.hospital).then((res) => {
+          id = res.data.data.id;
+        });
+
+        //增加标签
+        for (let i = 0; i < this.hospitalBo.labelList.length; i++) {
+          let obj = {
+            hospitalId: id,
+            labelName: this.hospitalBo.labelList[i],
+          };
+
+          await labeladd(obj).then((res) => {});
+        }
+
+        this.dialogFormVisible = false;
+        this.$parent.$parent.$parent.reset();
+      }
+    },
+  },
 };
 </script>
 

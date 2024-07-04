@@ -7,3 +7,16 @@ export function getHospitalList(data){
         params: data
     })
 }
+
+/**
+ * 添加数据
+ * @param {*} data 
+ * @returns 
+ */
+export function add(data){
+    return http({
+        url: "/hospital/add",
+        method: "post",
+        params: data
+    })
+}
