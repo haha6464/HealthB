@@ -7,9 +7,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.249.107.238:3306/huice
+    url: jdbc:mysql://114.55.134.155:3306/huice
     username: root
-    password: Welsir123456@
+    password: root
     druid:
       initial-size: 5 #连接池初始化大小
       min-idle: 10 #最小空闲连接数
