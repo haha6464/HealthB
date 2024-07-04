@@ -27,7 +27,10 @@ public class HospitalController {
     @Resource
     private HospitalService hospitalService;
 
-
+    @GetMapping("/adminGetHospitalListOne")
+    public String adminGetHospitalListOne(@RequestParam("id") Long id){
+        return hospitalService.adminGetHospitalListOne(id);
+    }
     /**
      * 管理员获取集合数据
      * @return

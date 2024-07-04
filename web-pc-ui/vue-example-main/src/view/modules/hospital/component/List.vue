@@ -30,7 +30,7 @@
                 {{ (seach.page - 1) * 16 + index + 1 }}
               </td>
               <td style="width: 70px;">
-                {{ obj.city }}
+                {{ obj.city }}  
               </td>
               <td>
                 {{ obj.name }}
@@ -47,6 +47,7 @@
               </td>
 
               <td>
+ 
                 <span v-if="obj.status == 0">
                   正常
                 </span>
@@ -55,9 +56,9 @@
                 </span>
               </td>
               <td>
-                <el-link type="primary" style="font-size:12px">停用</el-link>
+                <el-link type="primary" style="font-size:12px" @click="switchStatus(obj)"><span v-if="obj.status ==0 ">停用</span> <span v-else>启动</span> </el-link>
                 <el-link type="primary" style="font-size:16px">|</el-link>
-                <el-link type="primary" style="font-size:12px">编辑</el-link>
+                <el-link type="primary" style="font-size:12px" @click="edit(obj)">编辑</el-link>
               </td>
             </tr>
           </tbody>
@@ -93,7 +94,7 @@
 import { getData } from "@/api/order.js";
 import { getCityList } from "@/api/city.js";
 import Button from "../../../../components/button/Button.vue";
-import { getHospitalList } from "@/api/hospital.js";
+import { getHospitalList , findByOne} from "@/api/hospital.js";
 
 export default {
   props: ["userinfo"],
@@ -179,6 +180,50 @@ export default {
   },
 
   methods: {
+    async edit(ob1j){
+      let app = this.$parent.$parent.$parent;
+      let obj = 0;
+      await findByOne({"id":ob1j.id}).then(res => {
+        console.log(res.data.list[0])
+          obj = res.data.list[0];
+      })
+
+      app.$refs.dictItemModal.hospitalBo.hospital = {
+          id: obj.id,
+          name: obj.name,
+          cityId: obj.cityId,
+          address: obj.address,
+          hospitalIntroduction: obj.hospitalIntroduction,
+          status: obj.status,
+          delFlag: obj.delFlag,
+      }
+      app.$refs.dictItemModal.hospitalBo.labelList = [];
+      for(let i = 0 ; i < obj.label.length ; i++){
+          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+      }
+    
+
+      app.$refs.dictItemModal.dialogFormVisible = true;
+    },
+
+    switchStatus(obj){
+      let app = this.$parent.$parent.$parent;
+      app.$refs.dictItemModal.hospitalBo.hospital = {
+          id: obj.id,
+          name: null,
+          cityId: null,
+          address: null,
+          hospitalIntroduction: null,
+          status: obj.status == 1 ? 0 : 1,
+          delFlag: null,
+      }
+      for(let i = 0 ; i < obj.label.length ; i++){
+          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+      }
+
+      app.$refs.dictItemModal.edtion();
+    },
+
  
     //服务选择
     chooseService(val) {

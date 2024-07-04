@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2024-06-05 15:42:31
  */
 public interface HospitalService {
-
+    public String adminGetHospitalListOne(Long id);
     /**
      * 管理员获取医院集合
      * @return

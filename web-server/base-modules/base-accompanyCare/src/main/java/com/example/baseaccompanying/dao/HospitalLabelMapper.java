@@ -1,6 +1,7 @@
 package com.example.baseaccompanying.dao;
 
 import huice.accompaniment.common.domain.HospitalLabel;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +16,10 @@ import java.util.List;
  */
 @Mapper
 public interface HospitalLabelMapper {
+
+    @Delete("delete  from hospital_label where hospital_id = #{hospitalid}")
+    Long deleteByHospitalId(@Param("hospitalid")Long hospitalId);
+
     /**
      * 通过ID查询单条数据
      *

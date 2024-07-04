@@ -12,3 +12,5 @@ export function labeladd(data){
         params: data
     })
 }
+
+ 

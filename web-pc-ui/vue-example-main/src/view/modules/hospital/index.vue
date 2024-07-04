@@ -132,6 +132,7 @@ export default {
     };
   },
   methods: {
+
     reset(){
       this.$refs.list.seach = {
         status: null,

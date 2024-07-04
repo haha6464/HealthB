@@ -100,7 +100,7 @@
 <script>
 import Button from "../../../../components/button/Button.vue";
 import CancelButton from "../../../../components/button/CancelButton.vue";
-import { add } from "@/api/hospital.js";
+import { add , editHospital} from "@/api/hospital.js";
 import { labeladd } from "@/api/hospitalLabel.js";
 import { getCityList } from "@/api/city.js";
 
@@ -192,11 +192,13 @@ export default {
   },
 
   mounted() {
+    this.getCityList();
     console.log("UserInfo component mounted!");
     console.log("userinfo prop:", this.userinfo);
   },
 
   methods: {
+
     //获取城市集合
     getCityList() {
       getCityList().then((res) => {
@@ -229,6 +231,41 @@ export default {
 
         this.dialogFormVisible = false;
         this.$parent.$parent.$parent.reset();
+      }else{
+        await editHospital(this.hospitalBo.hospital).then(res=>{
+            
+        })
+
+        for (let i = 0; i < this.hospitalBo.labelList.length; i++) {
+          let obj = {
+            hospitalId: this.hospitalBo.hospital.id,
+            labelName: this.hospitalBo.labelList[i],
+          };
+
+          await labeladd(obj).then((res) => {});
+        }
+
+
+        
+        
+        this.dialogFormVisible = false;
+        this.$parent.$parent.$parent.reset();
+      }
+
+
+
+      hospitalBo = {
+        hospital: {
+          id: null,
+          name: "",
+          cityId: null,
+          address: null,
+          hospitalIntroduction: null,
+          status: 0,
+          delFlag: 0,
+        },
+
+        labelList: [],
       }
     },
   },

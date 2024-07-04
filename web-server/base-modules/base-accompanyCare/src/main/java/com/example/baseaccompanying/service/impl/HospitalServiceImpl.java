@@ -34,6 +34,32 @@ public class HospitalServiceImpl implements HospitalService {
     @Autowired
     private ToHospitalMapper toHospitalMapper;
 
+
+    /**
+     * 管理员获取医院集合one
+     * @return
+     */
+    @Override
+    public String adminGetHospitalListOne(Long id){
+
+        List<AdminGetHospitalListVo> list = hospitalDao.adminGetHospitalListOne(id);
+
+
+        Map<String, Object> map  =new HashMap<>();
+
+        for (AdminGetHospitalListVo adminGetHospitalListVo : list) {
+            //获取医院标签
+            HospitalLabel hospitalLabel = new HospitalLabel();
+            hospitalLabel.setHospitalId(adminGetHospitalListVo.getId());
+            List<HospitalLabel> hospitalLabels = hospitalLabelMapper.queryAllByLimit(hospitalLabel, 0, 1000000);
+            adminGetHospitalListVo.setLabel(hospitalLabels);
+        }
+
+        map.put("list",list);
+
+        return JSONArray.toJSONString(map);
+    }
+
     /**
      * 管理员获取医院集合
      * @return
@@ -113,6 +139,9 @@ public class HospitalServiceImpl implements HospitalService {
     public Hospital update(Hospital hospital) {
         hospital.setUpdateBy(ThreadLocalUtils.getUid());
         this.hospitalDao.update(hospital);
+
+        this.hospitalLabelMapper.deleteByHospitalId(hospital.getId());
+
         return this.queryById(hospital.getId());
     }
 

@@ -17,6 +17,8 @@ import java.util.List;
 public interface HospitalMapper {
 
 
+    public List<AdminGetHospitalListVo> adminGetHospitalListOne(@Param("id")Long id);
+
     public List<AdminGetHospitalListVo> adminGetHospitalList(@Param("userId")Long userId,@Param("offset")Integer offset,
                                                              @Param("size")Integer size
             ,@Param("status") Integer status ,@Param("name") String name);

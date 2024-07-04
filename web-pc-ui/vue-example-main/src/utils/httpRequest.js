@@ -37,7 +37,9 @@ http.interceptors.request.use(config => {
     // }
 
     //设置请求头
+
     config.headers['token'] = "4d6ddd58-6aa4-4a32-ba04-eb695452b73d"
+    //config.headers['token'] = "228b868e-92b4-48e5-9447-3db6993ccbd8"
     config.headers['accept'] = '*/*'
     return config;
 })

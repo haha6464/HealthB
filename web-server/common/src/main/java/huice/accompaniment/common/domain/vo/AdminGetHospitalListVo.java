@@ -16,6 +16,7 @@ public class AdminGetHospitalListVo implements Serializable {
     private String hospitalIntroduction;
     private List<HospitalLabel> label;
     private Integer status;
+    private Long cityId;
 
     @Override
     public String toString() {
@@ -27,6 +28,7 @@ public class AdminGetHospitalListVo implements Serializable {
                 ", hospitalIntroduction='" + hospitalIntroduction + '\'' +
                 ", label=" + label +
                 ", status=" + status +
+                ", cityId=" + cityId +
                 '}';
     }
 
@@ -86,10 +88,18 @@ public class AdminGetHospitalListVo implements Serializable {
         this.status = status;
     }
 
+    public Long getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Long cityId) {
+        this.cityId = cityId;
+    }
+
     public AdminGetHospitalListVo() {
     }
 
-    public AdminGetHospitalListVo(Long id, String city, String name, String address, String hospitalIntroduction, List<HospitalLabel> label, Integer status) {
+    public AdminGetHospitalListVo(Long id, String city, String name, String address, String hospitalIntroduction, List<HospitalLabel> label, Integer status, Long cityId) {
         this.id = id;
         this.city = city;
         this.name = name;
@@ -97,5 +107,6 @@ public class AdminGetHospitalListVo implements Serializable {
         this.hospitalIntroduction = hospitalIntroduction;
         this.label = label;
         this.status = status;
+        this.cityId = cityId;
     }
 }

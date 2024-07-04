@@ -16,8 +16,21 @@
         <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="adminGetHospitalListOne" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
+        SELECT id, NAME,( SELECT city FROM city WHERE id =  city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+            city_id,
+            hospital_introduction,
+            address,
+            `status`
+        FROM
+            hospital
+        where
+            id = #{id}
+    </select>
+
     <select id="adminGetHospitalList" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
-        SELECT id, NAME,( SELECT city FROM city WHERE STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+        SELECT id, NAME,( SELECT city FROM city WHERE id =  city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+            city_id,
             hospital_introduction,
             address,
             `status`
