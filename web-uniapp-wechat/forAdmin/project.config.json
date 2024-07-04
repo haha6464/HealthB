@@ -1,0 +1,24 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "pluginRoot": "plugin/",
+  "compileType": "plugin",
+  "srcMiniprogramRoot": "miniprogram/",
+  "appid": "touristappid",
+  "libVersion": "2.25.3",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

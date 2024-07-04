@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/index"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF2E6D",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "Home",
+        "iconPath": "image/log.jpg",
+        "selectedIconPath": "image/log.jpg"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "Profile",
+        "iconPath": "image/log.jpg",
+        "selectedIconPath": "image/log.jpg"
+      }
+    ]
+  }
+}
