@@ -98,6 +98,16 @@ export default {
       asd: "",
       dialogFormVisible: false,
 
+      hospitalBo: {
+        name: "",
+        cityId: -1,
+        address,
+        hospitalIntroduction,
+        status: 0,
+        delFlag: 0,
+        labelList: [],
+      },
+
       hospital: {
         radio: 0,
       },

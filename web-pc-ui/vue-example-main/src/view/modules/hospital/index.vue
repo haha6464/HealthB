@@ -26,11 +26,13 @@
                 <div style="margin-top: 20px;">
                   <br />
                   <span
+          
                     style="font-size:14px;float:left;margin-top:6px;margin-left:10px"
                     >医院昵称&nbsp;</span
                   >
                   <el-input
-                    placeholder="请输入订单号/姓名"
+                    v-model="name"
+                    placeholder="医院昵称 "
                     style="float: left;width:150px;margin-top:4px"
                     class="custom-input"
                   ></el-input>
@@ -42,11 +44,14 @@
 
                   <div style="float: left">
                     <el-select
+                      v-model="status"
                       placeholder="请选择"
                       class="custom-select"
                       style="margin-top:3px"
+                      @change="chosseStatus"
                     >
                       <el-option
+                    
                         v-for="item in serviceList"
                         :key="item.value"
                         :label="item.label"
@@ -56,8 +61,8 @@
                     </el-select>
                   </div>
 
-                  <div style="float:left;margin-left:20px;margin-top:1px">
-                    <Button value="搜索"></Button>
+                  <div style="float:left;margin-left:20px;margin-top:1px"  @click="seachButton()">
+                    <Button value="搜索" ></Button>
                   </div>
                   <div
                     style="float:left;margin-left:90px;"
@@ -67,7 +72,7 @@
                   </div>
                 </div>
 
-                <List></List>
+                <List ref="list"></List>
 
                 <!--编辑修改-->
 
@@ -101,6 +106,9 @@ export default {
   },
   data() {
     return {
+      name: null,
+      status: null,
+
       serviceList: [
         {
           value: "-1",
@@ -108,16 +116,12 @@ export default {
         },
         {
           value: "0",
-          label: "全程服务",
+          label: "正常",
         },
         {
           value: "1",
-          label: "VIP服务",
-        },
-        {
-          value: "2",
-          label: "普通陪诊",
-        },
+          label: "停用",
+        } 
       ],
 
       openTemplate: 0,
@@ -128,6 +132,23 @@ export default {
     };
   },
   methods: {
+    //状态选择
+    chosseStatus(val) {
+      if (val == -1) {
+        this.$refs.list.seach.status = -1;
+        this.status = null;
+        this.seachButton();
+      }
+    },
+    //搜索
+    seachButton(){
+      console.log(this.$refs.list.seach);
+      this.$refs.list.seach.name = this.name;
+      this.$refs.list.seach.status = this.status;
+ 
+      this.$refs.list.seachButton();
+    },
+
     //模糊框的开关
     showChildModal() {
       this.$refs.dictItemModal.dialogFormVisible = !this.$refs.dictItemModal

@@ -35,6 +35,10 @@ public class HospitalController {
     @GetMapping("/adminGetHospitalList")
     public String adminGetHospitalList(@RequestParam("page")Integer page, @RequestParam("size")Integer size
     ,@RequestParam(value = "status",required = false) Integer status ,@RequestParam(value = "name",required = false)String name){
+        //状态为全部的情况
+        if(status != null && status == -1){
+            status = null;
+        }
         return  hospitalService.adminGetHospitalList(page, size,status,name);
     }
 

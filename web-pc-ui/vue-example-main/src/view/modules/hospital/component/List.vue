@@ -48,16 +48,10 @@
 
               <td>
                 <span v-if="obj.status == 0">
-                  待服务
+                  正常
                 </span>
                 <span v-else-if="obj.status == 1">
-                  进行中
-                </span>
-                <span v-else-if="obj.status == 2">
-                  已完成
-                </span>
-                <span v-else-if="obj.status == 3">
-                  已取消
+                  停用
                 </span>
               </td>
               <td>
@@ -142,15 +136,11 @@ export default {
         },
         {
           value: "0",
-          label: "全程服务",
+          label: "正常",
         },
         {
           value: "1",
-          label: "VIP服务",
-        },
-        {
-          value: "2",
-          label: "普通陪诊",
+          label: "停用",
         },
       ],
 
@@ -189,6 +179,7 @@ export default {
   },
 
   methods: {
+ 
     //服务选择
     chooseService(val) {
       if (val == -1) {
@@ -200,6 +191,7 @@ export default {
     reset() {},
 
     seachButton() {
+ 
       this.getListDate(1);
     },
 
