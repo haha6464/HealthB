@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/order/index"
+    "pages/order/index",
+    "pages/user/index"
   ],
   "tabBar": {
     "color": "#999999",
@@ -12,14 +13,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "Home",
-        "iconPath": "image/log.jpg",
-        "selectedIconPath": "image/log.jpg"
+        "iconPath": "image/HomeFalse.png",
+        "selectedIconPath": "image/HomeTrue.png"
       },
       {
         "pagePath": "pages/order/index",
-        "text": "Profile",
-        "iconPath": "image/log.jpg",
-        "selectedIconPath": "image/log.jpg"
+        "text": "订单",
+        "iconPath": "image/orderfalse.png",
+        "selectedIconPath": "image/order.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "用户",
+        "iconPath": "image/UserFlase.png",
+        "selectedIconPath": "image/UserTrue1.png"
       }
     ]
   }
