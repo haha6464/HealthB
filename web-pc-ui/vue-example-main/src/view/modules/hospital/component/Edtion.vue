@@ -116,6 +116,7 @@ export default {
 
   data() {
     return {
+      bottondisabled: true,
       asd: "",
       dialogFormVisible: false,
 
@@ -208,6 +209,12 @@ export default {
 
     //操作数据
     async edtion() {
+      if(this.bottondisabled == true){
+         return ;
+
+      }
+      this.bottondisabled = true;
+      
       console.log("直接父组件:", this.$parent.$options.name);
       console.log("间接父组件:", this.$parent.$parent.$options.name);
       console.log("间接父组件:", this.$parent.$parent.$parent.$options.name);
@@ -248,7 +255,7 @@ export default {
 
         
         
-        this.dialogFormVisible = false;
+        this.bottondisabled = false;
         this.$parent.$parent.$parent.reset();
       }
 
@@ -267,6 +274,8 @@ export default {
 
         labelList: [],
       }
+
+      this.dialogFormVisible = false;
     },
   },
 };
