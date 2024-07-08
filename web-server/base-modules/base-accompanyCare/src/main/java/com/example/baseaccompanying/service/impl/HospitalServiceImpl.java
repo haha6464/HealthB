@@ -137,10 +137,12 @@ public class HospitalServiceImpl implements HospitalService {
      */
     @Override
     public Hospital update(Hospital hospital) {
+        System.err.println("??");
         hospital.setUpdateBy(ThreadLocalUtils.getUid());
         this.hospitalDao.update(hospital);
 
-        this.hospitalLabelMapper.deleteByHospitalId(hospital.getId());
+        Long aLong = this.hospitalLabelMapper.deleteByHospitalId(hospital.getId());
+        System.err.println(aLong);
 
         return this.queryById(hospital.getId());
     }
