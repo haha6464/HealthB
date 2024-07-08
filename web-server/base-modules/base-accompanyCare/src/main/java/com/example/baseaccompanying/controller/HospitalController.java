@@ -100,6 +100,7 @@ public class HospitalController {
     @WhiteApi
     @PostMapping("/edit")
     public String edit(Hospital hospital) {
+        System.err.println("888888");
         Hospital update = this.hospitalService.update(hospital);
         return JSONArray.toJSONString(new ResponseVo<>("200", update, "ok"));
     }

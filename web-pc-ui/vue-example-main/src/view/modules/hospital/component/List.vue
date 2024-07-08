@@ -207,6 +207,7 @@ export default {
     },
 
     switchStatus(obj){
+      console.log(obj,"obj")
       let app = this.$parent.$parent.$parent;
       app.$refs.dictItemModal.hospitalBo.hospital = {
           id: obj.id,
@@ -217,6 +218,9 @@ export default {
           status: obj.status == 1 ? 0 : 1,
           delFlag: null,
       }
+      console.log(      app.$refs.dictItemModal.hospitalBo)
+      app.$refs.dictItemModal.hospitalBo.labelList = [];
+ 
       for(let i = 0 ; i < obj.label.length ; i++){
           app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
       }

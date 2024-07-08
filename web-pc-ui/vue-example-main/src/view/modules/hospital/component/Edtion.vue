@@ -116,6 +116,7 @@ export default {
 
   data() {
     return {
+      bottondisabled: false,
       asd: "",
       dialogFormVisible: false,
 
@@ -208,6 +209,13 @@ export default {
 
     //操作数据
     async edtion() {
+      console.log(this.bottondisabled,"asd");
+      if(this.bottondisabled == true){
+         return ;
+
+      }
+      this.bottondisabled = true;
+      
       console.log("直接父组件:", this.$parent.$options.name);
       console.log("间接父组件:", this.$parent.$parent.$options.name);
       console.log("间接父组件:", this.$parent.$parent.$parent.$options.name);
@@ -220,6 +228,7 @@ export default {
         });
 
         //增加标签
+        this.hospitalBo.labelList.sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
         for (let i = 0; i < this.hospitalBo.labelList.length; i++) {
           let obj = {
             hospitalId: id,
@@ -229,6 +238,7 @@ export default {
           await labeladd(obj).then((res) => {});
         }
 
+        this.bottondisabled = false;
         this.dialogFormVisible = false;
         this.$parent.$parent.$parent.reset();
       }else{
@@ -236,6 +246,8 @@ export default {
             
         })
 
+        this.hospitalBo.labelList.sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+  
         for (let i = 0; i < this.hospitalBo.labelList.length; i++) {
           let obj = {
             hospitalId: this.hospitalBo.hospital.id,
@@ -248,13 +260,13 @@ export default {
 
         
         
-        this.dialogFormVisible = false;
+        this.bottondisabled = false;
         this.$parent.$parent.$parent.reset();
       }
 
 
 
-      hospitalBo = {
+      this.hospitalBo = {
         hospital: {
           id: null,
           name: "",
@@ -267,6 +279,8 @@ export default {
 
         labelList: [],
       }
+
+      this.dialogFormVisible = false;
     },
   },
 };
