@@ -15,11 +15,13 @@
           <thead>
             <tr style="font-weight: bold;">
               <th>序号</th>
-              <th>城市</th>
-              <th>医院</th>
-              <th>医院地址</th>
-              <th>医院简介</th>
-              <th>标签</th>
+              <th>商品图片</th>
+              <th>服务名称</th>
+              <th>服务类型</th>
+              <th>服务医院</th>
+              <th>商品价格（元）</th>
+              <th>销量（件）</th>
+              <th>创建时间</th>
               <th>状态</th>
               <th>操作</th>
             </tr>
@@ -30,29 +32,28 @@
                 {{ (seach.page - 1) * 16 + index + 1 }}
               </td>
               <td style="width: 70px;">
-                {{ obj.city }}  
+                {{ obj.serve_item_icon }}
               </td>
               <td>
-                {{ obj.name }}
+                {{ obj.serve_item_name }}
               </td>
               <td>
-                {{ obj.address }}
+                {{ obj.serve_item_type }}
               </td>
-              <td>{{ obj.hospitalIntroduction }}</td>
-
               <td>
-                <span v-for="o in obj.label">
-                  {{ o.labelName }}
-                </span>
+                {{ obj.serve_item_hospital }}
               </td>
-
               <td>
- 
+                {{ obj.serve_price }}
+              </td>
+              <td>{{ obj.serve_sell }}</td>
+              <td>{{ obj.serve_create_time }}</td>
+              <td>
                 <span v-if="obj.status == 0">
-                  正常
+                  销售中
                 </span>
                 <span v-else-if="obj.status == 1">
-                  停用
+                  下架
                 </span>
               </td>
               <td>
@@ -162,11 +163,13 @@ export default {
       tableData: [
         {
           id: 0,
-          city: "",
-          name: "",
-          address: "",
-          hospitalIntroduction: "",
-          label: [],
+          serve_item_icon: "",
+          serve_item_name: "",
+          serve_item_type: "",
+          serve_item_hospital: "",
+          serve_price: "",
+          serve_sell: "",
+          serve_create_time: "",
           status: 0,
         },
       ],
@@ -188,18 +191,20 @@ export default {
           obj = res.data.list[0];
       })
 
-      app.$refs.dictItemModal.hospitalBo.hospital = {
-          id: obj.id,
-          name: obj.name,
-          cityId: obj.cityId,
-          address: obj.address,
-          hospitalIntroduction: obj.hospitalIntroduction,
-          status: obj.status,
-          delFlag: obj.delFlag,
+      app.$refs.dictItemModal.serveBo.serve = {
+        id: obj.id,
+        serve_item_icon: obj.serve_item_icon,
+        serve_item_name: obj.serve_item_name,
+        serve_item_type: obj.serve_item_type,
+        serve_item_hospital: obj.serve_item_hospital,
+        serve_price: obj.serve_price,
+        serve_on_sell_time: obj.serve_create_time,
+        status: obj.status,
+        delFlag: obj.delFlag,
       }
-      app.$refs.dictItemModal.hospitalBo.labelList = [];
+      app.$refs.dictItemModal.serveBo.labelList = [];
       for(let i = 0 ; i < obj.label.length ; i++){
-          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+          app.$refs.dictItemModal.serveBo.labelList.push( obj.label[i].labelName)
       }
     
 
@@ -208,7 +213,7 @@ export default {
 
     switchStatus(obj){
       let app = this.$parent.$parent.$parent;
-      app.$refs.dictItemModal.hospitalBo.hospital = {
+      app.$refs.dictItemModal.serveBo.serve = {
           id: obj.id,
           name: null,
           cityId: null,
@@ -218,7 +223,7 @@ export default {
           delFlag: null,
       }
       for(let i = 0 ; i < obj.label.length ; i++){
-          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+          app.$refs.dictItemModal.serveBo.labelList.push( obj.label[i].labelName)
       }
 
       app.$refs.dictItemModal.edtion();
@@ -236,7 +241,7 @@ export default {
     reset() {},
 
     seachButton() {
-
+ 
       this.getListDate(1);
     },
 

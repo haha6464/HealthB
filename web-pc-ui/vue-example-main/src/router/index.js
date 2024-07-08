@@ -30,6 +30,11 @@ const mainRouters =
       path: '/hospitalindex',
       name: 'hospitalindex',
       component: resolve=>(require(["@/view/modules/hospital/index"],resolve))
+    },
+    {
+      path: '/serveindex',
+      name: 'serveindex',
+      component: resolve=>(require(["@/view/modules/serve/index"],resolve))
     }
 ]
 
