@@ -4,16 +4,15 @@ package com.example.baseaccompanying.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.baseaccompanying.dao.HospitalMapper;
-import com.example.baseaccompanying.dao.ServeItemMapper;
-import com.example.baseaccompanying.dao.ServeMapper;
-import com.example.baseaccompanying.dao.ServeTypeMapper;
+import com.example.baseaccompanying.dao.*;
 import com.example.baseaccompanying.service.ServeService;
+import com.example.baseaccompanying.service.ServeToOrderListService;
 import huice.accompaniment.common.constant.ErrorInfo;
 import huice.accompaniment.common.domain.Hospital;
 import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.domain.ServeItem;
 import huice.accompaniment.common.domain.ServeType;
+import huice.accompaniment.common.domain.vo.ServePageVo;
 import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.enums.ServeEditStatus;
 import huice.accompaniment.common.enums.ServeSaleStatus;
@@ -26,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 服务表(Serve)表服务实现类
@@ -43,8 +44,12 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
 
     @Resource
     private HospitalMapper hospitalMapper;
-    @Autowired
+
+    @Resource
     private ServeTypeMapper serveTypeMapper;
+
+    @Resource
+    private ServeToOrderListService serveToOrderListService;
 
     /**
      * 通过ID查询单条数据
@@ -69,8 +74,16 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
     public PageImpl<?> queryByPage(Serve serve, Integer page, Integer size) {
         Long uid = ThreadLocalUtils.getUid();
         long total = this.serveMapper.count(serve, uid);
-        List<Serve> serves = this.serveMapper.queryAllByLimit(serve, uid, page * size, size);
-        return new PageImpl<>(serves, total);
+        List<ServePageVo> servePageVos = this.serveMapper.queryAllByLimit(serve, uid, page * size, size).stream().map(o -> {
+            ServePageVo servePageVo = new ServePageVo();
+            ServeItem serveItem = this.serveItemMapper.queryById(o.getId());
+            servePageVo.setServeItem(serveItem);
+            servePageVo.setServeType(this.serveTypeMapper.queryById(serveItem.getServeTypeId()));
+            servePageVo.setHospital(this.hospitalMapper.queryById(o.getHospitalId()));
+            servePageVo.setSold(this.serveToOrderListService.getSoldByServeId(o.getId()));
+            return servePageVo;
+        }).collect(Collectors.toList());
+        return new PageImpl<>(servePageVos, total);
     }
 
     /**

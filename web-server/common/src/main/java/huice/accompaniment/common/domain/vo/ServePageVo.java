@@ -2,7 +2,7 @@ package huice.accompaniment.common.domain.vo;
 
 import huice.accompaniment.common.domain.Hospital;
 import huice.accompaniment.common.domain.ServeItem;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.StringType;
+import huice.accompaniment.common.domain.ServeType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class ServePageVo {
     // 服务项目
     private ServeItem serveItem;
     // 服务类型
-    private StringType stringType;
+    private ServeType serveType;
     // 服务医院
     private Hospital hospital;
     // 销量
@@ -23,4 +23,44 @@ public class ServePageVo {
     // 创建时间
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    public ServeType getServeType() {
+        return serveType;
+    }
+
+    public void setServeType(ServeType serveType) {
+        this.serveType = serveType;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
+    public Long getSold() {
+        return sold;
+    }
+
+    public void setSold(Long sold) {
+        this.sold = sold;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public ServeItem getServeItem() {
+        return serveItem;
+    }
+
+    public void setServeItem(ServeItem serveItem) {
+        this.serveItem = serveItem;
+    }
 }
