@@ -1,7 +1,6 @@
 /* pages/index/index.wxss */
 .container {
   display: flex;
- 
   height: 100vh; /* 视口高度，100vh 表示 100% 视口高度 */
 }
 

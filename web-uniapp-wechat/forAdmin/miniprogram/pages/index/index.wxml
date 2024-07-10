@@ -1,4 +1,8 @@
 <view class="container">
   <text>Hello World</text>
+    <uni-button type="primary">Primary Button</uni-button>
+    <uni-button type="success">Success Button</uni-button>
+    <uni-button type="warning">Warning Button</uni-button>
+    <uni-button type="error">Error Button</uni-button>
 </view>
 1

@@ -153,12 +153,13 @@ public class OrderListController {
 
     /**
      * 管理员获取1
+     *
      * @param adminGetListDataBo
      * @return
      */
     @WhiteApi
     @PostMapping("/adminGetListData")
-    public String adminGetListData(AdminGetListDataBo adminGetListDataBo){
+    public String adminGetListData(AdminGetListDataBo adminGetListDataBo) {
         System.out.println(ThreadLocalUtils.getUid());
         System.out.println(adminGetListDataBo);
         String res = orderListService.adminGetListData(adminGetListDataBo);
