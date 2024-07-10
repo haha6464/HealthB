@@ -39,7 +39,7 @@ http.interceptors.request.use(config => {
     //设置请求头
 
     //config.headers['token'] = "acabd829-0a80-45d0-a6ff-36a98fdbd0e2"
-    config.headers['token'] = "8a7964ce-7848-4363-8608-f23679bdafe1"
+    config.headers['token'] = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodWljZWppdHVhMSIsImlhdCI6MTcyMDU4OTc1MSwic3ViIjoiaHVpY2VqaXR1YTEiLCJleHAiOjE3MjExOTQ1NTEsImlkIjoiMTIzIn0.uT40L15aYUD7RiqulQ--Zp1_QpzJaArPU39OvxUgR6A"
     config.headers['accept'] = '*/*'
     return config;
 })

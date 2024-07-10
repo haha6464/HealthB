@@ -3,6 +3,7 @@ package huice.accompaniment.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import huice.accompaniment.common.exception.AbstractAssert;
+import huice.accompaniment.common.utils.JwtUtil;
 import huice.accompaniment.common.utils.snowflake.Snowflake;
 import huice.accompaniment.mapper.UserMapper;
 import huice.accompaniment.pojo.DO.PatientDO;
@@ -40,8 +41,8 @@ public class UserServiceImpl implements UserService {
         UserDO userDO = userMapper.selectOne(queryWrapper);
         AbstractAssert.notNull(userDO, ResultCodeEnum.USER_INFO_ERROR);
         HashMap<String, Object> res = new HashMap<>();
-        res.put("userInfo",userDO);
-        res.put("token", TokenUtils.getToken(userDO.getUid(),username));
+        res.put("token", JwtUtil.createJWT(userDO.getUid()));
+
         return res;
     }
 

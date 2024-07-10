@@ -11,7 +11,7 @@ import huice.accompaniment.common.utils.ThreadLocalUtils;
 public class TokenUtils {
 
     public static String getToken(String uid,String username){
-        String loginId = uid + "|" + username;
+        String loginId = uid;
         StpUtil.login(loginId);
         return StpUtil.getTokenValueByLoginId(loginId);
     }

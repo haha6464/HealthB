@@ -49,6 +49,7 @@ public class LaxAuthorizeFilter implements GlobalFilter, Ordered, InitializingBe
         if(laxTokenApi.contains(path)){
             // 获取请求头
             HttpHeaders headers = request.getHeaders();
+            System.out.println(headers);
             // 请求头中获取令牌
             String token = headers.getFirst(AUTHORIZE_TOKEN);
             ServerHttpRequest newRequest;

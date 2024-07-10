@@ -2,16 +2,6 @@
   "groups": [
     {
       "name": "api",
-      "type": "huice.accompaniment.gatewayservice.filter.LaxAuthorizeFilter",
-      "sourceType": "huice.accompaniment.gatewayservice.filter.LaxAuthorizeFilter"
-    },
-    {
-      "name": "api",
-      "type": "huice.accompaniment.gatewayservice.filter.InternalFilter",
-      "sourceType": "huice.accompaniment.gatewayservice.filter.InternalFilter"
-    },
-    {
-      "name": "api",
       "type": "huice.accompaniment.gatewayservice.filter.AuthorizeFilter",
       "sourceType": "huice.accompaniment.gatewayservice.filter.AuthorizeFilter"
     }

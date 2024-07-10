@@ -2,6 +2,7 @@ package huice.accompaniment.gatewayservice.filter;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.cloud.commons.lang.StringUtils;
+import huice.accompaniment.common.utils.JwtUtil;
 import huice.accompaniment.gatewayservice.anno.LogTime;
 
 import lombok.Data;
@@ -23,6 +24,7 @@ import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
+import java.util.Map;
 
 import static huice.accompaniment.common.constant.GatewayConstantPool.AUTHORIZE_TOKEN;
 
@@ -64,27 +66,16 @@ public class AuthorizeFilter implements GlobalFilter, Ordered, InitializingBean 
             HttpHeaders headers = request.getHeaders();
             // 请求头中获取令牌
             String token = headers.getFirst(AUTHORIZE_TOKEN);
-            // 判断请求头中是否有令牌
-            if (StringUtils.isEmpty(token)) {
-                //7. 响应中放入返回的状态吗, 没有权限访问
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                //8. 返回
-                return response.setComplete();
-            }
+            System.out.println(token);
+
             try {
                 ServerHttpRequest newRequest = null;
-                String loginID = (String) StpUtil.getLoginIdByToken(token);
-                if (StpUtil.isLogin(loginID)) {
-                    String[] vars = loginID.split("\\|");
-                    if(vars.length==2){
-                        String uid = vars[0];
-                        String username = vars[1];
-                        newRequest = request.mutate().header("uid",uid).header("username",username).build();
-                        return chain.filter(exchange.mutate().request(newRequest).build());
-                    }
-                }
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                return response.setComplete();
+                Map<String, Object> analysis = JwtUtil.analysis(token);
+
+                String loginID = (String) analysis.get("id");
+
+                newRequest = request.mutate().header("uid",loginID).header("username","qwe").build();
+                return chain.filter(exchange.mutate().request(newRequest).build());
             } catch (Exception e) {
                 e.printStackTrace();
                 //10. 解析jwt令牌出错, 说明令牌过期或者伪造等不合法情况出现

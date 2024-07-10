@@ -163,7 +163,7 @@ public class OrderListController {
         System.out.println(ThreadLocalUtils.getUid());
         System.out.println(adminGetListDataBo);
         String res = orderListService.adminGetListData(adminGetListDataBo);
-
+        System.err.println(res);
         return res;
     }
 }
