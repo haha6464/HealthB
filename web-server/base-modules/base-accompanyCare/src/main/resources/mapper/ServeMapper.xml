@@ -36,80 +36,92 @@
     <select id="queryAllByLimit" resultMap="ServeMap">
         select
         id, serve_item_id, hospital_id, sale_status, price, create_time, update_time, create_by, update_by, del_flag
-        from serve
+        from serve s
         <where>
+            hospital_id in (
+            select hospital_id
+            from to_hospital
+            where user_id = #{userId}
+            )
             <if test="obj.id != null">
-                and id = #{obj.id}
+                and s.id = #{obj.id}
             </if>
             <if test="obj.serveItemId != null">
-                and serve_item_id = #{obj.serveItemId}
+                and s.serve_item_id = #{obj.serveItemId}
             </if>
             <if test="obj.hospitalId != null">
-                and hospital_id = #{obj.hospitalId}
+                and s.hospital_id = #{obj.hospitalId}
             </if>
             <if test="obj.saleStatus != null">
-                and sale_status = #{obj.saleStatus}
+                and s.sale_status = #{obj.saleStatus}
             </if>
             <if test="obj.price != null">
-                and price = #{obj.price}
+                and s.price = #{obj.price}
             </if>
             <if test="obj.createTime != null">
-                and create_time = #{obj.createTime}
+                and s.create_time = #{obj.createTime}
             </if>
             <if test="obj.updateTime != null">
-                and update_time = #{obj.updateTime}
+                and s.update_time = #{obj.updateTime}
             </if>
             <if test="obj.createBy != null">
-                and create_by = #{obj.createBy}
+                and s.create_by = #{obj.createBy}
             </if>
             <if test="obj.updateBy != null">
-                and update_by = #{obj.updateBy}
+                and s.update_by = #{obj.updateBy}
             </if>
             <if test="obj.delFlag != null">
-                and del_flag = #{obj.delFlag}
+                and s.del_flag = #{obj.delFlag}
             </if>
         </where>
-        order by id desc
+        order by s.id desc
         limit #{offset}, #{size}
     </select>
+
 
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from serve
+        from serve s
         <where>
-            <if test="id != null">
-                and id = #{id}
+            hospital_id in (
+            select hospital_id
+            from to_hospital
+            where user_id = #{userId}
+            )
+            <if test="obj.id != null">
+                and s.id = #{serve.id}
             </if>
-            <if test="serveItemId != null">
-                and serve_item_id = #{serveItemId}
+            <if test="obj.serveItemId != null">
+                and s.serve_item_id = #{serve.serveItemId}
             </if>
-            <if test="hospitalId != null">
-                and hospital_id = #{hospitalId}
+            <if test="obj.hospitalId != null">
+                and s.hospital_id = #{serve.hospitalId}
             </if>
-            <if test="saleStatus != null">
-                and sale_status = #{saleStatus}
+            <if test="obj.saleStatus != null">
+                and s.sale_status = #{serve.saleStatus}
             </if>
-            <if test="price != null">
-                and price = #{price}
+            <if test="obj.price != null">
+                and s.price = #{serve.price}
             </if>
-            <if test="createTime != null">
-                and create_time = #{createTime}
+            <if test="obj.createTime != null">
+                and s.create_time = #{serve.createTime}
             </if>
-            <if test="updateTime != null">
-                and update_time = #{updateTime}
+            <if test="obj.updateTime != null">
+                and s.update_time = #{serve.updateTime}
             </if>
-            <if test="createBy != null">
-                and create_by = #{createBy}
+            <if test="obj.createBy != null">
+                and s.create_by = #{serve.createBy}
             </if>
-            <if test="updateBy != null">
-                and update_by = #{updateBy}
+            <if test="obj.updateBy != null">
+                and s.update_by = #{serve.updateBy}
             </if>
-            <if test="delFlag != null">
-                and del_flag = #{delFlag}
+            <if test="obj.delFlag != null">
+                and s.del_flag = #{serve.delFlag}
             </if>
         </where>
     </select>
+
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

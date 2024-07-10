@@ -3,9 +3,9 @@ package com.example.baseaccompanying.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.ServeService;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
+import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Serve;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -34,11 +34,11 @@ public class ServeController {
      * @return
      */
     @WhiteApi
-    @GetMapping
+    @GetMapping("/queryByPage")
     public String queryByPage(@ModelAttribute Serve serve,
                               @RequestParam("page") Integer page,
                               @RequestParam("size") Integer size) {
-        Page<Serve> serves = this.serveService.queryByPage(serve, page, size);
+        PageImpl<?> serves = this.serveService.queryByPage(serve, page, size);
         return JSONArray.toJSONString(new ResponseVo<>("ok", serves, "200"));
     }
 

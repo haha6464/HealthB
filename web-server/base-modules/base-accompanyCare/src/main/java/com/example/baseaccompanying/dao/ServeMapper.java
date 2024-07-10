@@ -32,7 +32,7 @@ public interface ServeMapper extends BaseMapper<Serve> {
      * @param size
      * @return
      */
-    List<Serve> queryAllByLimit(@Param("obj") Serve obj, @Param("offset") Integer page, @Param("size") Integer size);
+    List<Serve> queryAllByLimit(@Param("obj") Serve obj, @Param("userId") Long uid, @Param("offset") Integer page, @Param("size") Integer size);
 
     /**
      * 统计总行数
@@ -40,7 +40,7 @@ public interface ServeMapper extends BaseMapper<Serve> {
      * @param serve 查询条件
      * @return 总行数
      */
-    long count(Serve serve);
+    Long count(@Param("obj") Serve serve, @Param("userId") Long userId);
 
     /**
      * 新增数据

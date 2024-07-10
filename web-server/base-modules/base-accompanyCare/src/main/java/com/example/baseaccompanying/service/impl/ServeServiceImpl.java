@@ -21,11 +21,11 @@ import huice.accompaniment.common.exception.BadRequestException;
 import huice.accompaniment.common.exception.ForbiddenOperationException;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import huice.accompaniment.common.core.PageImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 服务表(Serve)表服务实现类
@@ -66,9 +66,11 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
      * @return
      */
     @Override
-    public Page<Serve> queryByPage(Serve serve, Integer page, Integer size) {
-        long total = this.serveMapper.count(serve);
-        return new PageImpl<>(this.serveMapper.queryAllByLimit(serve, page * size, size));
+    public PageImpl<?> queryByPage(Serve serve, Integer page, Integer size) {
+        Long uid = ThreadLocalUtils.getUid();
+        long total = this.serveMapper.count(serve, uid);
+        List<Serve> serves = this.serveMapper.queryAllByLimit(serve, uid, page * size, size);
+        return new PageImpl<>(serves, total);
     }
 
     /**

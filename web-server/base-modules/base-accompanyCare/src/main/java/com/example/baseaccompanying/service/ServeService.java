@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.service;
 
 import huice.accompaniment.common.domain.Serve;
-import org.springframework.data.domain.Page;
+import huice.accompaniment.common.core.PageImpl;
 
 /**
  * 服务表(Serve)表服务接口
@@ -27,7 +27,7 @@ public interface ServeService {
      * @param size
      * @return
      */
-    Page<Serve> queryByPage(Serve serve, Integer page, Integer size);
+    PageImpl queryByPage(Serve serve, Integer page, Integer size);
 
     /**
      * 新增数据
