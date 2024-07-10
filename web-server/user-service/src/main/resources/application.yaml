@@ -7,7 +7,7 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://114.55.134.155:3306/huice
+    url: jdbc:mysql://114.55.134.155:3306/health
     username: root
     password: root
     druid:
