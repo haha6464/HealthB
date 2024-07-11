@@ -3,6 +3,8 @@ package com.example.baseaccompanying.service;
 import huice.accompaniment.common.domain.ServeType;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * 服务类型表(ServeType)表服务接口
  *
@@ -68,4 +70,10 @@ public interface ServeTypeService {
      * @return
      */
     boolean deactivateById(Long id);
+
+    /**
+     * 管理员获取全部已启用的服务类型
+     * @return 已启用的服务类型列表
+     */
+    List<ServeType> adminGetAllActiveServeType();
 }

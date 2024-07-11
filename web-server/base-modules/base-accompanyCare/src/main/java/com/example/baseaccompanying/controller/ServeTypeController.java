@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 服务类型表(ServeType)表控制层
@@ -24,6 +25,17 @@ public class ServeTypeController {
      */
     @Resource
     private ServeTypeService serveTypeService;
+
+    /**
+     * 管理员获取全部已启用的服务类型
+     * @return 已启用的服务类型列表
+     */
+    @WhiteApi
+    @GetMapping("/adminGetAllActiveServeType")
+    public String adminGetAllActiveServeType() {
+        List<ServeType> serveTypeList = this.serveTypeService.adminGetAllActiveServeType();
+        return JSONArray.toJSONString(new ResponseVo<>("ok", serveTypeList, "200"));
+    }
 
     /**
      * 分页查询

@@ -13,6 +13,7 @@ import huice.accompaniment.common.domain.ServeType;
 import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.enums.ServeEditStatus;
 import huice.accompaniment.common.exception.BadRequestException;
+import huice.accompaniment.common.exception.ForbiddenOperationException;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import huice.accompaniment.common.utils.snowflake.Snowflake;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -160,5 +162,16 @@ public class ServeTypeServiceImpl extends ServiceImpl<ServeTypeMapper, ServeType
         // 更新禁用服务类型
         serveType.setActiveStatus(ServeEditStatus.DISABLE.getStatus());
         return serveTypeMapper.update(serveType) > 0;
+    }
+
+    @Override
+    public List<ServeType> adminGetAllActiveServeType() {
+        Long uid = ThreadLocalUtils.getUid();
+        // TODO 管理员权限校验
+        // 构建查询条件，服务类型未删除且启用
+        LambdaQueryWrapper<ServeType> serveTypeLambdaQueryWrapper = Wrappers.<ServeType>lambdaQuery()
+                .eq(ServeType::getDelFlag, DelFlagEnum.NOT_DELETE.getStatus())
+                .eq(ServeType::getActiveStatus, ServeEditStatus.ENABLE.getStatus());
+        return this.serveTypeMapper.selectList(serveTypeLambdaQueryWrapper);
     }
 }
