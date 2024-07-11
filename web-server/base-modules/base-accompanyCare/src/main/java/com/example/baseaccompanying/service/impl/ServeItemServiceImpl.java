@@ -165,6 +165,23 @@ public class ServeItemServiceImpl extends ServiceImpl<ServeItemMapper, ServeItem
     }
 
     @Override
+    public ServeItem addminAddServeItem(String img, String serveName, Long ServeTypeId, Integer onSaleFlag) {
+        ServeItem serveItem = new ServeItem();
+        Long uid = ThreadLocalUtils.getUid();
+        // 补充信息
+        serveItem.setImg(img);
+        serveItem.setName(serveName);
+        serveItem.setServeTypeId(ServeTypeId);
+        serveItem.setActiveStatus(onSaleFlag);
+        serveItem.setCreateBy(uid);
+        serveItem.setUpdateBy(uid);
+        serveItem.setCode(snowflake.generate());
+        // 保存信息
+        this.serveItemMapper.insert(serveItem);
+        return serveItem;
+    }
+
+    @Override
     public boolean activeById(Long id) {
         // 查询是否存在该服务项
         ServeItem serveItem = serveItemMapper.queryById(id);

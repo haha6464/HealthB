@@ -1,14 +1,20 @@
 package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.example.baseaccompanying.dao.ServeMapper;
+import com.example.baseaccompanying.service.ServeItemService;
 import com.example.baseaccompanying.service.ServeService;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Serve;
+import huice.accompaniment.common.domain.ServeItem;
+import huice.accompaniment.common.enums.ServeEditStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 服务表(Serve)表控制层
@@ -24,6 +30,30 @@ public class ServeController {
      */
     @Resource
     private ServeService serveService;
+
+    @Resource
+    private ServeItemService serveItemService;
+
+    @WhiteApi
+    @PutMapping("/adminAddServe")
+    public String adminAddServe(@RequestParam("serve_item_img") String img,
+                                @RequestParam("serve_item_name") String serveItemName,
+                                @RequestParam("serve_type_id") Long serveTypeId,
+                                @RequestParam("hospital_id") Long hospitalId,
+                                @RequestParam("serve_price") BigDecimal serve_price,
+                                @RequestParam(value = "reserve_sale_time", required = false) String reserveSaleTime,
+                                @RequestParam("on_sale_flag") Integer onSaleFlag) {
+        // 创建服务项目
+        ServeItem serveItem = this.serveItemService.addminAddServeItem(img, serveItemName, serveTypeId, onSaleFlag);
+        // 服务项目和医院关联
+        Serve serve = this.serveService.adminPublishServe(serveItem.getId(), hospitalId, serve_price, onSaleFlag);
+        // 定时上架
+        if (onSaleFlag.equals(ServeEditStatus.DISABLE.getStatus())) {
+            // TODO 添加定时任务，定时将该服务修改为上架
+
+        }
+        return JSONArray.toJSONString(new ResponseVo<>("ok", null, "200"));
+    }
 
     /**
      * 管理员获取服务列表

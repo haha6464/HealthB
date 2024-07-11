@@ -3,6 +3,8 @@ package com.example.baseaccompanying.service;
 import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.core.PageImpl;
 
+import java.math.BigDecimal;
+
 /**
  * 服务表(Serve)表服务接口
  *
@@ -68,4 +70,14 @@ public interface ServeService {
      * @return 服务列表
      */
     PageImpl<?> adminGetServeList(Integer page, Integer size);
+
+    /**
+     * 管理员发布服务
+     * @param serveItemId 服务项id
+     * @param hospitalId 医院id
+     * @param servePrice 服务价格
+     * @param onSaleFlag 是否上架
+     * @return 服务
+     */
+    Serve adminPublishServe(Long serveItemId, Long hospitalId, BigDecimal servePrice, Integer onSaleFlag);
 }

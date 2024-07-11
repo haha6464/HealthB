@@ -26,6 +26,7 @@ import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -207,6 +208,24 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         long total = this.serveMapper.count(serve, uid);
         if (total == 0) return new PageImpl<>(null, total);
         return getPage(page, size, uid, serve, total);
+    }
+
+    @Override
+    public Serve adminPublishServe(Long serveItemId, Long hospitalId, BigDecimal servePrice, Integer onSaleFlag) {
+        Long uid = ThreadLocalUtils.getUid();
+        // TODO 鉴权
+
+        // 将服务项和医院关联服务
+        Serve serve = new Serve();
+        serve.setServeItemId(serveItemId);
+        serve.setHospitalId(hospitalId);
+        serve.setSaleStatus(onSaleFlag);
+        serve.setPrice(servePrice.doubleValue());
+        serve.setCreateBy(uid);
+        serve.setUpdateBy(uid);
+
+        this.serveMapper.insert(serve);
+        return serve;
     }
 
     /**

@@ -67,4 +67,14 @@ public interface ServeItemService {
      * @return 禁用是否成功
      */
     boolean deactivateById(Long id);
+
+    /**
+     * 管理员添加服务项
+     * @param img 服务项图片
+     * @param serveName 服务项名称
+     * @param ServeTypeId 服务类型id
+     * @param onSaleFlag 上架状态
+     * @return 服务项
+     */
+    ServeItem addminAddServeItem(String img, String serveName, Long ServeTypeId, Integer onSaleFlag);
 }

@@ -1,5 +1,6 @@
 package huice.accompaniment.common.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -20,7 +21,7 @@ public class ServeItem implements Serializable {
     /**
      * 服务项id
      */
-    @TableId(value = "id")
+    @TableId(type = IdType.AUTO, value = "id")
     private Long id;
     /**
      * 服务项编码
