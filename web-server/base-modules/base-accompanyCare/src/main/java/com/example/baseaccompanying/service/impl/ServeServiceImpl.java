@@ -75,18 +75,8 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
     public PageImpl<?> queryByPage(Serve serve, Integer page, Integer size) {
         Long uid = ThreadLocalUtils.getUid();
         long total = this.serveMapper.count(serve, uid);
-        List<ServePageVo> servePageVos = this.serveMapper.queryAllByLimit(serve, uid, page * size, size)
-                .stream().map(o -> {
-                    ServePageVo servePageVo = new ServePageVo();
-                    ServeItem serveItem = this.serveItemMapper.queryById(o.getServeItemId());
-                    servePageVo.setServeItem(serveItem);
-                    servePageVo.setServeType(this.serveTypeMapper.queryById(serveItem.getServeTypeId()));
-                    servePageVo.setHospital(this.hospitalMapper.queryById(o.getHospitalId()));
-                    servePageVo.setSold(this.serveToOrderListService.getSoldByServeId(o.getId()));
-                    servePageVo.setCreateTime(o.getCreateTime());
-                    return servePageVo;
-                }).collect(Collectors.toList());
-        return new PageImpl<>(servePageVos, total);
+        if (total == 0) return new PageImpl<>(null, total);
+        return getPage(page, size, uid, serve, total);
     }
 
     /**
@@ -202,5 +192,44 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         // 上架
         serve.setSaleStatus(ServeSaleStatus.ENABLE.getStatus());
         return serveMapper.update(serve) > 0;
+    }
+
+    /**
+     * 管理员获取服务列表
+     * @param page 页数
+     * @param size 大小
+     * @return 服务列表
+     */
+    @Override
+    public PageImpl<?> adminGetServeList(Integer page, Integer size) {
+        Long uid = ThreadLocalUtils.getUid();
+        Serve serve = new Serve();
+        long total = this.serveMapper.count(serve, uid);
+        if (total == 0) return new PageImpl<>(null, total);
+        return getPage(page, size, uid, serve, total);
+    }
+
+    /**
+     * 根据分页大小 uid serve 信息返回分页集合
+     * @param page
+     * @param size
+     * @param uid
+     * @param serve
+     * @param total
+     * @return
+     */
+    private PageImpl<?> getPage(Integer page, Integer size, Long uid, Serve serve, long total) {
+        List<ServePageVo> servePageVos = this.serveMapper.queryAllByLimit(serve, uid, page * size, size)
+                .stream().map(o -> {
+                    ServePageVo servePageVo = new ServePageVo();
+                    ServeItem serveItem = this.serveItemMapper.queryById(o.getServeItemId());
+                    servePageVo.setServeItem(serveItem);
+                    servePageVo.setServeType(this.serveTypeMapper.queryById(serveItem.getServeTypeId()));
+                    servePageVo.setHospital(this.hospitalMapper.queryById(o.getHospitalId()));
+                    servePageVo.setSold(this.serveToOrderListService.getSoldByServeId(o.getId()));
+                    servePageVo.setCreateTime(o.getCreateTime());
+                    return servePageVo;
+                }).collect(Collectors.toList());
+        return new PageImpl<>(servePageVos, total);
     }
 }

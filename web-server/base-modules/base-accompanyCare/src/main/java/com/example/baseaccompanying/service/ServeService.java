@@ -60,4 +60,12 @@ public interface ServeService {
      * @return 是否成功
      */
     boolean onSaleById(Long id);
+
+    /**
+     * 获取管理员服务列表
+     * @param page 页数
+     * @param size 大小
+     * @return 服务列表
+     */
+    PageImpl<?> adminGetServeList(Integer page, Integer size);
 }

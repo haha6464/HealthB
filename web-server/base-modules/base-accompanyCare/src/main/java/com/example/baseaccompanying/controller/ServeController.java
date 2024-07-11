@@ -26,6 +26,19 @@ public class ServeController {
     private ServeService serveService;
 
     /**
+     * 管理员获取服务列表
+     * @param page 页数
+     * @param size 大小
+     * @return 服务列表信息
+     */
+    @WhiteApi
+    @GetMapping("/adminGetServeList")
+    public String adminGetServeList(@RequestParam("page")Integer page, @RequestParam("size")Integer size) {
+        PageImpl<?> serves = this.serveService.adminGetServeList(page, size);
+        return JSONArray.toJSONString(new ResponseVo<>("ok", serves, "200"));
+    }
+
+    /**
      * 分页查询
      *
      * @param serve
