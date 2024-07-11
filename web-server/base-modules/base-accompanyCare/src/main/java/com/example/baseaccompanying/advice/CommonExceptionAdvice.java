@@ -4,6 +4,8 @@ import com.alibaba.fastjson2.JSONArray;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.exception.CommonException;
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.JobExecutionException;
+import org.quartz.SchedulerException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,6 +26,17 @@ public class CommonExceptionAdvice {
     public String customException(CommonException e) {
         log.error("请求异常，message:{}", e.getMessage());
         return JSONArray.toJSONString(new ResponseVo<>(e.getMessage(), e.getCode(), "200"));
+    }
+
+    /**
+     * 定时任务调度异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = SchedulerException.class)
+    public String customException(SchedulerException e) {
+        log.error("定时任务调度异常：message:{}", e.getMessage());
+        return JSONArray.toJSONString(new ResponseVo<>(e.getMessage(), e.getCause(),"200"));
     }
 
     /**

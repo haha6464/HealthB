@@ -2,19 +2,26 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.dao.ServeMapper;
+import com.example.baseaccompanying.quartz.scheduler.AdminOnSaleServeScheduler;
 import com.example.baseaccompanying.service.ServeItemService;
 import com.example.baseaccompanying.service.ServeService;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
+import huice.accompaniment.common.constant.ErrorInfo;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.domain.ServeItem;
 import huice.accompaniment.common.enums.ServeEditStatus;
+import huice.accompaniment.common.exception.BadRequestException;
+import huice.accompaniment.common.exception.ForbiddenOperationException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.prefs.BackingStoreException;
 
 /**
  * 服务表(Serve)表控制层
@@ -34,6 +41,9 @@ public class ServeController {
     @Resource
     private ServeItemService serveItemService;
 
+    @Resource
+    private AdminOnSaleServeScheduler adminOnSaleServeScheduler;
+
     @WhiteApi
     @PutMapping("/adminAddServe")
     public String adminAddServe(@RequestParam("serve_item_img") String img,
@@ -43,14 +53,29 @@ public class ServeController {
                                 @RequestParam("serve_price") BigDecimal serve_price,
                                 @RequestParam(value = "reserve_sale_time", required = false) String reserveSaleTime,
                                 @RequestParam("on_sale_flag") Integer onSaleFlag) {
+        // 判断定时时间是否合法
+        Date publishTime = null;
+        if (onSaleFlag.equals(ServeEditStatus.DISABLE.getStatus())) {
+            if (reserveSaleTime == null) {
+                throw new BadRequestException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 未设置上架时间");
+            }
+            try {
+                publishTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(reserveSaleTime);
+                if (publishTime.before(new Date())) {
+                    throw new ForbiddenOperationException(ErrorInfo.Msg.FORBIDDEN_OPERATION + " 日期设置时间不合法");
+                }
+            } catch (ParseException e) {
+                throw new BadRequestException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 日期格式不正确");
+            }
+        }
         // 创建服务项目
         ServeItem serveItem = this.serveItemService.addminAddServeItem(img, serveItemName, serveTypeId, onSaleFlag);
         // 服务项目和医院关联
         Serve serve = this.serveService.adminPublishServe(serveItem.getId(), hospitalId, serve_price, onSaleFlag);
         // 定时上架
         if (onSaleFlag.equals(ServeEditStatus.DISABLE.getStatus())) {
-            // TODO 添加定时任务，定时将该服务修改为上架
-
+            // 添加定时任务，定时将该服务修改为上架
+            this.adminOnSaleServeScheduler.adminOnSaleServeScheduler(serve.getId(), publishTime);
         }
         return JSONArray.toJSONString(new ResponseVo<>("ok", null, "200"));
     }

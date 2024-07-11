@@ -232,8 +232,6 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
     @Override
     public Serve adminOnSaleServeById(Long id) {
         // 将服务和对应服务项设置为上架
-        Long uid = ThreadLocalUtils.getUid();
-        // TODO 鉴权
         Serve serve = this.queryById(id);
         if (serve == null) {
             throw new ForbiddenOperationException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 不存在该服务");
@@ -244,7 +242,9 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         }
         // 上架
         serveItem.setActiveStatus(ServeEditStatus.ENABLE.getStatus());
+        this.serveItemMapper.update(serveItem);
         serve.setSaleStatus(ServeSaleStatus.ENABLE.getStatus());
+        baseMapper.update(serve);
         return serve;
     }
 
