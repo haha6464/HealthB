@@ -80,4 +80,11 @@ public interface ServeService {
      * @return 服务
      */
     Serve adminPublishServe(Long serveItemId, Long hospitalId, BigDecimal servePrice, Integer onSaleFlag);
+
+    /**
+     * 管理员上架服务
+     * @param id 服务id
+     * @return 服务
+     */
+    Serve adminOnSaleServeById(Long id);
 }

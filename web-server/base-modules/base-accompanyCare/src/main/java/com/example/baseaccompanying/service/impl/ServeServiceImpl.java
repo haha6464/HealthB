@@ -23,6 +23,7 @@ import huice.accompaniment.common.enums.ServeSaleStatus;
 import huice.accompaniment.common.exception.BadRequestException;
 import huice.accompaniment.common.exception.ForbiddenOperationException;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -225,6 +226,25 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         serve.setUpdateBy(uid);
 
         this.serveMapper.insert(serve);
+        return serve;
+    }
+
+    @Override
+    public Serve adminOnSaleServeById(Long id) {
+        // 将服务和对应服务项设置为上架
+        Long uid = ThreadLocalUtils.getUid();
+        // TODO 鉴权
+        Serve serve = this.queryById(id);
+        if (serve == null) {
+            throw new ForbiddenOperationException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 不存在该服务");
+        }
+        ServeItem serveItem = serveItemMapper.queryById(serve.getServeItemId());
+        if (serveItem == null) {
+            throw new ForbiddenOperationException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 服务项不存在");
+        }
+        // 上架
+        serveItem.setActiveStatus(ServeEditStatus.ENABLE.getStatus());
+        serve.setSaleStatus(ServeSaleStatus.ENABLE.getStatus());
         return serve;
     }
 
