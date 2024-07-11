@@ -70,9 +70,7 @@
             <if test="obj.updateBy != null">
                 and s.update_by = #{obj.updateBy}
             </if>
-            <if test="obj.delFlag != null">
-                and s.del_flag = #{obj.delFlag}
-            </if>
+            and s.del_flag = 0
         </where>
         order by s.id desc
         limit #{offset}, #{size}
@@ -116,9 +114,7 @@
             <if test="obj.updateBy != null">
                 and s.update_by = #{serve.updateBy}
             </if>
-            <if test="obj.delFlag != null">
-                and s.del_flag = #{serve.delFlag}
-            </if>
+            and s.del_flag = 0
         </where>
     </select>
 
