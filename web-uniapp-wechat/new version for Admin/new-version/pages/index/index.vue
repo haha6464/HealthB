@@ -66,7 +66,7 @@
 				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
 			</div>
 			<div style="float: right;">
-				<button class="buttonTrueok"  >接单</button> 
+				<button class="buttonTrueok" @click="toOrder(1)" >接单</button> 
 			</div>
 		</div>
 	</div>
@@ -258,7 +258,16 @@ export default {
   },
 
   onLoad() {},
-  methods: {},
+
+  methods: {
+	toOrder(id){
+		console.log("123");
+		uni.navigateTo({
+			url: '/pages/index/toOrder'
+		});
+		console.log("oks");
+	}
+  },
 };
 </script>
 
