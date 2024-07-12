@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <div class="mainbackgroup">
+    <div clasas="mainbackgroup">
       <div style="float: left; width: 20%; margin-top: 9px">
         <div class="custom-uni-data-select">
           <DateSelect
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width: 80%; margin: 0 auto;">
+			<div style="width:75%; margin: 0 auto;">
 				<hr style="border: 0;height: 1px;background-color: #999999;">
 			</div>
 		</div>
@@ -207,7 +207,7 @@
 			</div>
 		</div>
 		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width: 80%; margin: 0 auto;">
+			<div>
 				<hr style="border: 0;height: 1px;background-color: #999999;">
 			</div>
 		</div>
