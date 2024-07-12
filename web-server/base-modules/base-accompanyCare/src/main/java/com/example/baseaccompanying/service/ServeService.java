@@ -87,4 +87,12 @@ public interface ServeService {
      * @return 服务
      */
     Serve adminOnSaleServeById(Long id);
+
+    /**
+     * 下架服务
+     *
+     * @param id 服务id
+     * @return 是否成功
+     */
+    boolean offSaleById(Long id);
 }

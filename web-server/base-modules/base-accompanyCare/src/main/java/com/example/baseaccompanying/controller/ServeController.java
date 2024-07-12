@@ -44,9 +44,20 @@ public class ServeController {
     @Resource
     private AdminOnSaleServeScheduler adminOnSaleServeScheduler;
 
+    /**
+     * 管理员发布服务
+     * @param img 服务项图片
+     * @param serveItemName 服务项名称
+     * @param serveTypeId 服务类型 id
+     * @param hospitalId 医院 id
+     * @param serve_price 服务价格
+     * @param reserveSaleTime 定时发布时间，如果不为 null，则说明不是立即上架
+     * @param onSaleFlag 是否立即上架，如果为立即上架则不需要定时发布的时间
+     * @return 发布的服务
+     */
     @WhiteApi
-    @PutMapping("/adminAddServe")
-    public String adminAddServe(@RequestParam("serve_item_img") String img,
+    @PutMapping("/adminPublishServe")
+    public String adminPublishServe(@RequestParam("serve_item_img") String img,
                                 @RequestParam("serve_item_name") String serveItemName,
                                 @RequestParam("serve_type_id") Long serveTypeId,
                                 @RequestParam("hospital_id") Long hospitalId,
@@ -77,7 +88,7 @@ public class ServeController {
             // 添加定时任务，定时将该服务修改为上架
             this.adminOnSaleServeScheduler.adminOnSaleServeScheduler(serve.getId(), publishTime);
         }
-        return JSONArray.toJSONString(new ResponseVo<>("ok", null, "200"));
+        return JSONArray.toJSONString(new ResponseVo<>("ok", this.serveService.queryById(serve.getId()), "200"));
     }
 
     /**
@@ -173,6 +184,19 @@ public class ServeController {
     public String onSaleById(@RequestParam("id") Long id) {
         boolean onSale = this.serveService.onSaleById(id);
         return JSONArray.toJSONString(new ResponseVo<>("ok", onSale, "200"));
+    }
+
+    /**
+     * 下架服务
+     *
+     * @param id 服务id
+     * @return 是否成功
+     */
+    @WhiteApi
+    @PutMapping("/offSale")
+    public String offSaleById(@RequestParam("id") Long id) {
+        boolean offSale = this.serveService.offSaleById(id);
+        return JSONArray.toJSONString(new ResponseVo<>("ok", offSale, "200"));
     }
 
 }
