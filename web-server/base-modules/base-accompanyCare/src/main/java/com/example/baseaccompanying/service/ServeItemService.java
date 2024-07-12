@@ -1,5 +1,6 @@
 package com.example.baseaccompanying.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import huice.accompaniment.common.domain.ServeItem;
 import org.springframework.data.domain.Page;
 
@@ -9,7 +10,7 @@ import org.springframework.data.domain.Page;
  * @author Doge2077
  * @since 2024-06-04 17:40:17
  */
-public interface ServeItemService {
+public interface ServeItemService extends IService<ServeItem> {
 
     /**
      * 通过ID查询单条数据
@@ -77,4 +78,11 @@ public interface ServeItemService {
      * @return 服务项
      */
     ServeItem addminAddServeItem(String img, String serveName, Long ServeTypeId, Integer onSaleFlag);
+
+    /**
+     * 根据服务项 id 查询服务项
+     * @param id 服务项 id
+     * @return 服务项
+     */
+    public ServeItem findServeItemById(Long id);
 }

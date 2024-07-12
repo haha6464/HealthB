@@ -2,6 +2,7 @@ package com.example.baseaccompanying.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.dao.ServeItemMapper;
 import com.example.baseaccompanying.dao.ServeMapper;
@@ -198,5 +199,14 @@ public class ServeItemServiceImpl extends ServiceImpl<ServeItemMapper, ServeItem
         // 启用服务项
         serveItem.setActiveStatus(ServeEditStatus.ENABLE.getStatus());
         return serveItemMapper.updateById(serveItem) > 0;
+    }
+
+    @Override
+    public ServeItem findServeItemById(Long id) {
+        ServeItem serveItem = this.queryById(id);
+        if (serveItem == null) {
+            throw new BadRequestException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + "服务项不存在");
+        }
+        return serveItem;
     }
 }
