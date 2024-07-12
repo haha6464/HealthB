@@ -91,5 +91,15 @@ public interface ServeMapper extends BaseMapper<Serve> {
      */
     long countSearchServe(@Param("serveName") String serveName, @Param("status") Integer status, @Param("uid") Long uid);
 
+    /**
+     * 后台管理端-服务搜索-分页搜索服务列表
+     * @param serveName 服务名称关键字
+     * @param status 服务状态
+     * @param page 页数
+     * @param size 大小
+     * @return 服务分页集合
+     */
+    List<Serve> querySearchServePage(@Param("serveName") String serveName, @Param("status") Integer status, @Param("uid") Long uid,
+                                 @Param("offset") Integer page, @Param("size") Integer size);
 }
 

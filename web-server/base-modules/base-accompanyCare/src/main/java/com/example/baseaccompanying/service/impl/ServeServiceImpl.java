@@ -267,8 +267,19 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         if (count == 0) {
             return new PageImpl<>(null, 0L);
         }
-        // TODO 分页查询具体服务列表
-        return new PageImpl<>(null, count);
+        // 分页查询具体服务列表视图集合
+        List<ServePageVo> servePageVoList = this.serveMapper.querySearchServePage(serveName, serveStatus, uid, page, size)
+                .stream().map(o -> {
+                    ServePageVo servePageVo = new ServePageVo();
+                    ServeItem serveItem = this.serveItemService.queryById(o.getServeItemId());
+                    servePageVo.setServeItem(serveItem);
+                    servePageVo.setServeType(this.serveTypeMapper.queryById(serveItem.getServeTypeId()));
+                    servePageVo.setHospital(this.hospitalMapper.queryById(o.getHospitalId()));
+                    servePageVo.setSold(this.serveToOrderListService.getSoldByServeId(o.getId()));
+                    servePageVo.setCreateTime(o.getCreateTime());
+                    return servePageVo;
+                }).collect(Collectors.toList());
+        return new PageImpl<>(servePageVoList, count);
     }
 
     /**
@@ -281,7 +292,7 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
      * @return 分页信息
      */
     private PageImpl<?> getPage(Integer page, Integer size, Long uid, Serve serve, long total) {
-        List<ServePageVo> servePageVos = this.serveMapper.queryAllByLimit(serve, uid, page * size, size)
+        List<ServePageVo> servePageVoList = this.serveMapper.queryAllByLimit(serve, uid, page * size, size)
                 .stream().map(o -> {
                     ServePageVo servePageVo = new ServePageVo();
                     ServeItem serveItem = this.serveItemService.queryById(o.getServeItemId());
@@ -292,7 +303,7 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
                     servePageVo.setCreateTime(o.getCreateTime());
                     return servePageVo;
                 }).collect(Collectors.toList());
-        return new PageImpl<>(servePageVos, total);
+        return new PageImpl<>(servePageVoList, total);
     }
 
     public Serve findServeById(Long id) {
