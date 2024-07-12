@@ -2,8 +2,10 @@ package com.example.baseaccompanying.service;
 
 import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.core.PageImpl;
+import huice.accompaniment.common.domain.vo.ServePageVo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 服务表(Serve)表服务接口
@@ -95,4 +97,14 @@ public interface ServeService {
      * @return 是否成功
      */
     boolean offSaleById(Long id);
+
+    /**
+     * 管理员通过服务名称和服务状态搜索
+     * @param serveName 服务名
+     * @param serveStatus 服务状态
+     * @param page 页数
+     * @param size 大小
+     * @return 分页服务列表和分页大小
+     */
+    PageImpl<ServePageVo> adminFindServeByNameAndStatus(String serveName, Integer serveStatus, Integer page, Integer size);
 }

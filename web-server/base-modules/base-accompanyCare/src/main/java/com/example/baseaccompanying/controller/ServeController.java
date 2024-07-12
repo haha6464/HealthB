@@ -11,6 +11,7 @@ import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.domain.ServeItem;
+import huice.accompaniment.common.domain.vo.ServePageVo;
 import huice.accompaniment.common.enums.ServeEditStatus;
 import huice.accompaniment.common.exception.BadRequestException;
 import huice.accompaniment.common.exception.ForbiddenOperationException;
@@ -21,6 +22,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.prefs.BackingStoreException;
 
 /**
@@ -197,6 +199,24 @@ public class ServeController {
     public String offSaleById(@RequestParam("id") Long id) {
         boolean offSale = this.serveService.offSaleById(id);
         return JSONArray.toJSONString(new ResponseVo<>("ok", offSale, "200"));
+    }
+
+    /**
+     * 管理员通过服务名称和服务状态搜索 分页返回
+     * @param serveName 服务名
+     * @param serveStatus 服务状态
+     * @param page 页数
+     * @param size 大小
+     * @return 分页服务列表和分页大小
+     */
+    @WhiteApi
+    @GetMapping("/adminFindServe")
+    public String adminFindServe(@RequestParam("serve_name") String serveName,
+                                 @RequestParam("serve_status") Integer serveStatus,
+                                 @RequestParam("page") Integer page,
+                                 @RequestParam("size") Integer size) {
+        PageImpl<ServePageVo> servePage = this.serveService.adminFindServeByNameAndStatus(serveName, serveStatus, page * size, size);
+        return JSONArray.toJSONString(new ResponseVo<>("ok", servePage, "200"));
     }
 
 }

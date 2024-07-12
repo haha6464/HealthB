@@ -83,5 +83,13 @@ public interface ServeMapper extends BaseMapper<Serve> {
      */
     int deleteById(Long id);
 
+    /**
+     * 后台管理端-服务搜索-查询总数
+     * @param serveName 服务名称关键字
+     * @param status 服务状态
+     * @return 记录数量
+     */
+    long countSearchServe(@Param("serveName") String serveName, @Param("status") Integer status, @Param("uid") Long uid);
+
 }
 

@@ -196,4 +196,23 @@
         where id = #{id}
     </delete>
 
+    <!--后台管理-服务搜素-查询数量-->
+    <select id="countSearchServe">
+        select count(1)
+        from serve
+        where
+            serve.sale_status = #{status}
+          and serve.serve_item_id in (
+            select serve_item_id
+            from serve_item
+            where serve_item.name
+                      like concat('%', #{serveName}, '%')
+        )
+          and serve.hospital_id in (
+            select hospital_id
+            from to_hospital
+            where to_hospital.user_id = #{uid}
+        )
+    </select>
+
 </mapper>

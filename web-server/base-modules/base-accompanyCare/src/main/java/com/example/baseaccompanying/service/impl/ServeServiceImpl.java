@@ -2,6 +2,7 @@ package com.example.baseaccompanying.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.dao.HospitalMapper;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -255,6 +257,18 @@ public class ServeServiceImpl extends ServiceImpl<ServeMapper, Serve> implements
         // 下架服务
         serve.setSaleStatus(ServeSaleStatus.DISABLE.getStatus());
         return baseMapper.update(serve) > 0;
+    }
+
+    @Override
+    public PageImpl<ServePageVo> adminFindServeByNameAndStatus(String serveName, Integer serveStatus, Integer page, Integer size) {
+        Long uid = ThreadLocalUtils.getUid();
+        // 查询 total
+        long count = this.serveMapper.countSearchServe(serveName, serveStatus, uid);
+        if (count == 0) {
+            return new PageImpl<>(null, 0L);
+        }
+        // TODO 分页查询具体服务列表
+        return new PageImpl<>(null, count);
     }
 
     /**
