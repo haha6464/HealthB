@@ -92,6 +92,28 @@
         limit #{offset},#{limit};
     </select>
 
+    <select id="countPatientescortList" resultType="java.lang.Long">
+        select count(1)
+        from
+        patient_escort_list
+        <where>
+            id in (
+            select
+            escort_id
+            from
+            to_hospital
+            inner join
+            escort_to_hospital on to_hospital.hospital_id = escort_to_hospital.hospital_id
+            where
+            to_hospital.user_id = #{uid}
+            )
+            and del_flag = 0
+        </where>
+        order by
+        id desc
+        limit #{offset}, #{limit};
+    </select>
+
     <select id="addminGetPatientescortListByUidPage" resultMap="PatientescortlistMap">
         select
         id,

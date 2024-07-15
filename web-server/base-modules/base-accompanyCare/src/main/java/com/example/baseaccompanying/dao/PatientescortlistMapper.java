@@ -115,5 +115,11 @@ public interface PatientescortlistMapper extends BaseMapper<Patientescortlist> {
      */
     List<Patientescortlist> getAdminFindEscortPage(@Param("uid") Long uid, @Param("name") String escortName, @Param("gender") String escortSex, @Param("hospital_id") Long hospitalId, @Param("offset") Integer offset, @Param("limit") Integer limit);
 
+    /**
+     * 管理员所属医院下所有的陪诊师
+     * @param uid
+     * @return
+     */
+    long countPatientescortList(Long uid);
 }
 
