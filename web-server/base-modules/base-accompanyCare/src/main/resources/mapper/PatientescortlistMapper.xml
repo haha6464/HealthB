@@ -22,6 +22,76 @@
         <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="countAdminFindEscort" resultType="java.lang.Long">
+        select count(1)
+        from
+        patient_escort_list
+        <where>
+            id in (
+            select escort_id
+            from to_hospital
+            inner join escort_to_hospital
+            on to_hospital.hospital_id = escort_to_hospital.hospital_id
+            where to_hospital.user_id = #{uid}
+            <if test="hospital_id != null and hospital_id != ''">
+                and to_hospital.hospital_id = #{hospital_id}
+            </if>
+            )
+            and del_flag = 0
+            <if test="name != null and name != ''">
+                and patient_escort_list.name like concat('%', #{name}, '%')
+            </if>
+            <if test="gender != null and gender != ''">
+                and patient_escort_list.gender = #{gender}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAdminFindEscortPage" resultMap="PatientescortlistMap">
+        select
+        id,
+        city_id,
+        user_id,
+        name,
+        phone_number,
+        gender,
+        id_card,
+        ic_front_image_url,
+        ic_back_image_url,
+        health_certificate_image_url,
+        rating,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        status,
+        del_flag
+        from
+        patient_escort_list
+        <where>
+            id in (
+            select escort_id
+            from to_hospital
+            inner join escort_to_hospital
+            on to_hospital.hospital_id = escort_to_hospital.hospital_id
+            where to_hospital.user_id = #{uid}
+            <if test="hospital_id != null and hospital_id != ''">
+                and to_hospital.hospital_id = #{hospital_id}
+            </if>
+            )
+            and del_flag = 0
+            <if test="name != null and name != ''">
+                and patient_escort_list.name like concat('%', #{name}, '%')
+            </if>
+            <if test="gender != null and gender != ''">
+                and patient_escort_list.gender = #{gender}
+            </if>
+        </where>
+        order by
+            id desc
+        limit #{offset},#{limit};
+    </select>
+
     <select id="addminGetPatientescortListByUidPage" resultMap="PatientescortlistMap">
         select
         id,

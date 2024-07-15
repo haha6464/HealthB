@@ -6,6 +6,7 @@ import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Patientescortlist;
+import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,26 @@ public class PatientescortlistController {
      */
     @Resource
     private PatientescortlistService patientescortlistService;
+
+    /**
+     * 管理员分页条件搜索陪诊师列表
+     * @param escortName 陪诊师名字
+     * @param escortSex 陪诊师年龄
+     * @param hospitalId 医院id
+     * @param page 页数
+     * @param size 大小
+     * @return 陪诊师列表
+     */
+    @WhiteApi
+    @GetMapping("/adminFindEscort")
+    public String adminFindEscort(@RequestParam(value = "escort_name", required = false) String escortName,
+                                  @RequestParam(value = "escort_sex", required = false) String escortSex,
+                                  @RequestParam(value = "hospital_id", required = false) Long hospitalId,
+                                  @RequestParam("page") Integer page,
+                                  @RequestParam("size") Integer size) {
+        PageImpl<AdminGetPatientEscortListVo> escortPage = this.patientescortlistService.adminFindEscortByNameAndSexAndHospital(escortName, escortSex, hospitalId, page * size, size);
+        return JSONArray.toJSONString(new ResponseVo<>("ok", escortPage, "200"));
+    }
 
     /**
      * 管理员获取陪诊师列表

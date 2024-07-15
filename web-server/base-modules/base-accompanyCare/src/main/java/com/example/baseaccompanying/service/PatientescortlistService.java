@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Patientescortlist;
+import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
 
 /**
  * (Patientescortlist)表服务接口
@@ -62,4 +63,15 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
      * @return 陪诊师分页列表和总数
      */
     PageImpl<?> adminGetPatientEscortList(Integer offset, Integer limit);
+
+    /**
+     * 管理员分页条件搜索陪诊师列表
+     * @param escortName 陪诊师名字
+     * @param escortSex 陪诊师年龄
+     * @param hospitalId 医院id
+     * @param offset 页数
+     * @param limit 大小
+     * @return 陪诊师列表
+     */
+    PageImpl<AdminGetPatientEscortListVo> adminFindEscortByNameAndSexAndHospital(String escortName, String escortSex, Long hospitalId, Integer offset, Integer limit);
 }
