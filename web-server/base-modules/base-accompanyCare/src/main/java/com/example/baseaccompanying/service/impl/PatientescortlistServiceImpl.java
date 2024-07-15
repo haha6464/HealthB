@@ -137,4 +137,24 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
                 }).collect(Collectors.toList());
         return new PageImpl<>(result, total);
     }
+
+    @Override
+    public PageImpl<AdminGetPatientEscortListVo> adminFindEscortByNameAndSexAndHospital(String escortName, String escortSex, Long hospitalId, Integer offset, Integer limit) {
+        // TODO 鉴权
+        Long uid = ThreadLocalUtils.getUid();
+        // 查询总数量
+        long total = this.patientescortlistMapper.countAdminFindEscort(uid, escortName, escortSex, hospitalId);
+        if (total == 0) {
+            return new PageImpl<>(null, total);
+        }
+        List<AdminGetPatientEscortListVo> result = this.patientescortlistMapper.getAdminFindEscortPage(uid, escortName, escortSex, hospitalId, offset, limit).stream()
+                .map(o -> {
+                    AdminGetPatientEscortListVo adminGetPatientEscortListVo = new AdminGetPatientEscortListVo();
+                    adminGetPatientEscortListVo.setPatientescortlist(o);
+                    adminGetPatientEscortListVo.setHospital(this.hospitalMapper.getHospitalByEscortId(o.getId()));
+                    adminGetPatientEscortListVo.setCreateTime(o.getCreateTime());
+                    return adminGetPatientEscortListVo;
+                }).collect(Collectors.toList());
+        return new PageImpl<>(result, total);
+    }
 }
