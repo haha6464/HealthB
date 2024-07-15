@@ -246,6 +246,7 @@
 		bottom: 0;
 		left: 0;
 	}
+	
 
 	.buttonTrueok{
 		width: 60px;
