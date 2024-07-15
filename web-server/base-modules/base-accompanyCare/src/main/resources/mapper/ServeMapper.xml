@@ -39,37 +39,10 @@
         from serve s
         <where>
             hospital_id in (
-            select hospital_id
-            from to_hospital
-            where user_id = #{userId}
+                select hospital_id
+                from to_hospital
+                where user_id = #{userId}
             )
-            <if test="obj.id != null">
-                and s.id = #{obj.id}
-            </if>
-            <if test="obj.serveItemId != null">
-                and s.serve_item_id = #{obj.serveItemId}
-            </if>
-            <if test="obj.hospitalId != null">
-                and s.hospital_id = #{obj.hospitalId}
-            </if>
-            <if test="obj.saleStatus != null">
-                and s.sale_status = #{obj.saleStatus}
-            </if>
-            <if test="obj.price != null">
-                and s.price = #{obj.price}
-            </if>
-            <if test="obj.createTime != null">
-                and s.create_time = #{obj.createTime}
-            </if>
-            <if test="obj.updateTime != null">
-                and s.update_time = #{obj.updateTime}
-            </if>
-            <if test="obj.createBy != null">
-                and s.create_by = #{obj.createBy}
-            </if>
-            <if test="obj.updateBy != null">
-                and s.update_by = #{obj.updateBy}
-            </if>
             and s.del_flag = 0
         </where>
         order by s.id desc

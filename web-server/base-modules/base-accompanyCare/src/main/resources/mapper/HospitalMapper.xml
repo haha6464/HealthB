@@ -17,7 +17,9 @@
     </resultMap>
 
     <select id="adminGetHospitalListOne" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
-        SELECT id, NAME,( SELECT city FROM city WHERE id =  city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+        SELECT id,
+               NAME,
+               (SELECT city FROM city WHERE id = city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
             city_id,
             hospital_introduction,
             address,
@@ -29,40 +31,11 @@
     </select>
 
     <select id="adminGetHospitalList" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
-        SELECT id, NAME,( SELECT city FROM city WHERE id =  city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
-            city_id,
-            hospital_introduction,
-            address,
-            `status`
-        FROM
-            hospital
-       <where>
-           <if test="1 == 1">
-               del_flag = 0
-               AND id IN (
-               SELECT
-               hospital_id
-               FROM
-               to_hospital
-               WHERE
-               user_id = #{userId}
-               )
-           </if>
-            <if test="status != null">
-               and  status = #{status}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-       </where>
-
-        limit #{offset},#{size}
-
-    </select>
-
-
-    <select id="adminGetCount" resultType="long">
-        SELECT  count(*)
+        SELECT id, NAME,( SELECT city FROM city WHERE id = city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
+        city_id,
+        hospital_introduction,
+        address,
+        `status`
         FROM
         hospital
         <where>
@@ -78,7 +51,36 @@
                 )
             </if>
             <if test="status != null">
-                and  status = #{status}
+                and status = #{status}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+        </where>
+
+        limit #{offset},#{size}
+
+    </select>
+
+
+    <select id="adminGetCount" resultType="long">
+        SELECT count(*)
+        FROM
+        hospital
+        <where>
+            <if test="1 == 1">
+                del_flag = 0
+                AND id IN (
+                SELECT
+                hospital_id
+                FROM
+                to_hospital
+                WHERE
+                user_id = #{userId}
+                )
+            </if>
+            <if test="status != null">
+                and status = #{status}
             </if>
             <if test="name != null and name != ''">
                 and name = #{name}
@@ -258,6 +260,35 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="getHospitalByEscortId" resultMap="HospitalMap">
+        select
+            h.id,
+            h.name,
+            h.city_id,
+            h.address,
+            h.hospital_introduction,
+            h.create_by,
+            h.create_time,
+            h.update_by,
+            h.update_time,
+            h.status,
+            h.del_flag
+        from
+            hospital h
+        <where>
+            h.id = (
+            select
+            hospital_id
+            from
+            escort_to_hospital
+            where
+            escort_id = #{escort_id}
+            and del_flag = 0
+            )
+        </where>
+    </select>
+
 
     <!--通过主键删除-->
     <delete id="deleteById">

@@ -91,6 +91,13 @@ public interface HospitalMapper {
     int update(Hospital hospital);
 
     /**
+     * 根据陪诊师 id 查询其所在医院信息
+     * @param escortId 陪诊师 id
+     * @return 医院
+     */
+    Hospital getHospitalByEscortId(@Param("escort_id") Long escortId);
+
+    /**
      * 通过主键删除数据
      *
      * @param id 主键

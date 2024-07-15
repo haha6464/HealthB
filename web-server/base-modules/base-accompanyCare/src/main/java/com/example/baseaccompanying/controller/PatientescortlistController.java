@@ -19,13 +19,26 @@ import javax.annotation.Resource;
  * @since 2024-06-11 09:50:27
  */
 @RestController
-@RequestMapping("patientescortlist")
+@RequestMapping("/patientescortlist")
 public class PatientescortlistController {
     /**
      * 服务对象
      */
     @Resource
     private PatientescortlistService patientescortlistService;
+
+    /**
+     * 管理员获取陪诊师列表
+     * @param offset 页数
+     * @param limit 大小
+     * @return 陪诊师分页列表和总数
+     */
+    @WhiteApi
+    @GetMapping("/adminGetPatientEscortList")
+    public String getPatientEscortList(@Param("offset") Integer offset, @Param("limit") Integer limit) {
+        PageImpl<?> adminGetPatientEscortList = this.patientescortlistService.adminGetPatientEscortList(offset * limit, limit);
+        return JSONArray.toJSONString(new ResponseVo<>("ok", adminGetPatientEscortList, "200"));
+    }
 
     /**
      * 分页查询

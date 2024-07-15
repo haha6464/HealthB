@@ -1,5 +1,7 @@
 package com.example.baseaccompanying.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import huice.accompaniment.common.domain.Hospital;
 import huice.accompaniment.common.domain.Patientescortlist;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +15,7 @@ import java.util.List;
  * @since 2024-06-11 09:50:27
  */
 @Mapper
-public interface PatientescortlistMapper {
+public interface PatientescortlistMapper extends BaseMapper<Patientescortlist> {
 
     /**
      * 通过ID查询单条数据
@@ -82,5 +84,13 @@ public interface PatientescortlistMapper {
      */
     int deleteById(Long id);
 
+    /**
+     * 管理员获取其创建的陪诊师列表
+     * @param uid 管理员 uid
+     * @param offset 页数
+     * @param limit 大小
+     * @return
+     */
+    List<Patientescortlist> addminGetPatientescortListByUidPage(@Param("uid") Long uid, @Param("offset") Integer offset, @Param("limit") Integer limit);
 }
 

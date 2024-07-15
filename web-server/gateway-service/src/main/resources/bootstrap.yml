@@ -41,7 +41,7 @@ spring:
         - id: base-service
           uri: lb://HUICE-base-service
           predicates:
-            - Path=/city/**,/hospital/**,/hospitalLabel/**,/serveItem/**,/serveType/**,/serve/**,/orderList/**
+            - Path=/city/**,/hospital/**,/hospitalLabel/**,/serveItem/**,/serveType/**,/serve/**,/orderList/**,/patientescortlist/**
         - id: file-service
           uri: lb://HUICE-file-service
           predicates:

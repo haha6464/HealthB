@@ -22,6 +22,46 @@
         <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="addminGetPatientescortListByUidPage" resultMap="PatientescortlistMap">
+        select
+        id,
+        city_id,
+        user_id,
+        name,
+        phone_number,
+        gender,
+        id_card,
+        ic_front_image_url,
+        ic_back_image_url,
+        health_certificate_image_url,
+        rating,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        status,
+        del_flag
+        from
+        patient_escort_list
+        <where>
+            id in (
+            select
+            escort_id
+            from
+            to_hospital
+            inner join
+            escort_to_hospital on to_hospital.hospital_id = escort_to_hospital.hospital_id
+            where
+            to_hospital.user_id = #{uid}
+            )
+            and del_flag = 0
+        </where>
+        order by
+        id desc
+        limit #{offset}, #{limit};
+    </select>
+
+
     <!--查询单个-->
     <select id="queryById" resultMap="PatientescortlistMap">
         select id,
@@ -169,8 +209,8 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into patient_escort_list(city_id, user_id, name, phone_number, gender, id_card, ic_front_image_url,
-                                      ic_back_image_url, health_certificate_image_url, rating, create_by, create_time,
-                                      update_by, update_time, status, del_flag)
+                                        ic_back_image_url, health_certificate_image_url, rating, create_by, create_time,
+                                        update_by, update_time, status, del_flag)
         values (#{cityId}, #{userId}, #{name}, #{phoneNumber}, #{gender}, #{idCard}, #{icFrontImageUrl},
                 #{icBackImageUrl}, #{healthCertificateImageUrl}, #{rating}, #{createBy}, now(), #{updateBy},
                 #{updateTime}, 0, 0)

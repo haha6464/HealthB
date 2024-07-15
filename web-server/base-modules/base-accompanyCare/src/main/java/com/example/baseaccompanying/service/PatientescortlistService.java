@@ -1,5 +1,7 @@
 package com.example.baseaccompanying.service;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Patientescortlist;
 
@@ -9,7 +11,7 @@ import huice.accompaniment.common.domain.Patientescortlist;
  * @author Yida Yang
  * @since 2024-06-11 09:50:27
  */
-public interface PatientescortlistService {
+public interface PatientescortlistService extends IService<Patientescortlist> {
 
     /**
      * 通过ID查询单条数据
@@ -53,4 +55,11 @@ public interface PatientescortlistService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 管理员获取陪诊师列表
+     * @param offset 页数
+     * @param limit 大小
+     * @return 陪诊师分页列表和总数
+     */
+    PageImpl<?> adminGetPatientEscortList(Integer offset, Integer limit);
 }
