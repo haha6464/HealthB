@@ -297,7 +297,6 @@ export default {
 
 <style>
 .buttonTrueok{
- 
 width: 70px;
 height: 25px;
 line-height: 20px;
