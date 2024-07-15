@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class AdminGetPatientEscortListVo {
 
+
     // 陪诊师信息
     private Patientescortlist patientescortlist;
     // 医院信息
