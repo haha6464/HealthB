@@ -1,6 +1,8 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.baseaccompanying.dao.HospitalLabelMapper;
 import com.example.baseaccompanying.dao.HospitalMapper;
 import com.example.baseaccompanying.dao.ToHospitalMapper;
@@ -8,6 +10,7 @@ import com.example.baseaccompanying.service.HospitalService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Hospital;
 import huice.accompaniment.common.domain.HospitalLabel;
+import huice.accompaniment.common.domain.ToHospital;
 import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * (Hospital)表服务实现类
@@ -28,10 +33,10 @@ import java.util.Map;
 @Service("hospitalService")
 public class HospitalServiceImpl implements HospitalService {
     @Resource
-    private HospitalMapper hospitalDao;
+    private HospitalMapper hospitalMapper;
     @Resource
     private HospitalLabelMapper hospitalLabelMapper;
-    @Autowired
+    @Resource
     private ToHospitalMapper toHospitalMapper;
 
 
@@ -42,7 +47,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public String adminGetHospitalListOne(Long id){
 
-        List<AdminGetHospitalListVo> list = hospitalDao.adminGetHospitalListOne(id);
+        List<AdminGetHospitalListVo> list = hospitalMapper.adminGetHospitalListOne(id);
 
 
         Map<String, Object> map  =new HashMap<>();
@@ -67,8 +72,8 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public String adminGetHospitalList(Integer page, Integer size,Integer status ,String name){
         Long uid = ThreadLocalUtils.getUid();
-        List<AdminGetHospitalListVo> list = hospitalDao.adminGetHospitalList(uid,(page-1)*size,size,status,name);
-        Long count = hospitalDao.adminGetCount(uid,status,name);
+        List<AdminGetHospitalListVo> list = hospitalMapper.adminGetHospitalList(uid,(page-1)*size,size,status,name);
+        Long count = hospitalMapper.adminGetCount(uid,status,name);
 
         Map<String, Object> map  =new HashMap<>();
 
@@ -93,7 +98,7 @@ public class HospitalServiceImpl implements HospitalService {
      */
     @Override
     public Hospital queryById(Long id) {
-        return this.hospitalDao.queryById(id);
+        return this.hospitalMapper.queryById(id);
     }
 
     /**
@@ -106,8 +111,8 @@ public class HospitalServiceImpl implements HospitalService {
      */
     @Override
     public PageImpl queryByPage(Hospital hospital, Integer page, Integer size) {
-        long total = this.hospitalDao.count(hospital);
-        List<Hospital> hospitals = this.hospitalDao.queryAllByLimit(hospital, (page - 1) * size, size);
+        long total = this.hospitalMapper.count(hospital);
+        List<Hospital> hospitals = this.hospitalMapper.queryAllByLimit(hospital, (page - 1) * size, size);
 
         return new PageImpl(hospitals, total);
     }
@@ -122,7 +127,7 @@ public class HospitalServiceImpl implements HospitalService {
     public Hospital insert(Hospital hospital) {
         Long uid = ThreadLocalUtils.getUid();
         hospital.setCreateBy(uid);
-        this.hospitalDao.insert(hospital);
+        this.hospitalMapper.insert(hospital);
 
         this.toHospitalMapper.add(hospital.getId(),uid);
 
@@ -139,7 +144,7 @@ public class HospitalServiceImpl implements HospitalService {
     public Hospital update(Hospital hospital) {
         System.err.println("??");
         hospital.setUpdateBy(ThreadLocalUtils.getUid());
-        this.hospitalDao.update(hospital);
+        this.hospitalMapper.update(hospital);
 
         Long aLong = this.hospitalLabelMapper.deleteByHospitalId(hospital.getId());
         System.err.println(aLong);
@@ -155,6 +160,18 @@ public class HospitalServiceImpl implements HospitalService {
      */
     @Override
     public boolean deleteById(Long id) {
-        return this.hospitalDao.deleteById(id) > 0;
+        return this.hospitalMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<Hospital> adminGetAllHospital() {
+        // TODO 鉴权
+        Long uid = ThreadLocalUtils.getUid();
+        LambdaQueryWrapper<ToHospital> queryWrapper = Wrappers.<ToHospital>lambdaQuery()
+                .eq(ToHospital::getUserId, uid);
+        List<Hospital> hospitalList = this.toHospitalMapper.selectList(queryWrapper).stream()
+                .map(o -> hospitalMapper.queryById(o.getId()))
+                .collect(Collectors.toList());
+        return hospitalList;
     }
 }

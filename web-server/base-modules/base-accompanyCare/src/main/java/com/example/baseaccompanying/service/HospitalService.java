@@ -65,4 +65,9 @@ public interface HospitalService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 管理员获取全部医院列表
+     * @return 医院列表
+     */
+    List<Hospital> adminGetAllHospital();
 }

@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Hospital) 医院控制层
@@ -26,6 +27,17 @@ public class HospitalController {
      */
     @Resource
     private HospitalService hospitalService;
+
+    /**
+     * 管理员获取全部医院列表
+     * @return 医院列表
+     */
+    @WhiteApi
+    @GetMapping("/adminGetAllHospital")
+    public String adminGetAllHospital() {
+        List<Hospital> hospitals = this.hospitalService.adminGetAllHospital();
+        return JSONArray.toJSONString(new ResponseVo<>("200", hospitals, "ok"));
+    }
 
     @GetMapping("/adminGetHospitalListOne")
     public String adminGetHospitalListOne(@RequestParam("id") Long id){
