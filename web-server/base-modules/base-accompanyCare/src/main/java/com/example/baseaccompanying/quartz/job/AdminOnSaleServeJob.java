@@ -9,7 +9,6 @@ import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * @author Doge2077 2024/7/11

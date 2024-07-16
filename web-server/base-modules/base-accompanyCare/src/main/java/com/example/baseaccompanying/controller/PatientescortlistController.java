@@ -30,11 +30,12 @@ public class PatientescortlistController {
 
     /**
      * 管理员分页条件搜索陪诊师列表
+     *
      * @param escortName 陪诊师名字
-     * @param escortSex 陪诊师年龄
+     * @param escortSex  陪诊师年龄
      * @param hospitalId 医院id
-     * @param page 页数
-     * @param size 大小
+     * @param page       页数
+     * @param size       大小
      * @return 陪诊师列表
      */
     @WhiteApi
@@ -50,8 +51,9 @@ public class PatientescortlistController {
 
     /**
      * 管理员获取陪诊师列表
+     *
      * @param offset 页数
-     * @param limit 大小
+     * @param limit  大小
      * @return 陪诊师分页列表和总数
      */
     @WhiteApi

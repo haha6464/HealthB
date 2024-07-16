@@ -1,7 +1,9 @@
 package com.example.baseaccompanying.quartz.trigger;
 
-import org.quartz.*;
-import org.springframework.context.annotation.Bean;
+import org.quartz.JobDataMap;
+import org.quartz.SimpleScheduleBuilder;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;

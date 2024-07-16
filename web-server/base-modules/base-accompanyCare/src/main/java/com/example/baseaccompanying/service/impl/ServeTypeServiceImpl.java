@@ -1,7 +1,6 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.dao.ServeItemMapper;
@@ -13,7 +12,6 @@ import huice.accompaniment.common.domain.ServeType;
 import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.enums.ServeEditStatus;
 import huice.accompaniment.common.exception.BadRequestException;
-import huice.accompaniment.common.exception.ForbiddenOperationException;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import huice.accompaniment.common.utils.snowflake.Snowflake;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

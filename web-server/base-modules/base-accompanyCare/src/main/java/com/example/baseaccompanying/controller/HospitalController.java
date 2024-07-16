@@ -1,13 +1,11 @@
 package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.example.baseaccompanying.service.HospitalService;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.Hospital;
-import com.example.baseaccompanying.service.HospitalService;
-import huice.accompaniment.common.domain.bo.HospitalBo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,7 +18,7 @@ import java.util.List;
  * @since 2024-06-05 15:42:30
  */
 @RestController
-@RequestMapping("hospital")
+@RequestMapping("/hospital")
 public class HospitalController {
     /**
      * 服务对象
@@ -30,6 +28,7 @@ public class HospitalController {
 
     /**
      * 管理员获取全部医院列表
+     *
      * @return 医院列表
      */
     @WhiteApi
@@ -40,22 +39,24 @@ public class HospitalController {
     }
 
     @GetMapping("/adminGetHospitalListOne")
-    public String adminGetHospitalListOne(@RequestParam("id") Long id){
+    public String adminGetHospitalListOne(@RequestParam("id") Long id) {
         return hospitalService.adminGetHospitalListOne(id);
     }
+
     /**
      * 管理员获取集合数据
+     *
      * @return
      */
     @WhiteApi
     @GetMapping("/adminGetHospitalList")
-    public String adminGetHospitalList(@RequestParam("page")Integer page, @RequestParam("size")Integer size
-    ,@RequestParam(value = "status",required = false) Integer status ,@RequestParam(value = "name",required = false)String name){
+    public String adminGetHospitalList(@RequestParam("page") Integer page, @RequestParam("size") Integer size
+            , @RequestParam(value = "status", required = false) Integer status, @RequestParam(value = "name", required = false) String name) {
         //状态为全部的情况
-        if(status != null && status == -1){
+        if (status != null && status == -1) {
             status = null;
         }
-        return  hospitalService.adminGetHospitalList(page, size,status,name);
+        return hospitalService.adminGetHospitalList(page, size, status, name);
     }
 
     /**

@@ -5,10 +5,10 @@ import com.example.baseaccompanying.quartz.trigger.AdminOnSaleServeTrigger;
 import huice.accompaniment.common.constant.ErrorInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -18,10 +18,10 @@ import java.util.Date;
 @Component
 public class AdminOnSaleServeScheduler {
 
-    @Autowired
+    @Resource
     private SchedulerFactoryBean schedulerFactoryBean;
 
-    @Autowired
+    @Resource
     private AdminOnSaleServeTrigger adminOnSaleServeTrigger;
 
     public void adminOnSaleServeScheduler(Long serveId, Date publishTime) {

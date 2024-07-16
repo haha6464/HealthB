@@ -1,7 +1,6 @@
 package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.example.baseaccompanying.dao.ServeMapper;
 import com.example.baseaccompanying.quartz.scheduler.AdminOnSaleServeScheduler;
 import com.example.baseaccompanying.service.ServeItemService;
 import com.example.baseaccompanying.service.ServeService;
@@ -22,8 +21,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.prefs.BackingStoreException;
 
 /**
  * 服务表(Serve)表控制层
@@ -48,24 +45,25 @@ public class ServeController {
 
     /**
      * 管理员发布服务
-     * @param img 服务项图片
-     * @param serveItemName 服务项名称
-     * @param serveTypeId 服务类型 id
-     * @param hospitalId 医院 id
-     * @param serve_price 服务价格
+     *
+     * @param img             服务项图片
+     * @param serveItemName   服务项名称
+     * @param serveTypeId     服务类型 id
+     * @param hospitalId      医院 id
+     * @param serve_price     服务价格
      * @param reserveSaleTime 定时发布时间，如果不为 null，则说明不是立即上架
-     * @param onSaleFlag 是否立即上架，如果为立即上架则不需要定时发布的时间
+     * @param onSaleFlag      是否立即上架，如果为立即上架则不需要定时发布的时间
      * @return 发布的服务
      */
     @WhiteApi
     @PutMapping("/adminPublishServe")
     public String adminPublishServe(@RequestParam("serve_item_img") String img,
-                                @RequestParam("serve_item_name") String serveItemName,
-                                @RequestParam("serve_type_id") Long serveTypeId,
-                                @RequestParam("hospital_id") Long hospitalId,
-                                @RequestParam("serve_price") BigDecimal serve_price,
-                                @RequestParam(value = "reserve_sale_time", required = false) String reserveSaleTime,
-                                @RequestParam("on_sale_flag") Integer onSaleFlag) {
+                                    @RequestParam("serve_item_name") String serveItemName,
+                                    @RequestParam("serve_type_id") Long serveTypeId,
+                                    @RequestParam("hospital_id") Long hospitalId,
+                                    @RequestParam("serve_price") BigDecimal serve_price,
+                                    @RequestParam(value = "reserve_sale_time", required = false) String reserveSaleTime,
+                                    @RequestParam("on_sale_flag") Integer onSaleFlag) {
         // 判断定时时间是否合法
         Date publishTime = null;
         if (onSaleFlag.equals(ServeEditStatus.DISABLE.getStatus())) {
@@ -95,13 +93,14 @@ public class ServeController {
 
     /**
      * 管理员获取服务列表
+     *
      * @param page 页数
      * @param size 大小
      * @return 服务列表信息
      */
     @WhiteApi
     @GetMapping("/adminGetServeList")
-    public String adminGetServeList(@RequestParam("page")Integer page, @RequestParam("size")Integer size) {
+    public String adminGetServeList(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         PageImpl<?> serves = this.serveService.adminGetServeList(page, size);
         return JSONArray.toJSONString(new ResponseVo<>("ok", serves, "200"));
     }
@@ -203,10 +202,11 @@ public class ServeController {
 
     /**
      * 管理员通过服务名称和服务状态搜索 分页返回
-     * @param serveName 服务名
+     *
+     * @param serveName   服务名
      * @param serveStatus 服务状态
-     * @param page 页数
-     * @param size 大小
+     * @param page        页数
+     * @param size        大小
      * @return 分页服务列表和分页大小
      */
     @WhiteApi
