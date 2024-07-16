@@ -135,10 +135,23 @@ public class PatientescortlistController {
      * @param userId 陪诊师 userId
      * @return 是否成功
      */
+    @WhiteApi
     @PostMapping("/active")
     public String active(@RequestParam("user_id") Long userId) {
         boolean active = this.patientescortlistService.activeByUserId(userId);
         return JSONArray.toJSONString(new ResponseVo("200", active, "ok"));
+    }
+
+    /**
+     * 根据陪诊师 userId 禁用陪诊师
+     * @param userId 陪诊师 userId
+     * @return 是否成功
+     */
+    @WhiteApi
+    @PostMapping("/deactive")
+    public String deactive(@RequestParam("user_id") Long userId) {
+        boolean deactive = this.patientescortlistService.deactiveByUserId(userId);
+        return JSONArray.toJSONString(new ResponseVo("200", deactive, "ok"));
     }
 
 }

@@ -81,4 +81,11 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
      * @return 是否成功
      */
     boolean activeByUserId(Long userId);
+
+    /**
+     * 根据陪诊师 userId 禁用陪诊师
+     * @param userId 陪诊师 userId
+     * @return 是否成功
+     */
+    boolean deactiveByUserId(Long userId);
 }

@@ -148,4 +148,12 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
                 .set(Patientescortlist::getStatus, PatientEscortStatus.ACTIVE.getStatus());
         return super.update(updateWrapper);
     }
+
+    @Override
+    public boolean deactiveByUserId(Long userId) {
+        LambdaUpdateWrapper<Patientescortlist> updateWrapper = Wrappers.<Patientescortlist>lambdaUpdate()
+                .eq(Patientescortlist::getUserId, userId)
+                .set(Patientescortlist::getStatus, PatientEscortStatus.INACTIVE.getStatus());
+        return super.update(updateWrapper);
+    }
 }
