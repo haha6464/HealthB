@@ -283,7 +283,7 @@
             from
             escort_to_hospital
             where
-            escort_id = #{escort_id}
+            user_id = #{escort_id}
             and del_flag = 0
             )
         </where>

@@ -6,8 +6,10 @@ package huice.accompaniment.common.enums;
 public enum PatientEscortStatus {
     UNCHECK(0, "未审核"),
     CHECKED(1, "待审核"),
-    UNVERIFY(2, "未认证"),
-    VERIFIED(3, "已认证");
+    UNVERIFIED(2, "未认证"),
+    VERIFIED(3, "已认证"),
+    INACTIVE(4,"停用"),
+    ACTIVE(5, "启用");
 
 
     private int status;

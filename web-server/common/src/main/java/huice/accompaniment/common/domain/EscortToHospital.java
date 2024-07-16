@@ -24,7 +24,7 @@ public class EscortToHospital implements Serializable {
 /**
      * 陪诊师id
      */
-    private Long escortId;
+    private Long userId;
 /**
      * 医院id
      */
@@ -59,12 +59,12 @@ public class EscortToHospital implements Serializable {
         this.id = id;
     }
 
-    public Long getEscortId() {
-        return escortId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setEscortId(Long escortId) {
-        this.escortId = escortId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getHospitalId() {

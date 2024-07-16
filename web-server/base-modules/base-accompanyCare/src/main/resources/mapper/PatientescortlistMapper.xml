@@ -27,10 +27,10 @@
         from
         patient_escort_list
         <where>
-            id in (
-            select escort_id
+            user_id in (
+            select escort_to_hospital.user_id
             from to_hospital
-            inner join escort_to_hospital
+            left join escort_to_hospital
             on to_hospital.hospital_id = escort_to_hospital.hospital_id
             where to_hospital.user_id = #{uid}
             <if test="hospital_id != null and hospital_id != ''">
@@ -69,10 +69,10 @@
         from
         patient_escort_list
         <where>
-            id in (
-            select escort_id
+            user_id in (
+            select escort_to_hospital.user_id
             from to_hospital
-            inner join escort_to_hospital
+            left join escort_to_hospital
             on to_hospital.hospital_id = escort_to_hospital.hospital_id
             where to_hospital.user_id = #{uid}
             <if test="hospital_id != null and hospital_id != ''">
@@ -97,21 +97,18 @@
         from
         patient_escort_list
         <where>
-            id in (
+            user_id in (
             select
-            escort_id
+            escort_to_hospital.user_id
             from
             to_hospital
-            inner join
+            left join
             escort_to_hospital on to_hospital.hospital_id = escort_to_hospital.hospital_id
             where
             to_hospital.user_id = #{uid}
             )
             and del_flag = 0
         </where>
-        order by
-        id desc
-        limit #{offset}, #{limit};
     </select>
 
     <select id="addminGetPatientescortListByUidPage" resultMap="PatientescortlistMap">
@@ -136,12 +133,12 @@
         from
         patient_escort_list
         <where>
-            id in (
+            user_id in (
             select
-            escort_id
+            escort_to_hospital.user_id
             from
             to_hospital
-            inner join
+            left join
             escort_to_hospital on to_hospital.hospital_id = escort_to_hospital.hospital_id
             where
             to_hospital.user_id = #{uid}
