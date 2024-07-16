@@ -14,6 +14,7 @@
         <option value="FileSystemServer:4107957" />
         <option value="base-accompanying:4765038" />
         <option value="base-AccompanyCare:4765038" />
+        <option value="base-companion:4765038" />
       </array>
     </option>
     <option name="yapiTokens" value="" />

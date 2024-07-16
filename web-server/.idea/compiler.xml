@@ -10,6 +10,7 @@
         <module name="common" />
         <module name="gateway-service" />
         <module name="doctor-service" />
+        <module name="base-companion" />
         <module name="user-service" />
         <module name="order-service" />
         <module name="base-AccompanyCare" />
@@ -18,12 +19,15 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="base-therapist" target="17" />
+      <module name="base_companion" target="17" />
       <module name="hospital-service" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="base-AccompanyCare" options="-parameters" />
+      <module name="base-companion" options="-parameters" />
       <module name="base-modules" options="-parameters" />
       <module name="base-order" options="-parameters" />
       <module name="common" options="-parameters" />

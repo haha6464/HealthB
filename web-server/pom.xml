@@ -17,6 +17,7 @@
     </parent>
 
     <modules>
+        <module>base-modules/base-companion</module>
         <module>doctor-service</module>
         <module>common</module>
         <module>gateway-service</module>

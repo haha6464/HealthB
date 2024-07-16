@@ -2,8 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/base-modules/base-accompanyCare/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-modules/base-companion/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-modules/base-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-modules/base_companion/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-modules/base_companion/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-modules/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-modules/therapist/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-modules/therapist/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/doctor-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/doctor-service/src/main/resources" charset="UTF-8" />

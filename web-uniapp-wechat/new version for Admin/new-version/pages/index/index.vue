@@ -30,204 +30,251 @@
         </div>
       </div>
 
-	  <div>
-		<image src="../../static/index/title.jpg" style="height: 150px;width:90%"></image>
-	</div>
+      <div>
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 150px; width: 90%"
+        ></image>
+      </div>
     </div>
- 
-	<uni-section class="mb-1" title="派单信息" titleFontSize="16px" type="line"></uni-section>
 
-	<div>
-		<div style="float: left;margin-left:5%">
-			<image src="../../static/index/title.jpg" style="height: 90px;width:90px"></image>
-		</div>
-		<div  style="float:left;margin-left:20px">
-			<div >
-				<h1 style="font-size: 21px;">全天陪诊</h1>
-			</div>
-			<div style="font-size:10px;color:#999999">
-				<p style="margin-top: 7px;">就诊医院: 北京牛逼医院</p>
- 
-				<p style="margin-top: 5px;">就诊时间: 2025-05-12 05:00</p>
- 
-				<p style="margin-top: 5px;">杨先生 100861110086</p>
-			</div>
-		</div>
-		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width:75%; margin: 0 auto;">
-				<hr style="border: 0;height: 1px;background-color: #999999;">
-			</div>
-		</div>
+    <uni-section
+      class="mb-1"
+      title="派单信息"
+      titleFontSize="16px"
+      type="line"
+    ></uni-section>
 
-		<div style="width: 90%;margin-top:5px">
-			<div style="margin-left:20px;float:left">
-				<span style="font-size: 13px;">本单收益:</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px"> ¥</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
-			</div>
-			<div style="float: right;">
-				<button class="buttonTrueok" @click="toOrder(1)" >接单</button> 
-			</div>
-		</div>
-	</div>
+    <div>
+      <div style="float: left; margin-left: 5%">
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 90px; width: 90px"
+        ></image>
+      </div>
+      <div style="float: left; margin-left: 20px">
+        <div>
+          <h1 style="font-size: 21px">全天陪诊</h1>
+        </div>
+        <div style="font-size: 10px; color: #999999">
+          <p style="margin-top: 7px">就诊医院: 北京牛逼医院</p>
 
-	
+          <p style="margin-top: 5px">就诊时间: 2025-05-12 05:00</p>
 
-	<div style="clear: both;">
-		&nbsp;
-	</div>
+          <p style="margin-top: 5px">杨先生 100861110086</p>
+        </div>
+      </div>
+      <div style="width: 100%; clear: both; text-align: center">
+        <div style="width: 75%; margin: 0 auto">
+          <hr style="border: 0; height: 1px; background-color: #999999" />
+        </div>
+      </div>
 
-	<div>
-		<div style="float: left;margin-left:5%">
-			<image src="../../static/index/title.jpg" style="height: 90px;width:90px"></image>
-		</div>
-		<div  style="float:left;margin-left:20px">
-			<div >
-				<h1 style="font-size: 21px;">全天陪诊</h1>
-			</div>
-			<div style="font-size:10px;color:#999999">
-				<p style="margin-top: 7px;">就诊医院: 北京牛逼医院</p>
- 
-				<p style="margin-top: 5px;">就诊时间: 2025-05-12 05:00</p>
- 
-				<p style="margin-top: 5px;">杨先生 100861110086</p>
-			</div>
-		</div>
-		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width: 80%; margin: 0 auto;">
-				<hr style="border: 0;height: 1px;background-color: #999999;">
-			</div>
-		</div>
+      <div style="width: 90%; margin-top: 5px">
+        <div style="margin-left: 20px; float: left">
+          <span style="font-size: 13px">本单收益:</span>
+          <span style="color: rgba(255, 46, 109, 1); font-size: 16px"> ¥</span>
+          <span
+            style="
+              color: rgba(255, 46, 109, 1);
+              font-size: 16px;
+              margin-left: 0.1px;
+            "
+          >
+            10086.11</span
+          >
+        </div>
+        <div style="float: right">
+          <button class="buttonTrueok" @click="toOrder(1)">接单</button>
+        </div>
+      </div>
+    </div>
 
-		<div style="width: 90%;margin-top:5px">
-			<div style="margin-left:20px;float:left">
-				<span style="font-size: 13px;">本单收益:</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px"> ¥</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
-			</div>
-			<div style="float: right;">
-				<button class="buttonTrueok"  >接单</button> 
-			</div>
-		</div>
-	</div>
+    <div style="clear: both">&nbsp;</div>
 
-	
-	<div style="clear: both;">
-		&nbsp;
-	</div>
+    <div>
+      <div style="float: left; margin-left: 5%">
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 90px; width: 90px"
+        ></image>
+      </div>
+      <div style="float: left; margin-left: 20px">
+        <div>
+          <h1 style="font-size: 21px">全天陪诊</h1>
+        </div>
+        <div style="font-size: 10px; color: #999999">
+          <p style="margin-top: 7px">就诊医院: 北京牛逼医院</p>
 
-	<div>
-		<div style="float: left;margin-left:5%">
-			<image src="../../static/index/title.jpg" style="height: 90px;width:90px"></image>
-		</div>
-		<div  style="float:left;margin-left:20px">
-			<div >
-				<h1 style="font-size: 21px;">全天陪诊</h1>
-			</div>
-			<div style="font-size:10px;color:#999999">
-				<p style="margin-top: 7px;">就诊医院: 北京牛逼医院</p>
- 
-				<p style="margin-top: 5px;">就诊时间: 2025-05-12 05:00</p>
- 
-				<p style="margin-top: 5px;">杨先生 100861110086</p>
-			</div>
-		</div>
-		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width: 80%; margin: 0 auto;">
-				<hr style="border: 0;height: 1px;background-color: #999999;">
-			</div>
-		</div>
+          <p style="margin-top: 5px">就诊时间: 2025-05-12 05:00</p>
 
-		<div style="width: 90%;margin-top:5px">
-			<div style="margin-left:20px;float:left">
-				<span style="font-size: 13px;">本单收益:</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px"> ¥</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
-			</div>
-			<div style="float: right;">
-				<button class="buttonTrueok"  >接单</button> 
-			</div>
-		</div>
-	</div>
-	<div style="clear: both;">
-		&nbsp;
-	</div>
+          <p style="margin-top: 5px">杨先生 100861110086</p>
+        </div>
+      </div>
+      <div style="width: 100%; clear: both; text-align: center">
+        <div style="width: 80%; margin: 0 auto">
+          <hr style="border: 0; height: 1px; background-color: #999999" />
+        </div>
+      </div>
 
-	<div>
-		<div style="float: left;margin-left:5%">
-			<image src="../../static/index/title.jpg" style="height: 90px;width:90px"></image>
-		</div>
-		<div  style="float:left;margin-left:20px">
-			<div >
-				<h1 style="font-size: 21px;">全天陪诊</h1>
-			</div>
-			<div style="font-size:10px;color:#999999">
-				<p style="margin-top: 7px;">就诊医院: 北京牛逼医院</p>
- 
-				<p style="margin-top: 5px;">就诊时间: 2025-05-12 05:00</p>
- 
-				<p style="margin-top: 5px;">杨先生 100861110086</p>
-			</div>
-		</div>
-		<div style="width: 100%;clear:both;text-align: center;">
-			<div style="width: 80%; margin: 0 auto;">
-				<hr style="border: 0;height: 1px;background-color: #999999;">
-			</div>
-		</div>
+      <div style="width: 90%; margin-top: 5px">
+        <div style="margin-left: 20px; float: left">
+          <span style="font-size: 13px">本单收益:</span>
+          <span style="color: rgba(255, 46, 109, 1); font-size: 16px"> ¥</span>
+          <span
+            style="
+              color: rgba(255, 46, 109, 1);
+              font-size: 16px;
+              margin-left: 0.1px;
+            "
+          >
+            10086.11</span
+          >
+        </div>
+        <div style="float: right">
+          <button class="buttonTrueok">接单</button>
+        </div>
+      </div>
+    </div>
 
-		<div style="width: 90%;margin-top:5px">
-			<div style="margin-left:20px;float:left">
-				<span style="font-size: 13px;">本单收益:</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px"> ¥</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
-			</div>
-			<div style="float: right;">
-				<button class="buttonTrueok"  >接单</button> 
-			</div>
-		</div>
-	</div>
-		<div style="clear: both;">
-		&nbsp;
-	</div>
+    <div style="clear: both">&nbsp;</div>
 
-	<div>
-		<div style="float: left;margin-left:5%">
-			<image src="../../static/index/title.jpg" style="height: 90px;width:90px"></image>
-		</div>
-		<div  style="float:left;margin-left:20px">
-			<div >
-				<h1 style="font-size: 21px;">全天陪诊</h1>
-			</div>
-			<div style="font-size:10px;color:#999999">
-				<p style="margin-top: 7px;">就诊医院: 北京牛逼医院</p>
- 
-				<p style="margin-top: 5px;">就诊时间: 2025-05-12 05:00</p>
- 
-				<p style="margin-top: 5px;">杨先生 100861110086</p>
-			</div>
-		</div>
-		<div style="width: 100%;clear:both;text-align: center;">
-			<div>
-				<hr style="border: 0;height: 1px;background-color: #999999;">
-			</div>
-		</div>
+    <div>
+      <div style="float: left; margin-left: 5%">
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 90px; width: 90px"
+        ></image>
+      </div>
+      <div style="float: left; margin-left: 20px">
+        <div>
+          <h1 style="font-size: 21px">全天陪诊</h1>
+        </div>
+        <div style="font-size: 10px; color: #999999">
+          <p style="margin-top: 7px">就诊医院: 北京牛逼医院</p>
 
-		<div style="width: 90%;margin-top:5px">
-			<div style="margin-left:20px;float:left">
-				<span style="font-size: 13px;">本单收益:</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px"> ¥</span> 
-				<span style="color: rgba(255,46,109,1);font-size:16px;margin-left:0.1px"> 10086.11</span> 
-			</div>
-			<div style="float: right;">
-				<button class="buttonTrueok"  >接单</button> 
-			</div>
-		</div>
-	</div>
+          <p style="margin-top: 5px">就诊时间: 2025-05-12 05:00</p>
 
- 
+          <p style="margin-top: 5px">杨先生 100861110086</p>
+        </div>
+      </div>
+      <div style="width: 100%; clear: both; text-align: center">
+        <div style="width: 80%; margin: 0 auto">
+          <hr style="border: 0; height: 1px; background-color: #999999" />
+        </div>
+      </div>
 
- 
- 
+      <div style="width: 90%; margin-top: 5px">
+        <div style="margin-left: 20px; float: left">
+          <span style="font-size: 13px">本单收益:</span>
+          <span style="color: rgba(255, 46, 109, 1); font-size: 16px"> ¥</span>
+          <span
+            style="
+              color: rgba(255, 46, 109, 1);
+              font-size: 16px;
+              margin-left: 0.1px;
+            "
+          >
+            10086.11</span
+          >
+        </div>
+        <div style="float: right">
+          <button class="buttonTrueok">接单</button>
+        </div>
+      </div>
+    </div>
+    <div style="clear: both">&nbsp;</div>
+
+    <div>
+      <div style="float: left; margin-left: 5%">
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 90px; width: 90px"
+        ></image>
+      </div>
+      <div style="float: left; margin-left: 20px">
+        <div>
+          <h1 style="font-size: 21px">全天陪诊</h1>
+        </div>
+        <div style="font-size: 10px; color: #999999">
+          <p style="margin-top: 7px">就诊医院: 北京牛逼医院</p>
+
+          <p style="margin-top: 5px">就诊时间: 2025-05-12 05:00</p>
+
+          <p style="margin-top: 5px">杨先生 100861110086</p>
+        </div>
+      </div>
+      <div style="width: 100%; clear: both; text-align: center">
+        <div style="width: 80%; margin: 0 auto">
+          <hr style="border: 0; height: 1px; background-color: #999999" />
+        </div>
+      </div>
+
+      <div style="width: 90%; margin-top: 5px">
+        <div style="margin-left: 20px; float: left">
+          <span style="font-size: 13px">本单收益:</span>
+          <span style="color: rgba(255, 46, 109, 1); font-size: 16px"> ¥</span>
+          <span
+            style="
+              color: rgba(255, 46, 109, 1);
+              font-size: 16px;
+              margin-left: 0.1px;
+            "
+          >
+            10086.11</span
+          >
+        </div>
+        <div style="float: right">
+          <button class="buttonTrueok">接单</button>
+        </div>
+      </div>
+    </div>
+    <div style="clear: both">&nbsp;</div>
+
+    <div>
+      <div style="float: left; margin-left: 5%">
+        <image
+          src="../../static/index/title.jpg"
+          style="height: 90px; width: 90px"
+        ></image>
+      </div>
+      <div style="float: left; margin-left: 20px">
+        <div>
+          <h1 style="font-size: 21px">全天陪诊</h1>
+        </div>
+        <div style="font-size: 10px; color: #999999">
+          <p style="margin-top: 7px">就诊医院: 北京牛逼医院</p>
+
+          <p style="margin-top: 5px">就诊时间: 2025-05-12 05:00</p>
+
+          <p style="margin-top: 5px">杨先生 100861110086</p>
+        </div>
+      </div>
+      <div style="width: 100%; clear: both; text-align: center">
+        <div>
+          <hr style="border: 0; height: 1px; background-color: #999999" />
+        </div>
+      </div>
+
+      <div style="width: 90%; margin-top: 5px">
+        <div style="margin-left: 20px; float: left">
+          <span style="font-size: 13px">本单收益:</span>
+          <span style="color: rgba(255, 46, 109, 1); font-size: 16px"> ¥</span>
+          <span
+            style="
+              color: rgba(255, 46, 109, 1);
+              font-size: 16px;
+              margin-left: 0.1px;
+            "
+          >
+            10086.11</span
+          >
+        </div>
+        <div style="float: right">
+          <button class="buttonTrueok">接单</button>
+        </div>
+      </div>
+    </div>
   </view>
 </template>
 
@@ -259,20 +306,65 @@ export default {
 
   onLoad() {},
 
+  mounted() {
+    this.wexin_login();
+  },
+
   methods: {
-	toOrder(id){
-		console.log("123");
-		uni.navigateTo({
-			url: '/pages/index/toOrder'
-		});
-		console.log("oks");
-	}
+    toOrder(id) {
+      console.log("123");
+      uni.navigateTo({
+        url: "/pages/index/toOrder",
+      });
+      console.log("oks");
+    },
+
+    wexin_login() {
+      uni.login({
+        provider: "weixin",
+        onlyAuthorize: true,
+        success: (re) => {
+          var appid = "wxbdacc2346f2dd78d";   //你的appid
+          var secret = "cb05acea99a4ac214647c2640925ddbf";  //你的secret
+          uni.request({
+            url: "https://api.weixin.qq.com/sns/oauth2/access_token",
+            data: {
+              code: re.code,
+              appid: appid,
+              secret: secret,
+              grant_type: "authorization_code",
+            },
+            method: "GET",
+            success: (request) => {
+              //获取微信用户信息，如果没有获取用户信息的需求可忽略
+              uni.request({
+                url: "https://api.weixin.qq.com/sns/userinfo",
+                data: {
+                  access_token: request.data.access_token,
+                  openid: request.data.openid,
+                },
+                method: "GET",
+                success: (request1) => {
+                  console.log(request1);
+                },
+              });
+            },
+          });
+        },
+        fail: (err) => {
+          console.log(err);
+          uni.showToast({
+            title: "微信登录授权失败",
+            icon: "none",
+          });
+        },
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .custom-uni-data-select .uni-select {
   font-size: 14px;
   box-sizing: border-box;
@@ -296,16 +388,20 @@ export default {
 </style>
 
 <style>
-.buttonTrueok{
-width: 70px;
-height: 25px;
-line-height: 20px;
-border-radius: 10px 0px 10px 0px;
-background: linear-gradient(180deg, rgba(184,134,248,0.8) 0%,rgba(255,46,109,1) 100%);
-color: rgba(255,255,255,1);
-font-size: 12px;
-text-align: center;
-font-family: Roboto;
+.buttonTrueok {
+  width: 70px;
+  height: 25px;
+  line-height: 20px;
+  border-radius: 10px 0px 10px 0px;
+  background: linear-gradient(
+    180deg,
+    rgba(184, 134, 248, 0.8) 0%,
+    rgba(255, 46, 109, 1) 100%
+  );
+  color: rgba(255, 255, 255, 1);
+  font-size: 12px;
+  text-align: center;
+  font-family: Roboto;
 }
 
 .custom-button {
