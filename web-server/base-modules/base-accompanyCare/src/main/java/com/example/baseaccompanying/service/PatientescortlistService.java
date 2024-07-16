@@ -88,4 +88,11 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
      * @return 是否成功
      */
     boolean deactiveByUserId(Long userId);
+
+    /**
+     * 审核陪诊师资质
+     * @param patientescortlist 陪诊师实体
+     * @return 审核是否通过
+     */
+    boolean veryfyPatientEscort(Patientescortlist patientescortlist);
 }

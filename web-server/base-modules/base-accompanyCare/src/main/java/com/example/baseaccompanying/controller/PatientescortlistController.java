@@ -74,7 +74,7 @@ public class PatientescortlistController {
     @GetMapping("/queryByPage")
     public String queryByPage(@ModelAttribute Patientescortlist patientescortlist, @RequestParam("page") Integer page, @Param("size") Integer size) {
         PageImpl<?> page1 = this.patientescortlistService.queryByPage(patientescortlist, page, size);
-        return JSONArray.toJSONString(new ResponseVo("200", page1, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", page1, "ok"));
     }
 
     /**
@@ -86,7 +86,7 @@ public class PatientescortlistController {
     @GetMapping("/queryById/{id}")
     public String queryById(@RequestParam("id") Long id) {
         Patientescortlist patientescortlist = this.patientescortlistService.queryById(id);
-        return JSONArray.toJSONString(new ResponseVo("200", patientescortlist, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", patientescortlist, "ok"));
     }
 
     /**
@@ -101,7 +101,7 @@ public class PatientescortlistController {
         Long uid = ThreadLocalUtils.getUid();
         patientescortlist.setCreateBy(uid);
         Patientescortlist insert = this.patientescortlistService.insert(patientescortlist);
-        return JSONArray.toJSONString(new ResponseVo("200", insert, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", insert, "ok"));
     }
 
     /**
@@ -115,7 +115,7 @@ public class PatientescortlistController {
         Long uid = ThreadLocalUtils.getUid();
         patientescortlist.setUpdateBy(uid);
         Patientescortlist update = this.patientescortlistService.update(patientescortlist);
-        return JSONArray.toJSONString(new ResponseVo("200", update, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", update, "ok"));
     }
 
     /**
@@ -127,7 +127,7 @@ public class PatientescortlistController {
     @PostMapping("/deleteById")
     public String deleteById(Long id) {
         boolean b = this.patientescortlistService.deleteById(id);
-        return JSONArray.toJSONString(new ResponseVo("200", b, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", b, "ok"));
     }
 
     /**
@@ -139,7 +139,7 @@ public class PatientescortlistController {
     @PostMapping("/active")
     public String active(@RequestParam("user_id") Long userId) {
         boolean active = this.patientescortlistService.activeByUserId(userId);
-        return JSONArray.toJSONString(new ResponseVo("200", active, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", active, "ok"));
     }
 
     /**
@@ -151,8 +151,20 @@ public class PatientescortlistController {
     @PostMapping("/deactive")
     public String deactive(@RequestParam("user_id") Long userId) {
         boolean deactive = this.patientescortlistService.deactiveByUserId(userId);
-        return JSONArray.toJSONString(new ResponseVo("200", deactive, "ok"));
+        return JSONArray.toJSONString(new ResponseVo<>("200", deactive, "ok"));
     }
+
+    /**
+     * 审核陪诊师资质
+     * @param patientescortlist 陪诊师实体
+     * @return 审核是否通过
+     */
+    @PostMapping("/verify")
+    public String verify(@ModelAttribute Patientescortlist patientescortlist) {
+        boolean verify = this.patientescortlistService.veryfyPatientEscort(patientescortlist);
+        return JSONArray.toJSONString(new ResponseVo<>("200", verify, "ok"));
+    }
+
 
 }
 

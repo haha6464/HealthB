@@ -9,12 +9,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.dao.HospitalMapper;
 import com.example.baseaccompanying.dao.PatientescortlistMapper;
 import com.example.baseaccompanying.service.PatientescortlistService;
+import huice.accompaniment.common.constant.ErrorInfo;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Patientescortlist;
 import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
 import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.enums.PatientEscortStatus;
+import huice.accompaniment.common.exception.BadRequestException;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.stereotype.Service;
 
@@ -145,6 +147,7 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
     public boolean activeByUserId(Long userId) {
         LambdaUpdateWrapper<Patientescortlist> updateWrapper = Wrappers.<Patientescortlist>lambdaUpdate()
                 .eq(Patientescortlist::getUserId, userId)
+                .eq(Patientescortlist::getDelFlag, DelFlagEnum.NOT_DELETE.getStatus())
                 .set(Patientescortlist::getStatus, PatientEscortStatus.ACTIVE.getStatus());
         return super.update(updateWrapper);
     }
@@ -153,7 +156,29 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
     public boolean deactiveByUserId(Long userId) {
         LambdaUpdateWrapper<Patientescortlist> updateWrapper = Wrappers.<Patientescortlist>lambdaUpdate()
                 .eq(Patientescortlist::getUserId, userId)
+                .eq(Patientescortlist::getDelFlag, DelFlagEnum.NOT_DELETE.getStatus())
                 .set(Patientescortlist::getStatus, PatientEscortStatus.INACTIVE.getStatus());
         return super.update(updateWrapper);
+    }
+
+    @Override
+    public boolean veryfyPatientEscort(Patientescortlist patientescortlist) {
+        // 校验该陪诊师是否存在，信息是否完善
+        Long userId = patientescortlist.getUserId();
+        Long count = baseMapper.selectCount(Wrappers.<Patientescortlist>lambdaQuery()
+                .eq(Patientescortlist::getDelFlag, DelFlagEnum.NOT_DELETE.getStatus())
+                .eq(Patientescortlist::getUserId, userId));
+        if (count == 0) {
+            throw new BadRequestException(ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL + " 不存在该陪诊师");
+        }
+        // TODO 检查注册填写信息是否完整
+
+        // TODO 校验实名信息
+
+        // TODO 陪诊师资质审核
+
+        // 通过审核，修改状态为已认证
+        patientescortlist.setStatus(PatientEscortStatus.VERIFIED.getStatus());
+        return baseMapper.updateById(patientescortlist) > 0;
     }
 }
