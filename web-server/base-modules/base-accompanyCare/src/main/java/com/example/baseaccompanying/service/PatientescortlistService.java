@@ -74,4 +74,11 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
      * @return 陪诊师列表
      */
     PageImpl<AdminGetPatientEscortListVo> adminFindEscortByNameAndSexAndHospital(String escortName, String escortSex, Long hospitalId, Integer offset, Integer limit);
+
+    /**
+     * 根据陪诊师 userId 启用陪诊师
+     * @param userId 陪诊师 userId
+     * @return 是否成功
+     */
+    boolean activeByUserId(Long userId);
 }

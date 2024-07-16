@@ -347,62 +347,6 @@
         del_flag = values(del_flag)
     </insert>
 
-    <!--通过主键修改数据-->
-    <update id="update">
-        update patient_escort_list
-        <set>
-            <if test="cityId != null">
-                city_id = #{cityId},
-            </if>
-            <if test="userId != null">
-                user_id = #{userId},
-            </if>
-            <if test="name != null and name != ''">
-                name = #{name},
-            </if>
-            <if test="phoneNumber != null and phoneNumber != ''">
-                phone_number = #{phoneNumber},
-            </if>
-            <if test="gender != null">
-                gender = #{gender},
-            </if>
-            <if test="idCard != null and idCard != ''">
-                id_card = #{idCard},
-            </if>
-            <if test="icFrontImageUrl != null and icFrontImageUrl != ''">
-                ic_front_image_url = #{icFrontImageUrl},
-            </if>
-            <if test="icBackImageUrl != null and icBackImageUrl != ''">
-                ic_back_image_url = #{icBackImageUrl},
-            </if>
-            <if test="healthCertificateImageUrl != null and healthCertificateImageUrl != ''">
-                health_certificate_image_url = #{healthCertificateImageUrl},
-            </if>
-            <if test="rating != null">
-                rating = #{rating},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
-            <if test="status != null">
-                status = #{status},
-            </if>
-            <if test="delFlag != null">
-                del_flag = #{delFlag},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
     <!--通过主键删除-->
     <delete id="deleteById">
         delete

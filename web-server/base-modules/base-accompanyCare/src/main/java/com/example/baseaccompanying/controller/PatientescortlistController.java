@@ -129,5 +129,17 @@ public class PatientescortlistController {
         boolean b = this.patientescortlistService.deleteById(id);
         return JSONArray.toJSONString(new ResponseVo("200", b, "ok"));
     }
+
+    /**
+     * 根据陪诊师 userId 启用陪诊师
+     * @param userId 陪诊师 userId
+     * @return 是否成功
+     */
+    @PostMapping("/active")
+    public String active(@RequestParam("user_id") Long userId) {
+        boolean active = this.patientescortlistService.activeByUserId(userId);
+        return JSONArray.toJSONString(new ResponseVo("200", active, "ok"));
+    }
+
 }
 

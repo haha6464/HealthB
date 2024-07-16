@@ -3,9 +3,10 @@ package huice.accompaniment.common.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 陪诊师关联医院表(EscortToHospital)实体类
@@ -16,36 +17,38 @@ import java.io.Serializable;
 @TableName("escort_to_hospital")
 public class EscortToHospital implements Serializable {
     private static final long serialVersionUID = 1L;
-/**
+    /**
      * 陪诊师关联医院表id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-/**
+    /**
      * 陪诊师id
      */
     private Long userId;
-/**
+    /**
      * 医院id
      */
     private String hospitalId;
-/**
+    /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-/**
+    /**
      * 更新时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-/**
+    /**
      * 创建者
      */
     private Long createBy;
-/**
+    /**
      * 更新者
      */
     private Long updateBy;
-/**
+    /**
      * 逻辑删除
      */
     private Integer delFlag;

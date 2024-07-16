@@ -226,6 +226,5 @@ public class Patientescortlist implements Serializable {
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
     }
-
 }
 

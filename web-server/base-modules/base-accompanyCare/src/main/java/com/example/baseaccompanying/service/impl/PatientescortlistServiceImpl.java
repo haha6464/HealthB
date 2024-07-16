@@ -1,6 +1,7 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,6 +14,7 @@ import huice.accompaniment.common.domain.Patientescortlist;
 import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
 import huice.accompaniment.common.enums.DelFlagEnum;
+import huice.accompaniment.common.enums.PatientEscortStatus;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.stereotype.Service;
 
@@ -137,5 +139,13 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
                     return adminGetPatientEscortListVo;
                 }).collect(Collectors.toList());
         return new PageImpl<>(result, total);
+    }
+
+    @Override
+    public boolean activeByUserId(Long userId) {
+        LambdaUpdateWrapper<Patientescortlist> updateWrapper = Wrappers.<Patientescortlist>lambdaUpdate()
+                .eq(Patientescortlist::getUserId, userId)
+                .set(Patientescortlist::getStatus, PatientEscortStatus.ACTIVE.getStatus());
+        return super.update(updateWrapper);
     }
 }
