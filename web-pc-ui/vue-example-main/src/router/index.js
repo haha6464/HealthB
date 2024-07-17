@@ -9,38 +9,43 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 //主入口路由
-const mainRouters = 
-[
+const mainRouters =
+  [
     {
-    path: '/',
-    name: 'HelloWorld',
-    component: resolve=>(require(["@/components/HelloWorld"],resolve))
+      path: '/',
+      name: 'HelloWorld',
+      component: resolve => (require(["@/components/HelloWorld"], resolve))
     },
     {
       path: '/userindex',
       name: 'userindex',
-      component: resolve=>(require(["@/view/modules/user/index"],resolve))
+      component: resolve => (require(["@/view/modules/user/index"], resolve))
     },
     {
       path: '/orderindex',
       name: 'orderindex',
-      component: resolve=>(require(["@/view/modules/order/index"],resolve))
+      component: resolve => (require(["@/view/modules/order/index"], resolve))
     },
     {
       path: '/hospitalindex',
       name: 'hospitalindex',
-      component: resolve=>(require(["@/view/modules/hospital/index"],resolve))
+      component: resolve => (require(["@/view/modules/hospital/index"], resolve))
     },
     {
       path: '/serveindex',
       name: 'serveindex',
-      component: resolve=>(require(["@/view/modules/serve/index"],resolve))
+      component: resolve => (require(["@/view/modules/serve/index"], resolve))
+    },
+    {
+      path: '/escortindex',
+      name: 'escortindex',
+      component: resolve => (require(["@/view/modules/escort/index"], resolve))
     }
-]
+  ]
 
 const router = new Router({
   mode: "hash",
-  routes:  mainRouters,
+  routes: mainRouters,
 })
 
 /**
@@ -50,7 +55,7 @@ const router = new Router({
  * @param from  从哪个页面来
  * @param next  如果放行则是next(),跳转其他的next();
  */
-router.beforeEach(async (to, from, next)=>{
+router.beforeEach(async (to, from, next) => {
   console.log("router前置环绕");
 
   next()
@@ -61,7 +66,7 @@ router.beforeEach(async (to, from, next)=>{
  * @param to    去哪个页面来
  * @param from  从哪个页面来
  */
-router.afterEach(async (to, from)=>{
+router.afterEach(async (to, from) => {
   console.log("router后置环绕");
 })
 
