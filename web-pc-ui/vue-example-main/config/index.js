@@ -8,20 +8,20 @@ module.exports = {
   dev: {
     proxyTable: {
       '/': {
-        target: 'http://192.168.21.27:8090',
+        target: 'http://192.168.22.46:8090',
         changeOrigin: true,
         pathRewrite: {
           '^/': '/'
         }
       }
     },
- 
-      
- 
+
+
+
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
- 
+
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST
@@ -31,7 +31,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
@@ -77,5 +77,5 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   },
- 
+
 }

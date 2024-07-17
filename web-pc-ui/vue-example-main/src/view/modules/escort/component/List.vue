@@ -6,16 +6,20 @@
 <template>
     <div id="app">
         <div style="padding: 5px;">
+
+            <!-- 前端信息查询(搜索) -->
             <div>
                 <span style="font-size:16px;float:left;margin-top:4px;margin-left:10px">模糊搜索&nbsp;</span>
                 <el-input v-model="valueForVague" placeholder="请输入订单号/姓名" style="float: left;width:150px;margin-top:4px"
                     class="custom-input"></el-input>
-                
+
                 <!-- 这里对入医院的数据 -->
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:4px">性别&nbsp;</span>
                 <div style="float: left;">
                     <el-select v-model="valueForAccurate" placeholder="请选择性别" class="custom-select"
-                        style="float: left;width:200px;height: 20px;margin-top:4px" >
+                        style="float: left;width:200px;height: 20px;margin-top:4px">
+                        <el-option v-for="item in sexList" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
                     </el-select>
                 </div>
 
@@ -67,29 +71,32 @@
                     <tbody v-for="(obj, index) in tableData" :key="index">
                         <tr>
                             <td style="width: 30px;">
-                                {{ (seach.page - 1) * 16 + index + 1 }}
+                                #
                             </td>
                             <td style="width: 70px;">
                                 {{ obj.city }}
                             </td>
+
                             <td>
-                                {{ obj.oderId }}
+                                {{ obj.patientescortlist.name }}
                             </td>
+                            
                             <td>
-                                <span v-if="obj.serviceType == 0">
-                                    全程服务
+                                <span v-if="obj.patientescortlist.gender == 0">
+                                    男
                                 </span>
-                                <span v-else-if="obj.serviceType == 1">
-                                    VIP服务
-                                </span>
-                                <span v-else-if="obj.serviceType == 2">
-                                    普通服务
+                                <span v-else-if="obj.patientescortlist.gender == 1">
+                                    女
                                 </span>
                             </td>
-                            <td>{{ obj.amount }}</td>
+
                             <td>{{ obj.patientEscortName }}</td>
                             <td>{{ obj.income }}</td>
-                            <td>{{ obj.phoneNumber }}</td>
+                            <td>{{ obj.patientescortlist.phoneNumber }}</td>
+
+                            <!-- luo -->
+                            <td>{{ obj.patientescortlist.createTime }}</td>
+
                             <td>
                                 <span v-if="obj.status == 0">
                                     待服务
@@ -116,8 +123,9 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
+        </div>
+        <!-- 页脚 -->
         <div style="margin-top:10px">
             <div style="color:rgb(152, 151, 151);font-size:13px;margin-top:15px;margin-left:14px;float:left;">
                 共{{ count }}条数据
@@ -150,6 +158,17 @@ export default {
 
     data() {
         return {
+            sexList: [
+                {
+                    value: "1",
+                    label: "男",
+                },
+                {
+                    value: "2",
+                    label: "女",
+                }
+            ],
+
             cityList: [
                 {
                     value: "1",
@@ -194,12 +213,6 @@ export default {
 
             //查询
             seach: {
-                orderIdForVague: "",
-                serviceType: null, //服务类型
-                cityId: null, //城市id
-                patientEscortNameForVague: "", //接单人 陪诊师的姓名 模糊查询使用
-                patientEscortName: "", //接单人  精确查询
-                phoneNumber: "", //手机号
                 page: 0,
                 size: 16,
             },
@@ -211,17 +224,7 @@ export default {
             count: 0,
 
             tableData: [
-                {
-                    id: "1",
-                    city: "Beijing",
-                    orderId: "1008611",
-                    serviceType: 1,
-                    amount: 10.1,
-                    patientEscortName: "刘德华", //接单人
-                    income: 10.1, //陪诊师收益
-                    phoneNumber: 123456789121, //phone_number
-                    status: 0, //订单状态
-                },
+
             ],
         };
     },
@@ -284,57 +287,11 @@ export default {
 
         //获取数据
         getListDate(val) {
-            if (this.seach.cityId == -1) {
-                this.seach.cityId = null;
-            }
-
-            if (this.seach.serviceType == -1) {
-                this.seach.serviceType = null;
-            }
-
-            console.log(this.valueForVague + "??", "valueForVague");
-            console.log(this.valueForAccurate + "[[", "valueForAccurate");
-            console.log(this.valueForAccurate != "");
-            //模糊查询
-            if (this.valueForVague != null && this.valueForVague != "") {
-                console.log(this.isNumeric(this.valueForVague), "zz");
-                //如果都不是数字就是陪诊师姓名查询，否则就是订单号
-                if (!this.isNumeric(this.valueForVague)) {
-                    this.seach.orderIdForVague = null;
-                    this.seach.patientEscortNameForVague = this.valueForVague;
-                } else {
-                    console.log("??");
-                    this.seach.patientEscortNameForVague = null;
-                    this.seach.orderIdForVague = this.valueForVague;
-                }
-            } else {
-                this.seach.orderIdForVague = null;
-                this.seach.patientEscortNameForVague = null;
-            }
-
-            console.log(this.seach, "this.seach.");
-
-            //精准查询
-            if (this.valueForAccurate != null && this.valueForAccurate != "") {
-                //如果长度小于5那么就是陪师姓名查询，否则手机号
-                if (this.valueForAccurate.length < 5) {
-                    this.seach.patientEscortName = this.valueForAccurate;
-                    this.seach.phoneNumber = null;
-                } else {
-                    this.seach.patientEscortName = null;
-                    this.seach.phoneNumber = this.valueForAccurate;
-                }
-            } else {
-                this.seach.phoneNumber = null;
-                this.seach.patientEscortName = null;
-            }
-
-            this.seach.page = val;
-
-            getData(this.seach).then((res) => {
-                this.tableData = res.data.list;
-                this.count = res.data.count;
-            });
+            getData(this.seach).then(res => {
+                console.log(res, "qweqewqw");
+                this.tableData = res.data.data.list;
+                this.count = res.data.data.count;
+            })
         },
     },
 };
