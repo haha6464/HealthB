@@ -2,7 +2,7 @@ server:
   port: 8091
 spring:
   application:
-    name: HUICE-user-service
+    name: user-service
   profiles:
     active: dev
   datasource:

@@ -4,7 +4,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: HUICE-gateway-service
+    name: gateway-service
   main:
     web-application-type: reactive
   datasource:
@@ -35,21 +35,17 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: lb://HUICE-user-service
+          uri: lb://user-service
           predicates:
             - Path=/user/**
-        - id: base-service
-          uri: lb://HUICE-base-service
+        - id: manage-service
+          uri: lb://manage-service
           predicates:
-            - Path=/city/**,/hospital/**,/hospitalLabel/**,/serveItem/**,/serveType/**,/serve/**,/orderList/**,/patientescortlist/**
-        - id: file-service
-          uri: lb://HUICE-file-service
+            - Path=/**
+        - id: order-service
+          uri: lb://order-service
           predicates:
-            - Path=/file/oss/**,/file/local/**
-        - id: HUICE-base-companion
-          uri: lb://HUICE-base-companion
-          predicates:
-            - Path=/hell1o/**
+            - Path=/order/**
   redis:
     host: 114.55.134.155 # Redis服务器地址
     database: 0 # Redis数据库索引（默认为0）
