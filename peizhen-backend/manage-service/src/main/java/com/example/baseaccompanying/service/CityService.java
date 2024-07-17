@@ -12,6 +12,7 @@ import huice.accompaniment.common.domain.City;
 public interface CityService {
     /**
      * 获取城市集合
+     *
      * @return
      */
     public String getCityList();

@@ -20,13 +20,13 @@ public enum ResultCodeEnum {
     /**
      * 系统异常
      */
-    SYSTEM_ERROR(500,"系统内部异常"),
+    SYSTEM_ERROR(500, "系统内部异常"),
     /**
      * 业务异常
      */
-    USER_INFO_ERROR(510,"账号密码不正确"),
-    GET_USER_INFO_ERROR(511,"获取用户信息失败"),
-    MORE_ONE_DEFAULT_PATIENT(512,"默认就诊人只能为一个");
+    USER_INFO_ERROR(510, "账号密码不正确"),
+    GET_USER_INFO_ERROR(511, "获取用户信息失败"),
+    MORE_ONE_DEFAULT_PATIENT(512, "默认就诊人只能为一个");
     /**
      * 状态码
      */

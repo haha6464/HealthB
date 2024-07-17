@@ -1,10 +1,7 @@
 package huice.accompaniment.gatewayservice.filter;
 
-import cn.dev33.satoken.stp.StpUtil;
-import com.alibaba.cloud.commons.lang.StringUtils;
 import huice.accompaniment.common.utils.JwtUtil;
 import huice.accompaniment.gatewayservice.anno.LogTime;
-
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +19,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -44,7 +40,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered, InitializingBean 
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("whiteApi="+whiteApi);
+        log.info("whiteApi=" + whiteApi);
     }
 
     @Override
@@ -61,7 +57,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered, InitializingBean 
         ServerHttpResponse response = exchange.getResponse();
 
         String path = request.getURI().getPath();
-        if(whiteApi.contains(path)){
+        if (whiteApi.contains(path)) {
             // 获取请求头
             HttpHeaders headers = request.getHeaders();
             // 请求头中获取令牌
@@ -74,7 +70,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered, InitializingBean 
 
                 String loginID = (String) analysis.get("id");
 
-                newRequest = request.mutate().header("uid",loginID).header("username","qwe").build();
+                newRequest = request.mutate().header("uid", loginID).header("username", "qwe").build();
                 return chain.filter(exchange.mutate().request(newRequest).build());
             } catch (Exception e) {
                 e.printStackTrace();

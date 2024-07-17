@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @Date 2024/6/14 11:05
  */
 @Component("huice-snowflake")
-public class Snowflake implements Serializable,IdGenerator<Long> {
+public class Snowflake implements Serializable, IdGenerator<Long> {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +59,7 @@ public class Snowflake implements Serializable,IdGenerator<Long> {
     private ServiceIdGenerator serviceIdGenerator;
     @Resource
     SnowFlakeConfig snowFlakeConfig;
+
     @PostConstruct
     private void init() throws InterruptedException {
         this.timeOffset = snowFlakeConfig.getTimeOffset();
@@ -67,24 +68,24 @@ public class Snowflake implements Serializable,IdGenerator<Long> {
         this.epoch = snowFlakeConfig.getEpoch();
     }
 
-    private synchronized long generateId(){
+    private synchronized long generateId() {
         long curTimeStamp = System.currentTimeMillis();
 
-        if(curTimeStamp<this.lastTimestamp){
-            if(this.lastTimestamp-curTimeStamp<timeOffset){
+        if (curTimeStamp < this.lastTimestamp) {
+            if (this.lastTimestamp - curTimeStamp < timeOffset) {
                 curTimeStamp = this.lastTimestamp;
-            }else {
+            } else {
                 throw new IllegalStateException(StrUtil.format("Clock moved backwards. Refusing to generate id for {}ms", lastTimestamp - curTimeStamp));
             }
         }
 
-        if(curTimeStamp==this.lastTimestamp){
+        if (curTimeStamp == this.lastTimestamp) {
             final long sequence = (this.sequence + 1) & SEQUENCE_MASK;
             if (sequence == 0) {
                 curTimeStamp = tilNextMillis(lastTimestamp);
             }
             this.sequence = sequence;
-        }else {
+        } else {
             this.sequence = 0L;
         }
         this.lastTimestamp = curTimeStamp;

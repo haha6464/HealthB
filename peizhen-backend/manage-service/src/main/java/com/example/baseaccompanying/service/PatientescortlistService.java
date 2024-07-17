@@ -1,6 +1,5 @@
 package com.example.baseaccompanying.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Patientescortlist;
@@ -58,25 +57,28 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
 
     /**
      * 管理员获取陪诊师列表
+     *
      * @param offset 页数
-     * @param limit 大小
+     * @param limit  大小
      * @return 陪诊师分页列表和总数
      */
     PageImpl<?> adminGetPatientEscortList(Integer offset, Integer limit);
 
     /**
      * 管理员分页条件搜索陪诊师列表
+     *
      * @param escortName 陪诊师名字
-     * @param escortSex 陪诊师年龄
+     * @param escortSex  陪诊师年龄
      * @param hospitalId 医院id
-     * @param offset 页数
-     * @param limit 大小
+     * @param offset     页数
+     * @param limit      大小
      * @return 陪诊师列表
      */
     PageImpl<AdminGetPatientEscortListVo> adminFindEscortByNameAndSexAndHospital(String escortName, String escortSex, Long hospitalId, Integer offset, Integer limit);
 
     /**
      * 根据陪诊师 userId 启用陪诊师
+     *
      * @param userId 陪诊师 userId
      * @return 是否成功
      */
@@ -84,6 +86,7 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
 
     /**
      * 根据陪诊师 userId 禁用陪诊师
+     *
      * @param userId 陪诊师 userId
      * @return 是否成功
      */
@@ -91,6 +94,7 @@ public interface PatientescortlistService extends IService<Patientescortlist> {
 
     /**
      * 审核陪诊师资质
+     *
      * @param patientescortlist 陪诊师实体
      * @return 审核是否通过
      */

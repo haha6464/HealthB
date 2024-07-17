@@ -6,7 +6,6 @@ import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.OrderList;
 import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
-import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

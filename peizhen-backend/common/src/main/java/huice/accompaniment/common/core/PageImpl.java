@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * @param <T>
  * @author Yida Yang
  * @since 2024-06-03
- * @param <T>
  */
 public class PageImpl<T> implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -7,8 +7,8 @@ package huice.accompaniment.common.domain;
  */
 public enum Role {
 
-    USER("user",0),
-    ADMIN("admin",1);
+    USER("user", 0),
+    ADMIN("admin", 1);
 
     private String role;
     private Integer code;

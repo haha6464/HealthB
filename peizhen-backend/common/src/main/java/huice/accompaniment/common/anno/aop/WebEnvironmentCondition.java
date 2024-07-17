@@ -12,7 +12,7 @@ public class WebEnvironmentCondition implements Condition {
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         Environment environment = context.getEnvironment();
         String webApplicationType = environment.getProperty("spring.main.web-application-type");
-        if(webApplicationType!= null && webApplicationType.equals("reactive")){
+        if (webApplicationType != null && webApplicationType.equals("reactive")) {
             return false;
         }
         return true; // 判断为 Web 环境

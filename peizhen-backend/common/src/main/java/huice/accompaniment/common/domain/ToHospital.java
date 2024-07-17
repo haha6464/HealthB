@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @since 2024-07-12 14:13:31
  */
 @TableName("to_hospital")
-public class ToHospital implements Serializable{
+public class ToHospital implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)

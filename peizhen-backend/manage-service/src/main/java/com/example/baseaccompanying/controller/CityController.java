@@ -1,11 +1,11 @@
 package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.example.baseaccompanying.service.CityService;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.City;
-import com.example.baseaccompanying.service.CityService;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,11 @@ public class CityController {
 
     /**
      * 获取城市集合
+     *
      * @return
      */
     @GetMapping("/getCityList")
-    public String getCityList(){
+    public String getCityList() {
 
         return cityService.getCityList();
     }

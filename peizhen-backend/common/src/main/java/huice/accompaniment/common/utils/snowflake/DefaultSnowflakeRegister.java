@@ -11,14 +11,15 @@ import org.springframework.stereotype.Component;
  * @Date 2024/6/14 11:09
  */
 @Component("snowflake-register-default")
-@ConditionalOnProperty(name = "snowflake.enable",havingValue = "true")
+@ConditionalOnProperty(name = "snowflake.enable", havingValue = "true")
 @ConditionalOnMissingBean(RedisSnowflakeRegister.class)
-public class DefaultSnowflakeRegister implements ServiceIdGenerator{
+public class DefaultSnowflakeRegister implements ServiceIdGenerator {
 
     @Value("${snowflake.workerId:0}")
     private long workerId;
     @Value("${snowflake.dataCenterId:0}")
     private long dataCenterId;
+
     @Override
     public long workId() {
         return workerId;

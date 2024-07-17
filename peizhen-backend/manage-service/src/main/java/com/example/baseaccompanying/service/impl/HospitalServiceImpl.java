@@ -3,9 +3,9 @@ package com.example.baseaccompanying.service.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.example.baseaccompanying.dao.HospitalLabelMapper;
-import com.example.baseaccompanying.dao.HospitalMapper;
-import com.example.baseaccompanying.dao.ToHospitalMapper;
+import com.example.baseaccompanying.mapper.HospitalLabelMapper;
+import com.example.baseaccompanying.mapper.HospitalMapper;
+import com.example.baseaccompanying.mapper.ToHospitalMapper;
 import com.example.baseaccompanying.service.HospitalService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Hospital;
@@ -13,12 +13,9 @@ import huice.accompaniment.common.domain.HospitalLabel;
 import huice.accompaniment.common.domain.ToHospital;
 import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,15 +39,16 @@ public class HospitalServiceImpl implements HospitalService {
 
     /**
      * 管理员获取医院集合one
+     *
      * @return
      */
     @Override
-    public String adminGetHospitalListOne(Long id){
+    public String adminGetHospitalListOne(Long id) {
 
         List<AdminGetHospitalListVo> list = hospitalMapper.adminGetHospitalListOne(id);
 
 
-        Map<String, Object> map  =new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         for (AdminGetHospitalListVo adminGetHospitalListVo : list) {
             //获取医院标签
@@ -60,22 +58,23 @@ public class HospitalServiceImpl implements HospitalService {
             adminGetHospitalListVo.setLabel(hospitalLabels);
         }
 
-        map.put("list",list);
+        map.put("list", list);
 
         return JSONArray.toJSONString(map);
     }
 
     /**
      * 管理员获取医院集合
+     *
      * @return
      */
     @Override
-    public String adminGetHospitalList(Integer page, Integer size,Integer status ,String name){
+    public String adminGetHospitalList(Integer page, Integer size, Integer status, String name) {
         Long uid = ThreadLocalUtils.getUid();
-        List<AdminGetHospitalListVo> list = hospitalMapper.adminGetHospitalList(uid,(page-1)*size,size,status,name);
-        Long count = hospitalMapper.adminGetCount(uid,status,name);
+        List<AdminGetHospitalListVo> list = hospitalMapper.adminGetHospitalList(uid, (page - 1) * size, size, status, name);
+        Long count = hospitalMapper.adminGetCount(uid, status, name);
 
-        Map<String, Object> map  =new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         for (AdminGetHospitalListVo adminGetHospitalListVo : list) {
             //获取医院标签
@@ -84,8 +83,8 @@ public class HospitalServiceImpl implements HospitalService {
             List<HospitalLabel> hospitalLabels = hospitalLabelMapper.queryAllByLimit(hospitalLabel, 0, 1000000);
             adminGetHospitalListVo.setLabel(hospitalLabels);
         }
-        map.put("count",count);
-        map.put("list",list);
+        map.put("count", count);
+        map.put("list", list);
 
         return JSONArray.toJSONString(map);
     }
@@ -129,7 +128,7 @@ public class HospitalServiceImpl implements HospitalService {
         hospital.setCreateBy(uid);
         this.hospitalMapper.insert(hospital);
 
-        this.toHospitalMapper.add(hospital.getId(),uid);
+        this.toHospitalMapper.add(hospital.getId(), uid);
 
         return hospital;
     }

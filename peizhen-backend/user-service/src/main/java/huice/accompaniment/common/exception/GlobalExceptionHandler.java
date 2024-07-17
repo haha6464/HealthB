@@ -51,9 +51,9 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(BindException.class)
     public ResponseEntity handleBindException(HttpServletRequest request,
-                                      BindException ex){
+                                              BindException ex) {
         String message = ex.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(","));
-        logger.error("参数绑定异常,异常类:BindException, url:%s, 异常信息:%s", request.getServletPath(),message);
+        logger.error("参数绑定异常,异常类:BindException, url:%s, 异常信息:%s", request.getServletPath(), message);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
     }
 }

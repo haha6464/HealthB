@@ -1,11 +1,10 @@
 package com.example.baseaccompanying.service;
 
-import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.core.PageImpl;
+import huice.accompaniment.common.domain.Serve;
 import huice.accompaniment.common.domain.vo.ServePageVo;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * 服务表(Serve)表服务接口
@@ -67,6 +66,7 @@ public interface ServeService {
 
     /**
      * 获取管理员服务列表
+     *
      * @param page 页数
      * @param size 大小
      * @return 服务列表
@@ -75,16 +75,18 @@ public interface ServeService {
 
     /**
      * 管理员发布服务
+     *
      * @param serveItemId 服务项id
-     * @param hospitalId 医院id
-     * @param servePrice 服务价格
-     * @param onSaleFlag 是否上架
+     * @param hospitalId  医院id
+     * @param servePrice  服务价格
+     * @param onSaleFlag  是否上架
      * @return 服务
      */
     Serve adminPublishServe(Long serveItemId, Long hospitalId, BigDecimal servePrice, Integer onSaleFlag);
 
     /**
      * 管理员上架服务
+     *
      * @param id 服务id
      * @return 服务
      */
@@ -100,10 +102,11 @@ public interface ServeService {
 
     /**
      * 管理员通过服务名称和服务状态搜索
-     * @param serveName 服务名
+     *
+     * @param serveName   服务名
      * @param serveStatus 服务状态
-     * @param page 页数
-     * @param size 大小
+     * @param page        页数
+     * @param size        大小
      * @return 分页服务列表和分页大小
      */
     PageImpl<ServePageVo> adminFindServeByNameAndStatus(String serveName, Integer serveStatus, Integer page, Integer size);

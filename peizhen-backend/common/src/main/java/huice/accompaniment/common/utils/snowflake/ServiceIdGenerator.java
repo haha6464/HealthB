@@ -5,7 +5,7 @@ package huice.accompaniment.common.utils.snowflake;
  * @Author welsir
  * @Date 2024/6/14 11:06
  */
-public interface ServiceIdGenerator{
+public interface ServiceIdGenerator {
 
     long workId() throws InterruptedException;
 

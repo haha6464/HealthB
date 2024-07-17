@@ -12,27 +12,27 @@ import javax.annotation.Resource;
 @Component
 public class AbstractLogger {
 
-    @Resource(name="${logger.handler}")
+    @Resource(name = "${logger.handler}")
     private BaseLoggerInterface loggerHandler;
 
-    public void info(String msg,Object... args){
-        loggerHandler.info(msg,args);
+    public void info(String msg, Object... args) {
+        loggerHandler.info(msg, args);
     }
 
-    public void error(String msg,Object... args){
-        loggerHandler.error(msg,args);
+    public void error(String msg, Object... args) {
+        loggerHandler.error(msg, args);
     }
 
-    public void error(Exception e){
-        loggerHandler.error("%s:%s",e.getMessage(),e.getStackTrace()[0]);
+    public void error(Exception e) {
+        loggerHandler.error("%s:%s", e.getMessage(), e.getStackTrace()[0]);
     }
 
-    public void warn(String msg,Object... args){
-        loggerHandler.warn(msg,args);
+    public void warn(String msg, Object... args) {
+        loggerHandler.warn(msg, args);
     }
 
-    public void trace(String msg,Object... args){
-        loggerHandler.trace(msg,args);
+    public void trace(String msg, Object... args) {
+        loggerHandler.trace(msg, args);
     }
 
 

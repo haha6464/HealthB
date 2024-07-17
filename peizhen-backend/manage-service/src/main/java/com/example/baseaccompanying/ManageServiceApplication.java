@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @since 2024-06-03
  */
 @SpringBootApplication
-@ComponentScan({"huice.accompaniment","com.example"})
+@ComponentScan({"huice.accompaniment", "com.example"})
 public class ManageServiceApplication {
 
     public static void main(String[] args) {

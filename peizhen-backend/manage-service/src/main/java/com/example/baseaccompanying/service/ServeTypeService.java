@@ -73,6 +73,7 @@ public interface ServeTypeService {
 
     /**
      * 管理员获取全部已启用的服务类型
+     *
      * @return 已启用的服务类型列表
      */
     List<ServeType> adminGetAllActiveServeType();

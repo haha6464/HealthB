@@ -16,22 +16,23 @@ public class JwtUtil {
 
     /**
      * 生成密文
+     *
      * @return
      */
-    public static String createJWT(String id){
+    public static String createJWT(String id) {
 
         //构建jwt令牌
         JwtBuilder builder = Jwts.builder();
         builder.setIssuer("huicejitua1"); //颁发者
         builder.setIssuedAt(new Date()); //颁发时间
         builder.setSubject("huicejitua1");   //主题
-        builder.setExpiration(new Date(System.currentTimeMillis()+3600000*24*7));  //过期时间 设置3600秒
+        builder.setExpiration(new Date(System.currentTimeMillis() + 3600000 * 24 * 7));  //过期时间 设置3600秒
 
         //自定义信息 自定义载荷
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //防止不能存储Long
         String idString = String.valueOf(id);
-        map.put("id",idString);
+        map.put("id", idString);
 
         builder.addClaims(map); //添加载荷
 
@@ -48,10 +49,11 @@ public class JwtUtil {
 
     /**
      * 解析
+     *
      * @param token
      * @return
      */
-    public static Map<String,Object> analysis(String token){
+    public static Map<String, Object> analysis(String token) {
         Claims body = Jwts.parser()
                 //密钥
                 .setSigningKey("huicejitua1")

@@ -1,18 +1,14 @@
 package com.example.baseaccompanying.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.baseaccompanying.dao.HospitalMapper;
-import com.example.baseaccompanying.dao.PatientescortlistMapper;
+import com.example.baseaccompanying.mapper.HospitalMapper;
+import com.example.baseaccompanying.mapper.PatientescortlistMapper;
 import com.example.baseaccompanying.service.PatientescortlistService;
 import huice.accompaniment.common.constant.ErrorInfo;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Patientescortlist;
-import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
 import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
 import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.enums.PatientEscortStatus;

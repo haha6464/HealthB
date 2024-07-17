@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.baseaccompanying.dao.EscortToHospitalMapper;
+import com.example.baseaccompanying.mapper.EscortToHospitalMapper;
 import com.example.baseaccompanying.service.EscortToHospitalService;
 import huice.accompaniment.common.domain.EscortToHospital;
 

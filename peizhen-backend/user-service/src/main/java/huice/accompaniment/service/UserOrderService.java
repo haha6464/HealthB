@@ -8,5 +8,4 @@ package huice.accompaniment.service;
 public interface UserOrderService {
 
 
-
 }

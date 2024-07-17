@@ -2,7 +2,6 @@ package huice.accompaniment.gatewayservice.filter;
 
 import cn.dev33.satoken.stp.StpUtil;
 import huice.accompaniment.gatewayservice.anno.LogTime;
-
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,6 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
 
 import java.util.HashSet;
 
@@ -37,7 +35,7 @@ public class LaxAuthorizeFilter implements GlobalFilter, Ordered, InitializingBe
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("laxTokenApi="+laxTokenApi);
+        log.info("laxTokenApi=" + laxTokenApi);
     }
 
     @SneakyThrows
@@ -46,7 +44,7 @@ public class LaxAuthorizeFilter implements GlobalFilter, Ordered, InitializingBe
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
-        if(laxTokenApi.contains(path)){
+        if (laxTokenApi.contains(path)) {
             // 获取请求头
             HttpHeaders headers = request.getHeaders();
             System.out.println(headers);
@@ -57,17 +55,17 @@ public class LaxAuthorizeFilter implements GlobalFilter, Ordered, InitializingBe
                 String loginID = (String) StpUtil.getLoginIdByToken(token);
                 if (StpUtil.isLogin(loginID)) {
                     String[] vars = loginID.split("\\|");
-                    if(vars.length==2){
+                    if (vars.length == 2) {
                         String uid = vars[0];
                         String username = vars[1];
-                        newRequest = request.mutate().header("uid",uid).header("username",username).build();
+                        newRequest = request.mutate().header("uid", uid).header("username", username).build();
                         return chain.filter(exchange.mutate().request(newRequest).build());
                     }
                 }
             } catch (Exception e) {
-               log.error("token解析失败:%s",e.getMessage());
+                log.error("token解析失败:%s", e.getMessage());
             }
-            newRequest = request.mutate().header("uid","").header("username","").build();
+            newRequest = request.mutate().header("uid", "").header("username", "").build();
             return chain.filter(exchange.mutate().request(newRequest).build());
         }
 

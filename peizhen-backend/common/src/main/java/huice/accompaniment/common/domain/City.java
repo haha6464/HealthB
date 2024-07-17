@@ -2,8 +2,8 @@ package huice.accompaniment.common.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 城市(City)实体类

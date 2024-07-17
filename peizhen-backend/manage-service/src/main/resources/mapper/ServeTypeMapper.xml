@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.baseaccompanying.dao.ServeTypeMapper">
+<mapper namespace="com.example.baseaccompanying.mapper.ServeTypeMapper">
 
     <resultMap type="huice.accompaniment.common.domain.ServeType" id="ServeTypeMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
@@ -31,7 +31,7 @@
                del_flag
         from serve_type
         where id = #{id}
-        and del_flag = 0
+          and del_flag = 0
     </select>
 
     <!--查询指定行数据-->
@@ -198,15 +198,13 @@
     </delete>
 
     <!--通过服务类型id查询是否包含已启用的服务项目和在售的服务的记录数量-->
-    <select id = "countServeItemAndServeUsedByServeTypeId" resultType="java.lang.Integer">
+    <select id="countServeItemAndServeUsedByServeTypeId" resultType="java.lang.Integer">
         SELECT COUNT(*) AS total
         FROM serve
-        WHERE serve.serve_item_id IN (
-            SELECT serve_item.id
-            FROM serve_item
-            WHERE serve_item.serve_type_id = #{id}
-              AND serve_item.active_status = 1
-        )
-        AND serve.sale_status = 1;
+        WHERE serve.serve_item_id IN (SELECT serve_item.id
+                                      FROM serve_item
+                                      WHERE serve_item.serve_type_id = #{id}
+                                        AND serve_item.active_status = 1)
+          AND serve.sale_status = 1;
     </select>
 </mapper>

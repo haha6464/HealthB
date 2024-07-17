@@ -1,7 +1,7 @@
 package huice.accompaniment.gatewayservice.service;
 
-import huice.accompaniment.gatewayservice.pojo.DO.RequestRecordDO;
 import huice.accompaniment.gatewayservice.mapper.RequestRecordMapper;
+import huice.accompaniment.gatewayservice.pojo.DO.RequestRecordDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public class RequestRecordService {
     RequestRecordMapper requestRecordMapper;
 
     @Async
-    public void insertRequestRecord(RequestRecordDO requestRecordDO){
-        if (requestRecordMapper.insert(requestRecordDO) !=1) {
-            log.error("请求记录插入失败. "+requestRecordDO);
+    public void insertRequestRecord(RequestRecordDO requestRecordDO) {
+        if (requestRecordMapper.insert(requestRecordDO) != 1) {
+            log.error("请求记录插入失败. " + requestRecordDO);
         }
     }
 }

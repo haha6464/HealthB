@@ -7,13 +7,13 @@ package huice.accompaniment.common.log;
  */
 public interface BaseLoggerInterface {
 
-    void info(String msg,Object ...arg);
+    void info(String msg, Object... arg);
 
-    void warn(String msg,Object ...arg);
+    void warn(String msg, Object... arg);
 
-    void trace(String msg,Object ...arg);
+    void trace(String msg, Object... arg);
 
-    void error(String msg,Object ...arg);
+    void error(String msg, Object... arg);
 
 
 }

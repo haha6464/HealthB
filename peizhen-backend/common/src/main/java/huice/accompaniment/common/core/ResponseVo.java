@@ -36,7 +36,7 @@ public class ResponseVo<T> {
 
     public ResponseVo setData(T data) {
         this.data = data;
-        return this ;
+        return this;
     }
 
     public String getCode() {

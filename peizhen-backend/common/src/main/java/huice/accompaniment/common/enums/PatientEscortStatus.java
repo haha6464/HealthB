@@ -8,7 +8,7 @@ public enum PatientEscortStatus {
     CHECKED(1, "待审核"),
     UNVERIFIED(2, "未认证"),
     VERIFIED(3, "已认证"),
-    INACTIVE(4,"停用"),
+    INACTIVE(4, "停用"),
     ACTIVE(5, "启用");
 
 

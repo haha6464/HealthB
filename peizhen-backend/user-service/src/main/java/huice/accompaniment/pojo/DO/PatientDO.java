@@ -11,7 +11,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import huice.accompaniment.common.constant.TimeConstant;
 import huice.accompaniment.pojo.DTO.PatientDTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -39,7 +38,7 @@ public class PatientDO {
     @JsonFormat(pattern = TimeConstant.YMD_HMS, timezone = "GMT+8")
     private LocalDateTime updateTime;
 
-    public static PatientDO wrapPatientDTO(PatientDTO patientDTO){
+    public static PatientDO wrapPatientDTO(PatientDTO patientDTO) {
         PatientDO patientDO = new PatientDO();
         LocalDateTime now = LocalDateTime.now();
         patientDO.setUid(patientDTO.getUid());

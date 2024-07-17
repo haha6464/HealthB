@@ -10,7 +10,7 @@ public enum ServeSaleStatus {
     private int status;
     private String description;
 
-    ServeSaleStatus( int status, String description ) {
+    ServeSaleStatus(int status, String description) {
         this.status = status;
         this.description = description;
     }

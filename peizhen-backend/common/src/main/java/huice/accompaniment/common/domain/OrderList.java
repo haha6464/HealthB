@@ -2,9 +2,9 @@ package huice.accompaniment.common.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.io.Serializable;
 
 /**
  * 订单(OrderList)实体类
@@ -85,7 +85,7 @@ public class OrderList implements Serializable {
      */
     private Integer delFlag;
 
-    private Long  hospitalId;
+    private Long hospitalId;
 
 
     @Override

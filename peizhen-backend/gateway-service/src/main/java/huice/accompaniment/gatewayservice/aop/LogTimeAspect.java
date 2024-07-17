@@ -27,7 +27,7 @@ public class LogTimeAspect {
 
 
     @Pointcut("@annotation(huice.accompaniment.gatewayservice.anno.LogTime)")
-    public void LogTime(){
+    public void LogTime() {
 
     }
 
@@ -37,18 +37,18 @@ public class LogTimeAspect {
         try {
             Mono<Void> result = (Mono<Void>) point.proceed();
             return result;
-        }finally {
+        } finally {
             long endTime = System.currentTimeMillis();
             Method targetMethod = ((MethodSignature) point.getSignature()).getMethod();
             Class<?>[] paramTypes = targetMethod.getParameterTypes();
             LogTime anno = point.getTarget().getClass().getDeclaredMethod(point.getSignature().getName(), paramTypes)
                     .getAnnotation(LogTime.class);
 
-            ServerHttpRequest request = ((ServerWebExchange)(point.getArgs()[0])).getRequest();
+            ServerHttpRequest request = ((ServerWebExchange) (point.getArgs()[0])).getRequest();
             InetSocketAddress remoteAddress = request.getRemoteAddress();
             String url = request.getURI().getPath();
             String funcName = anno.funcName();
-            log.info("[Filter Time] request url: %s, remote address: %s,funcName: %s,time: %sms", url, remoteAddress.getHostName(),funcName, endTime-startTime);
+            log.info("[Filter Time] request url: %s, remote address: %s,funcName: %s,time: %sms", url, remoteAddress.getHostName(), funcName, endTime - startTime);
         }
     }
 }

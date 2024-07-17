@@ -15,9 +15,10 @@ public abstract class AbstractAssert {
             throw new BaseException(message);
         }
     }
+
     public static void isBlank(String str, ResultCodeEnum message) {
         if (StringUtils.isBlank(str)) {
-            throw new BaseException(str,message);
+            throw new BaseException(str, message);
         }
     }
 
@@ -44,14 +45,15 @@ public abstract class AbstractAssert {
             throw new BaseException(message);
         }
     }
+
     public static void notNull(String str, ResultCodeEnum message) {
         if (StringUtils.isBlank(str)) {
             throw new BaseException(message);
         }
     }
 
-    public static void isTrue(boolean expression,ResultCodeEnum message){
-        if(!expression){
+    public static void isTrue(boolean expression, ResultCodeEnum message) {
+        if (!expression) {
             throw new BaseException(message);
         }
     }

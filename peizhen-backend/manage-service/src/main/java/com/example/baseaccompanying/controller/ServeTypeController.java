@@ -28,6 +28,7 @@ public class ServeTypeController {
 
     /**
      * 管理员获取全部已启用的服务类型
+     *
      * @return 已启用的服务类型列表
      */
     @WhiteApi
@@ -48,8 +49,8 @@ public class ServeTypeController {
     @WhiteApi
     @GetMapping
     public String queryByPage(@ModelAttribute ServeType serveType,
-                                                  @RequestParam("page") Integer page,
-                                                  @RequestParam("size") Integer size) {
+                              @RequestParam("page") Integer page,
+                              @RequestParam("size") Integer size) {
         Page<ServeType> serveTypes = this.serveTypeService.queryByPage(serveType, page, size);
         return JSONArray.toJSONString(new ResponseVo<>("ok", serveTypes, "200"));
     }

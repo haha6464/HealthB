@@ -3,7 +3,6 @@ package huice.accompaniment.common.exception;
 import cn.hutool.http.HttpStatus;
 import huice.accompaniment.common.constant.ErrorInfo;
 
-
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 
 /**

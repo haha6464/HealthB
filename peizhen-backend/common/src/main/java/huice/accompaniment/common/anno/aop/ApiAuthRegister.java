@@ -33,7 +33,7 @@ public class ApiAuthRegister implements InitializingBean {
 
     private final RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    private final Map<String,Class<? extends Annotation>> anoMap = new HashMap(){{
+    private final Map<String, Class<? extends Annotation>> anoMap = new HashMap() {{
         put("whiteApi", WhiteApi.class);
         put("laxTokenApi", LaxTokenApi.class);
         put("internalApi", InternalApi.class);
@@ -56,7 +56,7 @@ public class ApiAuthRegister implements InitializingBean {
 
     @Value("${spring.profiles.active}")
     private String SERVER_ACTIVE;
-    private static String  NACOS_DATAID = "authority-api-%s.yaml";
+    private static String NACOS_DATAID = "authority-api-%s.yaml";
 
     @Autowired(required = false)
     public ApiAuthRegister(RequestMappingHandlerMapping requestMappingHandlerMapping) {
@@ -65,33 +65,33 @@ public class ApiAuthRegister implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if(this.requestMappingHandlerMapping == null){
+        if (this.requestMappingHandlerMapping == null) {
             return;
         }
         //      根据环境构建api配置文件
         NACOS_DATAID = String.format(NACOS_DATAID, SERVER_ACTIVE);
         //      获取存在配置
         Properties properties = new Properties();
-        properties.put("username",NACOS_USERNAME);
-        properties.put("password",NACOS_PASSWORD);
+        properties.put("username", NACOS_USERNAME);
+        properties.put("password", NACOS_PASSWORD);
         properties.put("serverAddr", NACOS_SERVER_ADDRESS);
-        properties.put("namespace",NACOS_NAMESPACE);
+        properties.put("namespace", NACOS_NAMESPACE);
         ConfigService configService = NacosFactory.createConfigService(properties);
         String config = configService.getConfig(NACOS_DATAID, NACOS_GROUP, 5000);
         Yaml yaml = new Yaml();
-        Map<String, Object> yamlMap = config==null?new HashMap<>():yaml.load(config);
+        Map<String, Object> yamlMap = config == null ? new HashMap<>() : yaml.load(config);
         Map<String, Object> apiMap = (Map<String, Object>) yamlMap.get("api");
         StringBuilder sb = new StringBuilder("api:  ");
         anoMap.forEach(
-                (k,v)->{
+                (k, v) -> {
                     List<String> apiList;
-                    if(apiMap==null||!apiMap.containsKey(k)){
+                    if (apiMap == null || !apiMap.containsKey(k)) {
                         apiList = new ArrayList<>();
-                    }else{
+                    } else {
                         apiList = (List<String>) apiMap.get(k);
                     }
                     String res = buildRequestUrl(k, v, apiList);
-                    if(StringUtils.hasText(res)){
+                    if (StringUtils.hasText(res)) {
                         sb.append("\n ").append(res);
                     }
                 }
@@ -107,7 +107,7 @@ public class ApiAuthRegister implements InitializingBean {
             if (method.isAnnotationPresent(anoClass)) {
 //              对于占位符替换为*
                 String replacedPattern = requestMappingInfo.getActivePatternsCondition().toString().replaceAll("\\{[^}]+\\}", "*");
-                String apiUrl = replacedPattern.substring(1,replacedPattern.length()-1);
+                String apiUrl = replacedPattern.substring(1, replacedPattern.length() - 1);
 //              添加不存在的接口
                 if (!apiList.contains(apiUrl)) {
                     apiList.add(apiUrl);
@@ -117,7 +117,7 @@ public class ApiAuthRegister implements InitializingBean {
         if (apiList.size() == 0) {
             return "";
         }
-        StringBuilder sb = new StringBuilder(apiName+": \n");
+        StringBuilder sb = new StringBuilder(apiName + ": \n");
         for (String value : apiList) {
             sb.append("    - ").append(value).append("\n");
         }

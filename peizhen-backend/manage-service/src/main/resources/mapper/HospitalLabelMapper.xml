@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.baseaccompanying.dao.HospitalLabelMapper">
+<mapper namespace="com.example.baseaccompanying.mapper.HospitalLabelMapper">
 
     <resultMap type="huice.accompaniment.common.domain.HospitalLabel" id="HospitalLabelMap">
         <result property="id" column="id" jdbcType="INTEGER"/>

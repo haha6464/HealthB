@@ -36,8 +36,8 @@ public class ServeItemController {
     @WhiteApi
     @GetMapping
     public String queryByPage(@ModelAttribute ServeItem serveItem,
-                                                     @RequestParam("page") Integer page,
-                                                     @RequestParam("size") Integer size) {
+                              @RequestParam("page") Integer page,
+                              @RequestParam("size") Integer size) {
         Page<ServeItem> serveItems = this.serveItemService.queryByPage(serveItem, page, size);
         return JSONArray.toJSONString(new ResponseVo<>("ok", serveItems, "200"));
     }

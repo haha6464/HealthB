@@ -26,10 +26,10 @@ public class UserInfoParseAop {
         HttpServletRequest request = attributes.getRequest();
         String uid = request.getHeader("uid");
         String username = request.getHeader("username");
-        if(uid==null||username==null){
+        if (uid == null || username == null) {
             return null;
         }
-        ThreadLocalUtils.add(uid,username);
+        ThreadLocalUtils.add(uid, username);
         Object res = pjp.proceed();
         ThreadLocalUtils.remove();
         return res;

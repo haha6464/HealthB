@@ -1,8 +1,8 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.example.baseaccompanying.dao.OrderListMapper;
-import com.example.baseaccompanying.dao.ToHospitalMapper;
+import com.example.baseaccompanying.mapper.OrderListMapper;
+import com.example.baseaccompanying.mapper.ToHospitalMapper;
 import com.example.baseaccompanying.service.OrderListService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.OrderList;
@@ -10,14 +10,11 @@ import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
 import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
 import org.springframework.data.domain.Page;
-
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 订单(OrderList)表服务实现类
@@ -41,7 +38,7 @@ public class OrderListServiceImpl implements OrderListService {
         System.err.println("===");
         System.err.println(adminGetListDataBo);
         System.err.println("===");
-        adminGetListDataBo.setPage((adminGetListDataBo.getPage() -1) * adminGetListDataBo.getSize());
+        adminGetListDataBo.setPage((adminGetListDataBo.getPage() - 1) * adminGetListDataBo.getSize());
         System.err.println(hospitalId);
 
         List<AdminGetListDataVo> adminGetListDataVos = orderListDao.adminGetListData(adminGetListDataBo);
@@ -136,7 +133,7 @@ public class OrderListServiceImpl implements OrderListService {
     public Page<OrderList> queryByPageForUser(OrderList orderList, PageRequest pageRequest) {
 //        long total = this.orderListDao.count(orderList);
 //        return new PageImpl<>(this.orderListDao.queryAllByLimit(orderList, pageRequest), pageRequest, total);
-          return null;
+        return null;
     }
 
     /**

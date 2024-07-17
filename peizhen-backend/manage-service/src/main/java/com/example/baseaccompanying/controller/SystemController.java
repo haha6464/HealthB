@@ -16,11 +16,12 @@ public class SystemController {
 
     /**
      * 生成验证码
+     *
      * @param username
      * @return
      */
     @PostMapping("/GenerateVerificationCode")
-    public String generateVerificationCode(@RequestParam("username")String username){
+    public String generateVerificationCode(@RequestParam("username") String username) {
         return systemService.generateVerificationCode(username);
     }
 }

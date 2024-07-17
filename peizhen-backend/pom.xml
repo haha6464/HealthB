@@ -17,13 +17,10 @@
     </parent>
 
     <modules>
-        <module>doctor-service</module>
         <module>common</module>
         <module>gateway-service</module>
         <module>user-service</module>
-        <module>order-service</module>
         <module>manage-service</module>
-        <module>file-service</module>
     </modules>
 
     <properties>
@@ -145,7 +142,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
-<!--                <version>2.3.9.RELEASE</version>-->
+                <!--                <version>2.3.9.RELEASE</version>-->
                 <version>2.7.4</version>
             </dependency>
 

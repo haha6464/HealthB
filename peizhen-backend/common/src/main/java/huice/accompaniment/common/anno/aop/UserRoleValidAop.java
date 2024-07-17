@@ -6,7 +6,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.http.HTTPException;
 import java.lang.reflect.Method;
 
@@ -29,18 +27,18 @@ import java.lang.reflect.Method;
 public class UserRoleValidAop {
 
     @Around("@annotation(huice.accompaniment.common.anno.apiAuth.RoleApi)")
-    public Object checkRoleValid(ProceedingJoinPoint pjp){
+    public Object checkRoleValid(ProceedingJoinPoint pjp) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         int role;
         role = Integer.parseInt(request.getHeader("role"));
-        Assert.notNull(role,"请求role参数为空");
+        Assert.notNull(role, "请求role参数为空");
         Signature signature = pjp.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
         RoleApi api = method.getAnnotation(RoleApi.class);
         Role realRole = api.role();
-        if(realRole.getCode()!=role){
+        if (realRole.getCode() != role) {
             throw new HTTPException(HttpStatus.UNAUTHORIZED.value());
         }
         Object proceed = null;

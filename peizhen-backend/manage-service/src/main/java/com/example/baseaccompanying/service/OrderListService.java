@@ -2,7 +2,6 @@ package com.example.baseaccompanying.service;
 
 import huice.accompaniment.common.domain.OrderList;
 import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
-import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -26,8 +25,8 @@ public interface OrderListService {
     /**
      * 分页查询
      *
-     * @param orderList 筛选条件
-     * @param pageRequest      分页对象
+     * @param orderList   筛选条件
+     * @param pageRequest 分页对象
      * @return 查询结果
      */
     Page<OrderList> queryByPage(OrderList orderList, PageRequest pageRequest);
@@ -67,8 +66,8 @@ public interface OrderListService {
     /**
      * 分页查询
      *
-     * @param orderList 筛选条件
-     * @param pageRequest      分页对象
+     * @param orderList   筛选条件
+     * @param pageRequest 分页对象
      * @return 查询结果
      */
     Page<OrderList> queryByPageForUser(OrderList orderList, PageRequest pageRequest);

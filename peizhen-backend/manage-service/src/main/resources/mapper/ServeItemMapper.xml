@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.baseaccompanying.dao.ServeItemMapper">
+<mapper namespace="com.example.baseaccompanying.mapper.ServeItemMapper">
 
     <resultMap type="huice.accompaniment.common.domain.ServeItem" id="ServeItemMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
@@ -39,7 +39,7 @@
                del_flag
         from serve_item
         where id = #{id}
-        and del_flag = 0
+          and del_flag = 0
     </select>
 
     <!--查询指定行数据-->

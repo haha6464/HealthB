@@ -1,9 +1,8 @@
 package huice.accompaniment.gatewayservice.filter;
 
-import huice.accompaniment.gatewayservice.pojo.DO.RequestRecordDO;
 import huice.accompaniment.gatewayservice.anno.LogTime;
+import huice.accompaniment.gatewayservice.pojo.DO.RequestRecordDO;
 import huice.accompaniment.gatewayservice.service.RequestRecordService;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -39,8 +38,8 @@ public class LoggingFilter implements GlobalFilter, Ordered {
         String url = request.getURI().getPath();
         String dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
         log.info("request url: %s, remote address: %s,time: %s", url, remoteAddress.getHostName(), dateTime);
-        taskExecutor.submit(()->{
-            requestRecordService.insertRequestRecord(new RequestRecordDO(String.valueOf(UUID.randomUUID()),remoteAddress.getHostName(),url,dateTime));
+        taskExecutor.submit(() -> {
+            requestRecordService.insertRequestRecord(new RequestRecordDO(String.valueOf(UUID.randomUUID()), remoteAddress.getHostName(), url, dateTime));
         });
         return chain.filter(exchange);
     }

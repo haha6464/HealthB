@@ -8,7 +8,7 @@ import huice.accompaniment.pojo.ResultCodeEnum;
  * @Author welsir
  * @Date 2023/12/4 13:38
  */
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = 5225171867523879342L;
 
@@ -38,8 +38,7 @@ public class BaseException extends RuntimeException{
         this.resultCode = resultCode;
     }
 
-    public BaseException(String message, Object[] params, Throwable cause)
-    {
+    public BaseException(String message, Object[] params, Throwable cause) {
         super(message, cause);
         this.params = params;
     }
@@ -48,7 +47,7 @@ public class BaseException extends RuntimeException{
         super();
     }
 
-    public BaseException(ResultCodeEnum resultCode){
+    public BaseException(ResultCodeEnum resultCode) {
         this.resultCode = resultCode;
     }
 
@@ -66,8 +65,8 @@ public class BaseException extends RuntimeException{
         this.params = params;
     }
 
-    public BaseException(String msg,Throwable throwable){
-        super(msg,throwable);
+    public BaseException(String msg, Throwable throwable) {
+        super(msg, throwable);
     }
 
     public BaseException(String msg, int code, Object[] params) {

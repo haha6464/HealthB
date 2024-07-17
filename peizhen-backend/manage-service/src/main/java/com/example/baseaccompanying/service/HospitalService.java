@@ -2,10 +2,6 @@ package com.example.baseaccompanying.service;
 
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.Hospital;
-import huice.accompaniment.common.domain.bo.HospitalBo;
-import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,11 +13,13 @@ import java.util.List;
  */
 public interface HospitalService {
     public String adminGetHospitalListOne(Long id);
+
     /**
      * 管理员获取医院集合
+     *
      * @return
      */
-    public String adminGetHospitalList(Integer page, Integer size ,Integer status ,String name);
+    public String adminGetHospitalList(Integer page, Integer size, Integer status, String name);
 
     /**
      * 通过ID查询单条数据
@@ -67,6 +65,7 @@ public interface HospitalService {
 
     /**
      * 管理员获取全部医院列表
+     *
      * @return 医院列表
      */
     List<Hospital> adminGetAllHospital();

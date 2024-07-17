@@ -1,6 +1,5 @@
 package huice.accompaniment.service;
 
-import huice.accompaniment.pojo.DO.PatientDO;
 import huice.accompaniment.pojo.DTO.LoginDTO;
 import huice.accompaniment.pojo.DTO.PatientDTO;
 
@@ -13,7 +12,7 @@ import java.util.Map;
  */
 public interface UserService {
 
-    Map<String,Object> login(LoginDTO loginDTO);
+    Map<String, Object> login(LoginDTO loginDTO);
 
     void logout();
 

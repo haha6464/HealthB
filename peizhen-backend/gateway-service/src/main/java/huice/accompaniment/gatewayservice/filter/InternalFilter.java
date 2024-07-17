@@ -1,7 +1,6 @@
 package huice.accompaniment.gatewayservice.filter;
 
 import huice.accompaniment.gatewayservice.anno.LogTime;
-
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 
 /**
@@ -37,7 +35,7 @@ public class InternalFilter implements GlobalFilter, Ordered, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("internalApi=%s",internalApi);
+        log.info("internalApi=%s", internalApi);
     }
 
     @SneakyThrows
@@ -48,7 +46,7 @@ public class InternalFilter implements GlobalFilter, Ordered, InitializingBean {
         ServerHttpResponse response = exchange.getResponse();
 
         String path = request.getURI().getPath();
-        if (internalApi.contains(path)){
+        if (internalApi.contains(path)) {
             //7. 响应中放入返回的状态吗, 没有权限访问
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             //8. 返回

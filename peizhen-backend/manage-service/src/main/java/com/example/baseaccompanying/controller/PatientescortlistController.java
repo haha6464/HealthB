@@ -132,6 +132,7 @@ public class PatientescortlistController {
 
     /**
      * 根据陪诊师 userId 启用陪诊师
+     *
      * @param userId 陪诊师 userId
      * @return 是否成功
      */
@@ -144,6 +145,7 @@ public class PatientescortlistController {
 
     /**
      * 根据陪诊师 userId 禁用陪诊师
+     *
      * @param userId 陪诊师 userId
      * @return 是否成功
      */
@@ -156,6 +158,7 @@ public class PatientescortlistController {
 
     /**
      * 审核陪诊师资质
+     *
      * @param patientescortlist 陪诊师实体
      * @return 审核是否通过
      */

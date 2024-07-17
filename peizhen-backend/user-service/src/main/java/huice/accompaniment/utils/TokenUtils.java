@@ -10,16 +10,17 @@ import huice.accompaniment.common.utils.ThreadLocalUtils;
  */
 public class TokenUtils {
 
-    public static String getToken(String uid,String username){
+    public static String getToken(String uid, String username) {
         String loginId = uid;
         StpUtil.login(loginId);
         return StpUtil.getTokenValueByLoginId(loginId);
     }
-    public static void logout(String id, String username){
+
+    public static void logout(String id, String username) {
         StpUtil.logout(id + "|" + username);
     }
 
-    public static void logout(){
+    public static void logout() {
         logout(String.valueOf(ThreadLocalUtils.getUid()), ThreadLocalUtils.getUsername());
     }
 }

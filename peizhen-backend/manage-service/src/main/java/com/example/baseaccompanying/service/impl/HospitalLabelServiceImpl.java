@@ -1,6 +1,6 @@
 package com.example.baseaccompanying.service.impl;
 
-import com.example.baseaccompanying.dao.HospitalLabelMapper;
+import com.example.baseaccompanying.mapper.HospitalLabelMapper;
 import com.example.baseaccompanying.service.HospitalLabelService;
 import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.HospitalLabel;
