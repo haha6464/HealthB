@@ -47,7 +47,6 @@
               </td>
 
               <td>
- 
                 <span v-if="obj.status == 0">
                   正常
                 </span>
@@ -227,7 +226,6 @@ export default {
 
       app.$refs.dictItemModal.edtion();
     },
-
  
     //服务选择
     chooseService(val) {
@@ -236,11 +234,8 @@ export default {
         this.getListDate(1);
       }
     },
-
     reset() {},
-
     seachButton() {
-
       this.getListDate(1);
     },
 

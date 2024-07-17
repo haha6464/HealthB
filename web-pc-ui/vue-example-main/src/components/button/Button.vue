@@ -3,20 +3,16 @@
         <button class="button-style">{{value}}</button>
     </div>
   </template>
-  
 
 <script>
     export default {
- 
 
         name: 'App',
-
         data() {
             return {
         
             }
         },  
-
         mounted() {
             console.log("用户的简历")
             //this.$emit('childEvent', "你好我给我的父组件值");

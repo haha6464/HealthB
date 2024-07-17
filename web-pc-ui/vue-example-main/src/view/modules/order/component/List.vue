@@ -5,7 +5,11 @@
 -->
 <template>
   <div id="app">
+
+    <!-- 表单 -->
     <div style="padding: 5px;">
+
+      <!-- 信息查询框 -->
       <div>
         <span style="font-size:16px;float:left;margin-top:4px;margin-left:10px"
           >模糊查询&nbsp;</span
@@ -72,6 +76,7 @@
           </el-select>
         </div>
 
+        <!-- 操作按钮 -->
         <div style="float: left;margin-left:20px;" @click="seachButton()">
           <Button value="搜索" style="margin-top:2px"></Button>
         </div>
@@ -88,6 +93,7 @@
         <br />
       </div>
 
+      <!-- 渲染列表 -->
       <div style="height: 500px;">
         <table style="width: 100%;">
           <thead>
@@ -149,13 +155,17 @@
       </div>
     </div>
 
+    <!-- 页脚信息 -->
     <div style="margin-top:10px">
+
+      <!-- 列表body -->
       <div
         style="color:rgb(152, 151, 151);font-size:13px;margin-top:15px;margin-left:14px;float:left;"
       >
         共{{ count }}条数据
       </div>
 
+      <!-- 显示页数 -->
       <div style="margin-top:5px;float:right">
         <div>
           <el-pagination
@@ -169,6 +179,7 @@
           </el-pagination>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -249,6 +260,7 @@ export default {
       //个数
       count: 0,
 
+      //测试数据
       tableData: [
         {
           id: "1",
@@ -272,6 +284,7 @@ export default {
     this.getCityList();
   },
 
+  //调用API。
   methods: {
     //城市选择
     chooseCity(val) {

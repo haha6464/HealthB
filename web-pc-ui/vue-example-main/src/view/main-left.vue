@@ -15,16 +15,25 @@
             <div :class="value == 1 ? 'custom-style' : 'falst-custom-style'" @click="toOrder()">
                 <i class="el-icon-notebook-2"></i>&nbsp;&nbsp; &nbsp; 订单管理
             </div>
-            <div class="falst-custom-style">
-                <i class="el-icon-date"></i>&nbsp;&nbsp; &nbsp; 体现管理
-            </div>
+
+            <!-- <div class="falst-custom-style">
+                <i class="el-icon-date"></i>&nbsp;&nbsp; &nbsp; 提现管理
+            </div> -->
+
             <div :class="value == 3 ? 'custom-style' : 'falst-custom-style'" @click="toEscort()">
-                <i class="el-icon-picture" style="margin-left:14px;"></i>&nbsp;
-                &nbsp;&nbsp;
+                <svg t="1719543866869" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="4669" width="16" height="16">
+                    <path
+                        d="M394.4 612.8c-9.3 2.4-18.6 5-27.9 7.6-32.4 13.2-68.5 29.2-101.1 42.9-29.6 12.5-65.1 16.9-75.8 48 0 21-2 71-1.5 98.6h645.6c0.6-27.7-1.4-77.6-1.4-98.6-10.6-30.9-46.2-35.5-75.8-48-32.6-13.7-68.6-29.7-101.1-42.9-9.3-2.6-18.6-5.2-27.8-7.6-11.1-7.7-21.9-33.1-27.8-45.6-6-0.9-11.9-1.8-17.8-2.5 1-19.5 13.1-20.5 17.8-35.4 4.2-13 0.4-30 7-42.2 4.5-8.4 14.9-8.5 20.3-15.7 4.7-6.6 7.7-18.1 9.1-26.1 2.7-14.7 5.1-34.8-1.9-49.3-4.3-8.4-6.6-9.2-7.8-19.4-1.4-12.4 3.6-52.6 3.9-61.2 0.4-22.5-0.1-24.3-5.5-46.3 0 0-6.6-19.8-16.7-25.8l-20.7-3.6-12.8-11.9c-51.5-31.6-106.7-9.4-136.4 2.5-42.6 13.8-69.6 55.6-50.7 144.7 3.2 15.2-8.3 22-7.6 30.3 1.6 18.3 1.9 61.9 19.2 72.6 1.5 1 13.7 4.1 13.7 3.2 1.5 17.6 3.2 35.3 5 53 4.3 11.8 14.6 13 17.5 29.6l-13.1 3.2c-6.1 12.9-16.8 38.1-27.9 45.9z"
+                        fill="#231815" p-id="4670"></path>
+                    <path
+                        d="M906.8 526c-10.9 0-19.7 8.8-19.7 19.7v311.7c0 16.3-13.3 29.6-29.6 29.6H166.6c-16.3 0-29.6-13.3-29.6-29.6V545.6c0-10.9-8.8-19.7-19.7-19.7-10.9 0-19.7 8.8-19.7 19.7v311.9c0 38.1 31 69.1 69.1 69.1h690.8c38.1 0 69.1-31 69.1-69.1V545.7c-0.1-10.9-8.9-19.7-19.8-19.7zM857.4 97.5H166.6c-38.1 0-69.1 31-69.1 69.1v305c0 10.9 8.8 19.7 19.7 19.7 10.9 0 19.7-8.8 19.7-19.7v-305c0-16.3 13.3-29.6 29.6-29.6h690.8c16.3 0 29.6 13.3 29.6 29.6v304.6c0 10.9 8.8 19.7 19.7 19.7s19.7-8.8 19.7-19.7V166.6c0.2-38.1-30.8-69.1-68.9-69.1z"
+                        fill="#231815" p-id="4671"></path>
+                </svg>
+                &nbsp;&nbsp;&nbsp;
                 陪诊师管理
-
-
             </div>
+
             <div :class="value == 4 ? 'custom-style' : 'falst-custom-style'" @click="toHospital">
                 <svg t="1719543740464" class="icon" viewBox="0 0 1024 1024" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" p-id="2664" width="16" height="16">
@@ -35,7 +44,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 医院管理
             </div>
 
-            <div class="falst-custom-style">
+            <!-- <div class="falst-custom-style">
                 <svg t="1719543692468" class="icon" viewBox="0 0 1024 1024" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" p-id="1628" width="15" height="15">
                     <path
@@ -43,7 +52,7 @@
                         fill="#5C5C66" p-id="1629"></path>
                 </svg>
                 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;城市管理
-            </div>
+            </div> -->
 
             <div :class="value == 5 ? 'custom-style' : 'falst-custom-style'" @click="toServe">
                 <svg t="1719543808901" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -57,7 +66,7 @@
                 </svg>
                 &nbsp;&nbsp; &nbsp;&nbsp;服务管理
             </div>
-            <div class="falst-custom-style">
+            <!-- <div class="falst-custom-style">
                 <svg t="1719543866869" class="icon" viewBox="0 0 1024 1024" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" p-id="4669" width="16" height="16">
                     <path
@@ -68,23 +77,19 @@
                         fill="#231815" p-id="4671"></path>
                 </svg>
                 &nbsp;&nbsp; &nbsp;&nbsp;用户管理
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script>
 export default {
-
-
     name: 'App',
-
     data() {
         return {
 
         }
     },
-
     mounted() {
         console.log("用户的简历")
         this.$emit('childEvent', "你好我给我的父组件值");
@@ -106,8 +111,6 @@ export default {
             this.$router.push("serveindex");
         }
     },
-
-
 
     props: {
         value: {
