@@ -20,6 +20,7 @@
                   医院管理</span
                 >
               </div>
+              <!-- 信息搜索栏 -->
               <div
                 style="background-color:white;margin-top:20px;margin-left:10px;height:80vh"
               >
@@ -78,6 +79,7 @@
 
                 <Edtion ref="dictItemModal"></Edtion>
               </div>
+
             </div>
           </div>
         </el-col>

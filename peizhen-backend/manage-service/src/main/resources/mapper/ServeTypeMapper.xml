@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baseaccompanying.mapper.ServeTypeMapper">
+
+    <resultMap type="huice.accompaniment.common.domain.ServeType" id="ServeTypeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="serveTypeIcon" column="serve_type_icon" jdbcType="VARCHAR"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
+        <result property="activeStatus" column="active_status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+        <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ServeTypeMap">
+        select id,
+               code,
+               name,
+               serve_type_icon,
+               img,
+               active_status,
+               create_time,
+               update_time,
+               create_by,
+               update_by,
+               del_flag
+        from serve_type
+        where id = #{id}
+          and del_flag = 0
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ServeTypeMap">
+        select
+        id, code, name, serve_type_icon, img, active_status, create_time, update_time, create_by, update_by, del_flag
+        from serve_type
+        <where>
+            <if test="obj.id != null">
+                and id = #{obj.id}
+            </if>
+            <if test="obj.code != null">
+                and code = #{obj.code}
+            </if>
+            <if test="obj.name != null and obj.name != ''">
+                and name = #{obj.name}
+            </if>
+            <if test="obj.serveTypeIcon != null and obj.serveTypeIcon != ''">
+                and serve_type_icon = #{obj.serveTypeIcon}
+            </if>
+            <if test="obj.img != null and obj.img != ''">
+                and img = #{obj.img}
+            </if>
+            <if test="obj.activeStatus != null">
+                and active_status = #{obj.activeStatus}
+            </if>
+            <if test="obj.createTime != null">
+                and create_time = #{obj.createTime}
+            </if>
+            <if test="obj.updateTime != null">
+                and update_time = #{obj.updateTime}
+            </if>
+            <if test="obj.createBy != null">
+                and create_by = #{obj.createBy}
+            </if>
+            <if test="obj.updateBy != null">
+                and update_by = #{obj.updateBy}
+            </if>
+            <if test="obj.delFlag != null">
+                and del_flag = #{obj.delFlag}
+            </if>
+        </where>
+        order by id desc
+        limit #{offset}, #{size}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from serve_type
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="serveTypeIcon != null and serveTypeIcon != ''">
+                and serve_type_icon = #{serveTypeIcon}
+            </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
+            </if>
+            <if test="activeStatus != null">
+                and active_status = #{activeStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into serve_type(code, name, serve_type_icon, img, active_status, create_time, update_time, create_by,
+                               update_by, del_flag)
+        values (#{code}, #{name}, #{serveTypeIcon}, #{img}, DEFAULT, DEFAULT, DEFAULT, #{createBy},
+                #{updateBy}, 0)
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into serve_type(code, name, serve_type_icon, img, active_status, create_time, update_time, create_by,
+        update_by, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.code}, #{entity.name}, #{entity.serveTypeIcon}, #{entity.img}, DEFAULT,
+            DEFAULT, DEFAULT, #{entity.createBy}, #{entity.updateBy}, 0)
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into serve_type(code, name, serve_type_icon, img, active_status, create_time, update_time, create_by,
+        update_by, del_flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.code}, #{entity.name}, #{entity.serveTypeIcon}, #{entity.img}, DEFAULT,
+            DEFAULT, DEFAULT, #{entity.createBy}, #{entity.updateBy}, 0)
+        </foreach>
+        on duplicate key update
+        code = values(code),
+        name = values(name),
+        serve_type_icon = values(serve_type_icon),
+        img = values(img),
+        active_status = values(active_status),
+        update_time = NOW(),
+        create_by = values(create_by),
+        update_by = values(update_by),
+        del_flag = values(del_flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update serve_type
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="serveTypeIcon != null and serveTypeIcon != ''">
+                serve_type_icon = #{serveTypeIcon},
+            </if>
+            <if test="img != null and img != ''">
+                img = #{img},
+            </if>
+            <if test="activeStatus != null">
+                active_status = #{activeStatus},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            update_time = NOW(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from serve_type
+        where id = #{id}
+    </delete>
+
+    <!--通过服务类型id查询是否包含已启用的服务项目和在售的服务的记录数量-->
+    <select id="countServeItemAndServeUsedByServeTypeId" resultType="java.lang.Integer">
+        SELECT COUNT(*) AS total
+        FROM serve
+        WHERE serve.serve_item_id IN (SELECT serve_item.id
+                                      FROM serve_item
+                                      WHERE serve_item.serve_type_id = #{id}
+                                        AND serve_item.active_status = 1)
+          AND serve.sale_status = 1;
+    </select>
+</mapper>

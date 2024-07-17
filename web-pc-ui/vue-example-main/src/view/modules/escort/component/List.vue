@@ -10,10 +10,14 @@
                 <span style="font-size:16px;float:left;margin-top:4px;margin-left:10px">模糊搜索&nbsp;</span>
                 <el-input v-model="valueForVague" placeholder="请输入订单号/姓名" style="float: left;width:150px;margin-top:4px"
                     class="custom-input"></el-input>
-
+                
+                <!-- 这里对入医院的数据 -->
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:4px">性别&nbsp;</span>
-                <el-input v-model="valueForAccurate" placeholder="请选择性别"
-                    style="float: left;width:200px;height: 20px;margin-top:4px" class="custom-input"></el-input>
+                <div style="float: left;">
+                    <el-select v-model="valueForAccurate" placeholder="请选择性别" class="custom-select"
+                        style="float: left;width:200px;height: 20px;margin-top:4px" >
+                    </el-select>
+                </div>
 
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:3px">医院&nbsp;</span>
                 <div style="float: left;">
@@ -38,9 +42,6 @@
                     <Button value="搜索" style="margin-top:2px"></Button>
                 </div>
 
-                <div style="float: left;margin-left:20px;margin-left:90px" @click="reset()">
-                    <Button value="重制" style="margin-top:1px"></Button>
-                </div>
             </div>
 
             <div style="clear: both;">
@@ -51,7 +52,7 @@
                 <table style="width: 100%;">
                     <thead>
                         <tr style="font-weight: bold;">
-                            <th>序号1</th>
+                            <th>序号</th>
                             <th>医院</th>
                             <th>陪诊师</th>
                             <th>性别</th>
@@ -103,6 +104,14 @@
                                     已取消
                                 </span>
                             </td>
+
+                            <td>
+                                <el-link type="primary" style="font-size:12px" @click="switchStatus(obj)"><span
+                                        v-if="obj.status == 0">停用</span> <span v-else>启动</span> </el-link>
+                                <el-link type="primary" style="font-size:16px">|</el-link>
+                                <el-link type="primary" style="font-size:12px" @click="edit(obj)">编辑</el-link>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

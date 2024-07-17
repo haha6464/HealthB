@@ -1,6 +1,5 @@
 import http from "@/utils/httpRequest";
 
-
 export function findByOne(data){
     return http({
         url: "/hospital/adminGetHospitalListOne",

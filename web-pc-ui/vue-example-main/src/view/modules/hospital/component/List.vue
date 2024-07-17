@@ -24,13 +24,15 @@
               <th>操作</th>
             </tr>
           </thead>
+
+          <!-- 这里需要tableData 获取数据 -->
           <tbody v-for="(obj, index) in tableData" :key="index">
             <tr>
               <td style="width: 30px;">
                 {{ (seach.page - 1) * 16 + index + 1 }}
               </td>
               <td style="width: 70px;">
-                {{ obj.city }}  
+                {{ obj.city }}
               </td>
               <td>
                 {{ obj.name }}
@@ -41,7 +43,7 @@
               <td>{{ obj.hospitalIntroduction }}</td>
 
               <td>
-                <span v-for="o in obj.label">
+                <span v-for="o in obj.label" :key="o.labelName">
                   {{ o.labelName }}
                 </span>
               </td>
@@ -55,10 +57,12 @@
                 </span>
               </td>
               <td>
-                <el-link type="primary" style="font-size:12px" @click="switchStatus(obj)"><span v-if="obj.status ==0 ">停用</span> <span v-else>启动</span> </el-link>
+                <el-link type="primary" style="font-size:12px" @click="switchStatus(obj)"><span
+                    v-if="obj.status == 0">停用</span> <span v-else>启动</span> </el-link>
                 <el-link type="primary" style="font-size:16px">|</el-link>
                 <el-link type="primary" style="font-size:12px" @click="edit(obj)">编辑</el-link>
               </td>
+              
             </tr>
           </tbody>
         </table>
@@ -66,22 +70,14 @@
     </div>
 
     <div style="margin-top:10px">
-      <div
-        style="color:rgb(152, 151, 151);font-size:13px;margin-top:15px;margin-left:14px;float:left;"
-      >
+      <div style="color:rgb(152, 151, 151);font-size:13px;margin-top:15px;margin-left:14px;float:left;">
         共{{ count }}条数据
       </div>
 
       <div style="margin-top:5px;float:right">
         <div>
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :total="count"
-            :page-size="seach.size"
-            @current-change="getListDate"
-            class="custom-pagination"
-          >
+          <el-pagination background layout="prev, pager, next" :total="count" :page-size="seach.size"
+            @current-change="getListDate" class="custom-pagination">
           </el-pagination>
         </div>
       </div>
@@ -93,7 +89,7 @@
 import { getData } from "@/api/order.js";
 import { getCityList } from "@/api/city.js";
 import Button from "../../../../components/button/Button.vue";
-import { getHospitalList , findByOne} from "@/api/hospital.js";
+import { getHospitalList, findByOne } from "@/api/hospital.js";
 
 export default {
   props: ["userinfo"],
@@ -179,54 +175,54 @@ export default {
   },
 
   methods: {
-    async edit(ob1j){
+    async edit(ob1j) {
       let app = this.$parent.$parent.$parent;
       let obj = 0;
-      await findByOne({"id":ob1j.id}).then(res => {
+      await findByOne({ "id": ob1j.id }).then(res => {
         console.log(res.data.list[0])
-          obj = res.data.list[0];
+        obj = res.data.list[0];
       })
 
       app.$refs.dictItemModal.hospitalBo.hospital = {
-          id: obj.id,
-          name: obj.name,
-          cityId: obj.cityId,
-          address: obj.address,
-          hospitalIntroduction: obj.hospitalIntroduction,
-          status: obj.status,
-          delFlag: obj.delFlag,
+        id: obj.id,
+        name: obj.name,
+        cityId: obj.cityId,
+        address: obj.address,
+        hospitalIntroduction: obj.hospitalIntroduction,
+        status: obj.status,
+        delFlag: obj.delFlag,
       }
       app.$refs.dictItemModal.hospitalBo.labelList = [];
-      for(let i = 0 ; i < obj.label.length ; i++){
-          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+      for (let i = 0; i < obj.label.length; i++) {
+        app.$refs.dictItemModal.hospitalBo.labelList.push(obj.label[i].labelName)
       }
-    
+
 
       app.$refs.dictItemModal.dialogFormVisible = true;
     },
 
-    switchStatus(obj){
-      console.log(obj,"obj")
+    switchStatus(obj) {
+      console.log(obj, "obj")
       let app = this.$parent.$parent.$parent;
       app.$refs.dictItemModal.hospitalBo.hospital = {
-          id: obj.id,
-          name: null,
-          cityId: null,
-          address: null,
-          hospitalIntroduction: null,
-          status: obj.status == 1 ? 0 : 1,
-          delFlag: null,
+        id: obj.id,
+        name: null,
+        cityId: null,
+        address: null,
+        hospitalIntroduction: null,
+        status: obj.status == 1 ? 0 : 1,
+        delFlag: null,
       }
-      console.log(      app.$refs.dictItemModal.hospitalBo)
+      console.log(app.$refs.dictItemModal.hospitalBo)
       app.$refs.dictItemModal.hospitalBo.labelList = [];
- 
-      for(let i = 0 ; i < obj.label.length ; i++){
-          app.$refs.dictItemModal.hospitalBo.labelList.push( obj.label[i].labelName)
+
+      for (let i = 0; i < obj.label.length; i++) {
+        app.$refs.dictItemModal.hospitalBo.labelList.push(obj.label[i].labelName)
       }
 
       app.$refs.dictItemModal.edtion();
     },
- 
+
     //服务选择
     chooseService(val) {
       if (val == -1) {
@@ -234,7 +230,7 @@ export default {
         this.getListDate(1);
       }
     },
-    reset() {},
+    reset() { },
     seachButton() {
       this.getListDate(1);
     },
@@ -258,25 +254,32 @@ table {
 
 th,
 td {
-  border: 1px solid rgba(220, 220, 220, 1); /* 表头和边框颜色为深灰色 */
-  padding: 0; /* 移除填充 */
+  border: 1px solid rgba(220, 220, 220, 1);
+  /* 表头和边框颜色为深灰色 */
+  padding: 0;
+  /* 移除填充 */
   text-align: left;
-  font-size: 10px; /* 设置表头和单元格字体大小一致为10px */
-  font-weight: normal; /* 去掉表头的加粗 */
-  height: 10px; /* 设置单元格高度为5px */
-  line-height: 28px; /* 设置行高为5px */
+  font-size: 10px;
+  /* 设置表头和单元格字体大小一致为10px */
+  font-weight: normal;
+  /* 去掉表头的加粗 */
+  height: 10px;
+  /* 设置单元格高度为5px */
+  line-height: 28px;
+  /* 设置行高为5px */
   text-align: center;
 }
 
 th {
-  color: rgb(152, 151, 151); /* 表头文字颜色 */
+  color: rgb(152, 151, 151);
+  /* 表头文字颜色 */
 }
 
 td {
   color: black;
 }
 
-td > div {
+td>div {
   display: block;
   height: 5px;
   overflow: hidden;
@@ -305,8 +308,10 @@ td > div {
 }
 
 .custom-option {
-  height: 25px !important; /* 设置高度为25px，使用!important确保覆盖可能存在的默认样式 */
-  margin-top: 4px; /* 保留你原来设置的上边距 */
+  height: 25px !important;
+  /* 设置高度为25px，使用!important确保覆盖可能存在的默认样式 */
+  margin-top: 4px;
+  /* 保留你原来设置的上边距 */
 }
 </style>
 
@@ -314,7 +319,8 @@ td > div {
 .custom-select .el-input__inner {
   height: 25px !important;
   width: 120px;
-  padding-right: 30px !important; /* 确保有足够的空间给箭头 */
+  padding-right: 30px !important;
+  /* 确保有足够的空间给箭头 */
 }
 
 .custom-select .el-input__suffix {
@@ -323,7 +329,8 @@ td > div {
 }
 
 .custom-select .el-input__suffix-inner .el-icon-arrow-down {
-  margin-top: 3px; /* 调整这个值使箭头向下移动 */
+  margin-top: 3px;
+  /* 调整这个值使箭头向下移动 */
 }
 </style>
 
@@ -335,7 +342,9 @@ td > div {
 }
 
 .el-pagination.is-background .el-pager li.active {
-  color: #fff !important; /* 设置选中字体颜色为白色 */
-  background-color: rgba(255, 46, 109, 1) !important; /* 设置选中背景色为粉色 */
+  color: #fff !important;
+  /* 设置选中字体颜色为白色 */
+  background-color: rgba(255, 46, 109, 1) !important;
+  /* 设置选中背景色为粉色 */
 }
 </style>
