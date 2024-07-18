@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author 惠策集团
  * @since 2024-06-03
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.health.api")
 @SpringBootApplication
 @ComponentScan({"huice.accompaniment", "com.example"})
 public class ManageServiceApplication {

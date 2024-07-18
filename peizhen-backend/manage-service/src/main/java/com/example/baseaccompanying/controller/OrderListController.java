@@ -2,6 +2,7 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.OrderListService;
+import com.health.api.client.orderclient.testorder;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.OrderList;
@@ -27,6 +28,9 @@ public class OrderListController {
      */
     @Resource
     private OrderListService orderListService;
+
+    @Resource
+    private testorder testorder;
 
     /**
      * 分页查询
@@ -164,6 +168,11 @@ public class OrderListController {
         String res = orderListService.adminGetListData(adminGetListDataBo);
         System.err.println(res);
         return res;
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return this.testorder.test();
     }
 }
 

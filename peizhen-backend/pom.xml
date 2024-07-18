@@ -21,6 +21,7 @@
         <module>gateway-service</module>
         <module>user-service</module>
         <module>manage-service</module>
+        <module>health-api</module>
     </modules>
 
     <properties>
