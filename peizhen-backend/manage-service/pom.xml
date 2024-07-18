@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>manage-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>base-AccompanyCare</name>
-    <description>base-AccompanyCare</description>
+    <name>manage-service</name>
+    <description>manage-service</description>
     <properties>
         <java.version>8</java.version>
     </properties>

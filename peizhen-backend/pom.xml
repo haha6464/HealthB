@@ -31,7 +31,6 @@
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <spring-cloud-start.version>3.0.1</spring-cloud-start.version>
         <mysql.version>8.0.23</mysql.version>
-
         <nacos.version>2.2.5.RELEASE</nacos.version>
         <redis.version>2.3.9.RELEASE</redis.version>
         <redision.version>3.16.0</redision.version>

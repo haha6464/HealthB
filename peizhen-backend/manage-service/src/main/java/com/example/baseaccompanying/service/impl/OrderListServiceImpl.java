@@ -87,17 +87,11 @@ public class OrderListServiceImpl implements OrderListService {
         return orderList;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param orderList 实例对象
-     * @return 实例对象
-     */
     @Override
     public OrderList update(OrderList orderList) {
-        this.orderListDao.update(orderList);
-        return this.queryById(orderList.getId());
+        return null;
     }
+
 
     /**
      * 通过主键删除数据
@@ -157,7 +151,7 @@ public class OrderListServiceImpl implements OrderListService {
     @Override
     public OrderList updateForUser(OrderList orderList) {
         this.orderListDao.update(orderList);
-        return this.queryById(orderList.getId());
+        return null;
     }
 
     /**
