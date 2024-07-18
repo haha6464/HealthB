@@ -112,7 +112,7 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
         List<AdminGetPatientEscortListVo> result = patientescortlists.stream().map(o -> {
             AdminGetPatientEscortListVo adminGetPatientEscortListVo = new AdminGetPatientEscortListVo();
             adminGetPatientEscortListVo.setPatientescortlist(o);
-            adminGetPatientEscortListVo.setHospital(this.hospitalMapper.getHospitalByEscortId(o.getId()));
+            adminGetPatientEscortListVo.setHospital(this.hospitalMapper.getHospitalByEscortId(o.getUserId()));
             adminGetPatientEscortListVo.setCreateTime(o.getCreateTime());
             return adminGetPatientEscortListVo;
         }).collect(Collectors.toList());
@@ -132,7 +132,7 @@ public class PatientescortlistServiceImpl extends ServiceImpl<PatientescortlistM
                 .map(o -> {
                     AdminGetPatientEscortListVo adminGetPatientEscortListVo = new AdminGetPatientEscortListVo();
                     adminGetPatientEscortListVo.setPatientescortlist(o);
-                    adminGetPatientEscortListVo.setHospital(this.hospitalMapper.getHospitalByEscortId(o.getId()));
+                    adminGetPatientEscortListVo.setHospital(this.hospitalMapper.getHospitalByEscortId(o.getUserId()));
                     adminGetPatientEscortListVo.setCreateTime(o.getCreateTime());
                     return adminGetPatientEscortListVo;
                 }).collect(Collectors.toList());
