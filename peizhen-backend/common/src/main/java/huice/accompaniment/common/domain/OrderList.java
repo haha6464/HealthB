@@ -195,463 +195,462 @@ public class OrderList implements Serializable {
     /**
      * 订单id
      */
-    private Long getId() {
+    public Long getId() {
         return this.id;
     }
 
     /**
      * 订单id
      */
-    private void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
      * 订单所属用户
      */
-    private Long getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
     /**
      * 订单所属用户
      */
-    private void setUserId(Long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
     /**
      * 订单所属陪诊师
      */
-    private Long getEscortId() {
+    public Long getEscortId() {
         return this.escortId;
     }
 
     /**
      * 订单所属陪诊师
      */
-    private void setEscortId(Long escortId) {
+    public void setEscortId(Long escortId) {
         this.escortId = escortId;
     }
 
     /**
      * 订单所属团长
      */
-    private Long getAdminId() {
+    public Long getAdminId() {
         return this.adminId;
     }
 
     /**
      * 订单所属团长
      */
-    private void setAdminId(Long adminId) {
+    public void setAdminId(Long adminId) {
         this.adminId = adminId;
     }
 
     /**
      * 服务类型id
      */
-    private Long getServeTypeId() {
+    public Long getServeTypeId() {
         return this.serveTypeId;
     }
 
     /**
      * 服务类型id
      */
-    private void setServeTypeId(Long serveTypeId) {
+    public void setServeTypeId(Long serveTypeId) {
         this.serveTypeId = serveTypeId;
     }
 
     /**
      * 服务类型名称
      */
-    private String getServeTypeName() {
+    public String getServeTypeName() {
         return this.serveTypeName;
     }
 
     /**
      * 服务类型名称
      */
-    private void setServeTypeName(String serveTypeName) {
+    public void setServeTypeName(String serveTypeName) {
         this.serveTypeName = serveTypeName;
     }
 
     /**
      * 服务项id
      */
-    private Long getServeItemId() {
+    public Long getServeItemId() {
         return this.serveItemId;
     }
 
     /**
      * 服务项id
      */
-    private void setServeItemId(Long serveItemId) {
+    public void setServeItemId(Long serveItemId) {
         this.serveItemId = serveItemId;
     }
 
     /**
      * 服务项名称
      */
-    private String getServeItemName() {
+    public String getServeItemName() {
         return this.serveItemName;
     }
 
     /**
      * 服务项名称
      */
-    private void setServeItemName(String serveItemName) {
+    public void setServeItemName(String serveItemName) {
         this.serveItemName = serveItemName;
     }
 
     /**
      * 服务项图片
      */
-    private String getServeItemImg() {
+    public String getServeItemImg() {
         return this.serveItemImg;
     }
 
     /**
      * 服务项图片
      */
-    private void setServeItemImg(String serveItemImg) {
+    public void setServeItemImg(String serveItemImg) {
         this.serveItemImg = serveItemImg;
     }
 
     /**
      * 服务id
      */
-    private Long getServeId() {
+    public Long getServeId() {
         return this.serveId;
     }
 
     /**
      * 服务id
      */
-    private void setServeId(Long serveId) {
+    public void setServeId(Long serveId) {
         this.serveId = serveId;
     }
 
     /**
      * 订单状态，0：待支付，100：派单中，200：待服务，300：服务中，400：待评价，500：订单完成，600：已取消，700：已关闭
      */
-    private Integer getOrdersStatus() {
+    public Integer getOrdersStatus() {
         return this.ordersStatus;
     }
 
     /**
      * 订单状态，0：待支付，100：派单中，200：待服务，300：服务中，400：待评价，500：订单完成，600：已取消，700：已关闭
      */
-    private void setOrdersStatus(Integer ordersStatus) {
+    public void setOrdersStatus(Integer ordersStatus) {
         this.ordersStatus = ordersStatus;
     }
 
     /**
      * 支付状态，2：待支付，4：支付成功
      */
-    private Integer getPayStatus() {
+    public Integer getPayStatus() {
         return this.payStatus;
     }
 
     /**
      * 支付状态，2：待支付，4：支付成功
      */
-    private void setPayStatus(Integer payStatus) {
+    public void setPayStatus(Integer payStatus) {
         this.payStatus = payStatus;
     }
 
     /**
      * 退款状态 1退款中 2退款成功 3退款失败
      */
-    private Integer getRefundStatus() {
+    public Integer getRefundStatus() {
         return this.refundStatus;
     }
 
     /**
      * 退款状态 1退款中 2退款成功 3退款失败
      */
-    private void setRefundStatus(Integer refundStatus) {
+    public void setRefundStatus(Integer refundStatus) {
         this.refundStatus = refundStatus;
     }
 
     /**
      * 订单总金额
      */
-    private BigDecimal getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return this.totalAmount;
     }
 
     /**
      * 订单总金额
      */
-    private void setTotalAmount(BigDecimal totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 
     /**
      * 实际支付金额
      */
-    private BigDecimal getRealPayAmount() {
+    public BigDecimal getRealPayAmount() {
         return this.realPayAmount;
     }
 
     /**
      * 实际支付金额
      */
-    private void setRealPayAmount(BigDecimal realPayAmount) {
+    public void setRealPayAmount(BigDecimal realPayAmount) {
         this.realPayAmount = realPayAmount;
     }
 
     /**
      * 优惠金额
      */
-    private BigDecimal getDiscountAmount() {
+    public BigDecimal getDiscountAmount() {
         return this.discountAmount;
     }
 
     /**
      * 优惠金额
      */
-    private void setDiscountAmount(BigDecimal discountAmount) {
+    public void setDiscountAmount(BigDecimal discountAmount) {
         this.discountAmount = discountAmount;
     }
 
     /**
      * 城市id
      */
-    private Long getCityId() {
+    public Long getCityId() {
         return this.cityId;
     }
 
     /**
      * 城市id
      */
-    private void setCityId(Long cityId) {
+    public void setCityId(Long cityId) {
         this.cityId = cityId;
     }
 
     /**
      * 医院id
      */
-    private Long getHospitalId() {
+    public Long getHospitalId() {
         return this.hospitalId;
     }
 
     /**
      * 医院id
      */
-    private void setHospitalId(Long hospitalId) {
+    public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
     /**
      * 联系人手机号
      */
-    private String getContactsPhone() {
+    public String getContactsPhone() {
         return this.contactsPhone;
     }
 
     /**
      * 联系人手机号
      */
-    private void setContactsPhone(String contactsPhone) {
+    public void setContactsPhone(String contactsPhone) {
         this.contactsPhone = contactsPhone;
     }
 
     /**
      * 联系人姓名
      */
-    private String getContactsName() {
+    public String getContactsName() {
         return this.contactsName;
     }
 
     /**
      * 联系人姓名
      */
-    private void setContactsName(String contactsName) {
+    public void setContactsName(String contactsName) {
         this.contactsName = contactsName;
     }
 
     /**
      * 服务开始时间
      */
-
-    private Date getServeStartTime() {
+    public Date getServeStartTime() {
         return this.serveStartTime;
     }
 
     /**
      * 服务开始时间
      */
-    private void setServeStartTime(Date serveStartTime) {
+    public void setServeStartTime(Date serveStartTime) {
         this.serveStartTime = serveStartTime;
     }
 
     /**
      * 经度
      */
-    private Double getLon() {
+    public Double getLon() {
         return this.lon;
     }
 
     /**
      * 经度
      */
-    private void setLon(Double lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
     /**
      * 纬度
      */
-    private Double getLat() {
+    public Double getLat() {
         return this.lat;
     }
 
     /**
      * 纬度
      */
-    private void setLat(Double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
     /**
      * 支付时间
      */
-    private Date getPayTime() {
+    public Date getPayTime() {
         return this.payTime;
     }
 
     /**
      * 支付时间
      */
-    private void setPayTime(Date payTime) {
+    public void setPayTime(Date payTime) {
         this.payTime = payTime;
     }
 
     /**
      * 评价时间
      */
-    private Date getEvaluationTime() {
+    public Date getEvaluationTime() {
         return this.evaluationTime;
     }
 
     /**
      * 评价时间
      */
-    private void setEvaluationTime(Date evaluationTime) {
+    public void setEvaluationTime(Date evaluationTime) {
         this.evaluationTime = evaluationTime;
     }
 
     /**
      * 支付服务交易单号
      */
-    private Long getTradingOrderNo() {
+    public Long getTradingOrderNo() {
         return this.tradingOrderNo;
     }
 
     /**
      * 支付服务交易单号
      */
-    private void setTradingOrderNo(Long tradingOrderNo) {
+    public void setTradingOrderNo(Long tradingOrderNo) {
         this.tradingOrderNo = tradingOrderNo;
     }
 
     /**
      * 第三方支付的交易号
      */
-    private String getTransactionId() {
+    public String getTransactionId() {
         return this.transactionId;
     }
 
     /**
      * 第三方支付的交易号
      */
-    private void setTransactionId(String transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
     /**
      * 支付服务退款单号
      */
-    private Long getRefundNo() {
+    public Long getRefundNo() {
         return this.refundNo;
     }
 
     /**
      * 支付服务退款单号
      */
-    private void setRefundNo(Long refundNo) {
+    public void setRefundNo(Long refundNo) {
         this.refundNo = refundNo;
     }
 
     /**
      * 第三方支付的退款单号
      */
-    private String getRefundId() {
+    public String getRefundId() {
         return this.refundId;
     }
 
     /**
      * 第三方支付的退款单号
      */
-    private void setRefundId(String refundId) {
+    public void setRefundId(String refundId) {
         this.refundId = refundId;
     }
 
     /**
      * 支付渠道
      */
-    private String getTradingChannel() {
+    public String getTradingChannel() {
         return this.tradingChannel;
     }
 
     /**
      * 支付渠道
      */
-    private void setTradingChannel(String tradingChannel) {
+    public void setTradingChannel(String tradingChannel) {
         this.tradingChannel = tradingChannel;
     }
 
     /**
      *
      */
-    private Date getCreateTime() {
+    public Date getCreateTime() {
         return this.createTime;
     }
 
     /**
      *
      */
-    private void setCreateTime(Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     /**
      *
      */
-    private Date getUpdateTime() {
+    public Date getUpdateTime() {
         return this.updateTime;
     }
 
     /**
      *
      */
-    private void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     /**
      * 逻辑删除
      */
-    private Integer getDelFlag() {
+    public Integer getDelFlag() {
         return this.delFlag;
     }
 
     /**
      * 逻辑删除
      */
-    private void setDelFlag(Integer delFlag) {
+    public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
     }
 

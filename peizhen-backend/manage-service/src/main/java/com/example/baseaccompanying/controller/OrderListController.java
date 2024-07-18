@@ -5,6 +5,7 @@ import com.example.baseaccompanying.service.OrderListService;
 import com.health.api.order.OrderApi;
 import com.health.api.order.dto.response.OrderListResDTO;
 import huice.accompaniment.common.anno.apiAuth.WhiteApi;
+import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.core.ResponseVo;
 import huice.accompaniment.common.domain.OrderList;
 import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 订单(OrderList)表控制层
@@ -140,5 +142,19 @@ public class OrderListController {
         System.err.println(res);
         return res;
     }
+
+    /**
+     * 管理员获取订单列表
+     * @param page 页数
+     * @param size 大小
+     * @return 订单列表
+     */
+    @WhiteApi
+    @GetMapping("/adminGetOrderList")
+    public String adminGetOrderList(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+        PageImpl<?> orderLists = this.orderListService.adminGetOrderList(page, size);
+        return JSONArray.toJSONString(new ResponseVo<>("200", orderLists, "ok"));
+    }
+
 }
 

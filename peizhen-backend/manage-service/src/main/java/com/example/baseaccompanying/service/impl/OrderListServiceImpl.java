@@ -1,6 +1,10 @@
 package com.example.baseaccompanying.service.impl;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.mapper.OrderListMapper;
 import com.example.baseaccompanying.mapper.ToHospitalMapper;
 import com.example.baseaccompanying.service.OrderListService;
@@ -8,12 +12,13 @@ import huice.accompaniment.common.core.PageImpl;
 import huice.accompaniment.common.domain.OrderList;
 import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
 import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
+import huice.accompaniment.common.enums.DelFlagEnum;
 import huice.accompaniment.common.utils.ThreadLocalUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,7 +28,7 @@ import java.util.List;
  * @since 2024-06-14 14:51:34
  */
 @Service("orderListService")
-public class OrderListServiceImpl implements OrderListService {
+public class OrderListServiceImpl extends ServiceImpl<OrderListMapper, OrderList> implements OrderListService{
     @Resource
     private OrderListMapper orderListDao;
     @Resource
@@ -69,7 +74,7 @@ public class OrderListServiceImpl implements OrderListService {
      * @return 查询结果
      */
     @Override
-    public Page<OrderList> queryByPage(OrderList orderList, PageRequest pageRequest) {
+    public org.springframework.data.domain.Page<OrderList> queryByPage(OrderList orderList, PageRequest pageRequest) {
 //        long total = this.orderListDao.count(orderList);
 //        return new PageImpl<>(this.orderListDao.queryAllByLimit(orderList, pageRequest), pageRequest, total);
         return null;
@@ -124,7 +129,7 @@ public class OrderListServiceImpl implements OrderListService {
      * @return 查询结果
      */
     @Override
-    public Page<OrderList> queryByPageForUser(OrderList orderList, PageRequest pageRequest) {
+    public org.springframework.data.domain.Page<OrderList> queryByPageForUser(OrderList orderList, PageRequest pageRequest) {
 //        long total = this.orderListDao.count(orderList);
 //        return new PageImpl<>(this.orderListDao.queryAllByLimit(orderList, pageRequest), pageRequest, total);
         return null;
@@ -163,6 +168,17 @@ public class OrderListServiceImpl implements OrderListService {
     @Override
     public boolean deleteByIdForUser(Long id) {
         return this.orderListDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public PageImpl<?> adminGetOrderList(Integer offset, Integer limit) {
+        Long uid = ThreadLocalUtils.getUid();
+        Page<OrderList> page = Page.of(offset, limit);
+        LambdaQueryWrapper<OrderList> wrapper = Wrappers.<OrderList>lambdaQuery()
+                .eq(OrderList::getDelFlag, DelFlagEnum.NOT_DELETE)
+                .eq(OrderList::getAdminId, uid);
+        Page<OrderList> result = baseMapper.selectPage(page, wrapper);
+        return new PageImpl<>(result.getRecords(), result.getTotal());
     }
 
 

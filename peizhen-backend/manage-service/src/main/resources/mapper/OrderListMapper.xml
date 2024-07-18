@@ -5,20 +5,8 @@
     <resultMap type="huice.accompaniment.common.domain.OrderList" id="OrderListMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="cityId" column="city_id" jdbcType="INTEGER"/>
-        <result property="oderId" column="oder_id" jdbcType="VARCHAR"/>
-        <result property="serviceType" column="service_type" jdbcType="INTEGER"/>
-        <result property="amount" column="amount" jdbcType="VARCHAR"/>
-        <result property="patientescortId" column="patientEscort_id" jdbcType="INTEGER"/>
-        <result property="income" column="income" jdbcType="VARCHAR"/>
-        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
-        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
-        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
-        <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
-        <result property="createBy" column="create_by" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-        <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-        <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
         <result property="hospitalId" column="hospital_id" jdbcType="VARCHAR"/>
     </resultMap>

@@ -1,5 +1,6 @@
 package com.example.baseaccompanying.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import huice.accompaniment.common.domain.OrderList;
 import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
 import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
@@ -16,7 +17,7 @@ import java.util.List;
  * @since 2024-06-14 14:51:34
  */
 @Mapper
-public interface OrderListMapper {
+public interface OrderListMapper extends BaseMapper<OrderList> {
 
     /**
      * 管理员获取集合数据
