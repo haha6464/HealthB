@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.baseaccompanying.mapper.HospitalMapper">
 
-    <resultMap type="huice.accompaniment.common.domain.Hospital" id="HospitalMap">
+    <resultMap type="com.huice.health.common.domain.Hospital" id="HospitalMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="cityId" column="city_id" jdbcType="INTEGER"/>
@@ -16,7 +16,7 @@
         <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="adminGetHospitalListOne" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
+    <select id="adminGetHospitalListOne" resultType="com.huice.health.common.domain.vo.AdminGetHospitalListVo">
         SELECT id,
                NAME,
                (SELECT city FROM city WHERE id = city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
@@ -30,7 +30,7 @@
             id = #{id}
     </select>
 
-    <select id="adminGetHospitalList" resultType="huice.accompaniment.common.domain.vo.AdminGetHospitalListVo">
+    <select id="adminGetHospitalList" resultType="com.huice.health.common.domain.vo.AdminGetHospitalListVo">
         SELECT id, NAME,( SELECT city FROM city WHERE id = city_id and STATUS = 0 AND del_flag = 0 LIMIT 1 ) AS 'city',
         city_id,
         hospital_introduction,

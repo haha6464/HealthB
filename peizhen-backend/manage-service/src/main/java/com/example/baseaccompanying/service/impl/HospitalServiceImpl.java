@@ -7,12 +7,12 @@ import com.example.baseaccompanying.mapper.HospitalLabelMapper;
 import com.example.baseaccompanying.mapper.HospitalMapper;
 import com.example.baseaccompanying.mapper.ToHospitalMapper;
 import com.example.baseaccompanying.service.HospitalService;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.Hospital;
-import huice.accompaniment.common.domain.HospitalLabel;
-import huice.accompaniment.common.domain.ToHospital;
-import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.Hospital;
+import com.huice.health.common.domain.HospitalLabel;
+import com.huice.health.common.domain.ToHospital;
+import com.huice.health.common.domain.vo.AdminGetHospitalListVo;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

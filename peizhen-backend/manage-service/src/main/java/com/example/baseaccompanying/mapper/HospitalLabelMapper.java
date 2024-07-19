@@ -1,6 +1,6 @@
 package com.example.baseaccompanying.mapper;
 
-import huice.accompaniment.common.domain.HospitalLabel;
+import com.huice.health.common.domain.HospitalLabel;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

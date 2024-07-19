@@ -1,9 +1,9 @@
 package huice.accompaniment.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import huice.accompaniment.common.anno.apiAuth.RoleApi;
-import huice.accompaniment.common.anno.apiAuth.WhiteApi;
-import huice.accompaniment.common.core.ResponseVo;
+import com.huice.health.common.anno.apiAuth.RoleApi;
+import com.huice.health.common.anno.apiAuth.WhiteApi;
+import com.huice.health.common.core.ResponseVo;
 import huice.accompaniment.pojo.DTO.LoginDTO;
 import huice.accompaniment.pojo.DTO.PatientDTO;
 import huice.accompaniment.service.UserService;

@@ -2,9 +2,9 @@ package com.example.baseaccompanying.service.impl;
 
 import com.example.baseaccompanying.mapper.HospitalLabelMapper;
 import com.example.baseaccompanying.service.HospitalLabelService;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.HospitalLabel;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.HospitalLabel;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

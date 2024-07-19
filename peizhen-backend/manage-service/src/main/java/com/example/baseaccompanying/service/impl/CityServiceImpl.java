@@ -3,10 +3,10 @@ package com.example.baseaccompanying.service.impl;
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.mapper.CityMapper;
 import com.example.baseaccompanying.service.CityService;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.City;
-import huice.accompaniment.common.domain.vo.GetCityListVo;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.City;
+import com.huice.health.common.domain.vo.GetCityListVo;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

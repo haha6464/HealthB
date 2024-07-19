@@ -1,6 +1,6 @@
 package com.example.baseaccompanying.service;
 
-import huice.accompaniment.common.domain.ServeType;
+import com.huice.health.common.domain.ServeType;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

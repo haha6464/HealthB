@@ -3,19 +3,17 @@ package com.example.baseaccompanying.controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.OrderListService;
 import com.health.api.order.OrderApi;
-import com.health.api.order.dto.response.OrderListResDTO;
-import huice.accompaniment.common.anno.apiAuth.WhiteApi;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.core.ResponseVo;
-import huice.accompaniment.common.domain.OrderList;
-import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.anno.apiAuth.WhiteApi;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.core.ResponseVo;
+import com.huice.health.common.domain.OrderList;
+import com.huice.health.common.domain.bo.AdminGetListDataBo;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 订单(OrderList)表控制层

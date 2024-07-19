@@ -2,7 +2,7 @@ package com.example.baseaccompanying.quartz.scheduler;
 
 import com.example.baseaccompanying.quartz.job.AdminOnSaleServeJob;
 import com.example.baseaccompanying.quartz.trigger.AdminOnSaleServeTrigger;
-import huice.accompaniment.common.constant.ErrorInfo;
+import com.huice.health.common.constant.ErrorInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;

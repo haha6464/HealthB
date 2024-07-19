@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.baseaccompanying.mapper.ServeMapper">
 
-    <resultMap type="huice.accompaniment.common.domain.Serve" id="ServeMap">
+    <resultMap type="com.huice.health.common.domain.Serve" id="ServeMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="serveItemId" column="serve_item_id" jdbcType="INTEGER"/>
         <result property="hospitalId" column="hospital_id" jdbcType="INTEGER"/>

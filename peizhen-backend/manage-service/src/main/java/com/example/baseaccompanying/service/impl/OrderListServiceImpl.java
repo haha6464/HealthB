@@ -8,17 +8,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.baseaccompanying.mapper.OrderListMapper;
 import com.example.baseaccompanying.mapper.ToHospitalMapper;
 import com.example.baseaccompanying.service.OrderListService;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.OrderList;
-import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
-import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
-import huice.accompaniment.common.enums.DelFlagEnum;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.OrderList;
+import com.huice.health.common.domain.bo.AdminGetListDataBo;
+import com.huice.health.common.domain.vo.AdminGetListDataVo;
+import com.huice.health.common.enums.DelFlagEnum;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 /**

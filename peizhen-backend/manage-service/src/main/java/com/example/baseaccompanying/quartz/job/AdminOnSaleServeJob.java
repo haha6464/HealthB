@@ -1,8 +1,8 @@
 package com.example.baseaccompanying.quartz.job;
 
 import com.example.baseaccompanying.service.ServeService;
-import huice.accompaniment.common.constant.ErrorInfo;
-import huice.accompaniment.common.domain.Serve;
+import com.huice.health.common.constant.ErrorInfo;
+import com.huice.health.common.domain.Serve;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

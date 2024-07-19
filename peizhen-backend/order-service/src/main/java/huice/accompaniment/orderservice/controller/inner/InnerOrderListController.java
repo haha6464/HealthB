@@ -3,7 +3,7 @@ package huice.accompaniment.orderservice.controller.inner;
 import cn.hutool.core.bean.BeanUtil;
 import com.health.api.order.OrderApi;
 import com.health.api.order.dto.response.OrderListResDTO;
-import huice.accompaniment.common.domain.OrderList;
+import com.huice.health.common.domain.OrderList;
 import huice.accompaniment.orderservice.service.IOrderListService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

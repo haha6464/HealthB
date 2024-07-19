@@ -1,7 +1,7 @@
 package huice.accompaniment.utils;
 
 import cn.dev33.satoken.stp.StpUtil;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.utils.ThreadLocalUtils;
 
 /**
  * @Description

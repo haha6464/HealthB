@@ -1,9 +1,9 @@
 package com.example.baseaccompanying.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import huice.accompaniment.common.domain.OrderList;
-import huice.accompaniment.common.domain.bo.AdminGetListDataBo;
-import huice.accompaniment.common.domain.vo.AdminGetListDataVo;
+import com.huice.health.common.domain.OrderList;
+import com.huice.health.common.domain.bo.AdminGetListDataBo;
+import com.huice.health.common.domain.vo.AdminGetListDataVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;

@@ -2,12 +2,12 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.PatientescortlistService;
-import huice.accompaniment.common.anno.apiAuth.WhiteApi;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.core.ResponseVo;
-import huice.accompaniment.common.domain.Patientescortlist;
-import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.anno.apiAuth.WhiteApi;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.core.ResponseVo;
+import com.huice.health.common.domain.Patientescortlist;
+import com.huice.health.common.domain.vo.AdminGetPatientEscortListVo;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 

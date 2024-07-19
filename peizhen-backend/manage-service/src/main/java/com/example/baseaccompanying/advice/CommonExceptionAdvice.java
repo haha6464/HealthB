@@ -1,8 +1,8 @@
 package com.example.baseaccompanying.advice;
 
 import com.alibaba.fastjson2.JSONArray;
-import huice.accompaniment.common.core.ResponseVo;
-import huice.accompaniment.common.exception.CommonException;
+import com.huice.health.common.core.ResponseVo;
+import com.huice.health.common.exception.CommonException;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

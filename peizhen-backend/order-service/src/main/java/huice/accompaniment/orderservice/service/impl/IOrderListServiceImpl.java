@@ -1,7 +1,7 @@
 package huice.accompaniment.orderservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import huice.accompaniment.common.domain.OrderList;
+import com.huice.health.common.domain.OrderList;
 import huice.accompaniment.orderservice.mapper.OrderListMapper;
 import huice.accompaniment.orderservice.service.IOrderListService;
 import org.springframework.stereotype.Service;

@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.HashSet;
 
-import static huice.accompaniment.common.constant.GatewayConstantPool.AUTHORIZE_TOKEN;
+import static com.huice.health.common.constant.GatewayConstantPool.AUTHORIZE_TOKEN;
 
 /**
  * @author welsir

@@ -1,6 +1,6 @@
 package huice.accompaniment.gatewayservice.filter;
 
-import huice.accompaniment.common.utils.JwtUtil;
+import com.huice.health.common.utils.JwtUtil;
 import huice.accompaniment.gatewayservice.anno.LogTime;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 import java.util.HashSet;
 import java.util.Map;
 
-import static huice.accompaniment.common.constant.GatewayConstantPool.AUTHORIZE_TOKEN;
+import static com.huice.health.common.constant.GatewayConstantPool.AUTHORIZE_TOKEN;
 
 /**
  * @Description

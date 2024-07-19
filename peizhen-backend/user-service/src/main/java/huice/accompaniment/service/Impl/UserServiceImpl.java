@@ -3,8 +3,8 @@ package huice.accompaniment.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import huice.accompaniment.common.exception.AbstractAssert;
-import huice.accompaniment.common.utils.JwtUtil;
-import huice.accompaniment.common.utils.snowflake.Snowflake;
+import com.huice.health.common.utils.JwtUtil;
+import com.huice.health.common.utils.snowflake.Snowflake;
 import huice.accompaniment.mapper.UserMapper;
 import huice.accompaniment.pojo.DO.PatientDO;
 import huice.accompaniment.pojo.DO.UserDO;

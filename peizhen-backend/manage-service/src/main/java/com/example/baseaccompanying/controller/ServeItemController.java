@@ -2,9 +2,9 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.ServeItemService;
-import huice.accompaniment.common.anno.apiAuth.WhiteApi;
-import huice.accompaniment.common.core.ResponseVo;
-import huice.accompaniment.common.domain.ServeItem;
+import com.huice.health.common.anno.apiAuth.WhiteApi;
+import com.huice.health.common.core.ResponseVo;
+import com.huice.health.common.domain.ServeItem;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 

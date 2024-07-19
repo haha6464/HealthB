@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.service;
 
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.City;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.City;
 
 /**
  * 城市(City)表服务接口

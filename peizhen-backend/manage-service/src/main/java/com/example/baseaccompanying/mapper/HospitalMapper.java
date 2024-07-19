@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.mapper;
 
-import huice.accompaniment.common.domain.Hospital;
-import huice.accompaniment.common.domain.vo.AdminGetHospitalListVo;
+import com.huice.health.common.domain.Hospital;
+import com.huice.health.common.domain.vo.AdminGetHospitalListVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

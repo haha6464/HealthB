@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import huice.accompaniment.common.domain.ServeItem;
+import com.huice.health.common.domain.ServeItem;
 import org.springframework.data.domain.Page;
 
 /**

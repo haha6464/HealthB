@@ -7,24 +7,24 @@ import com.example.baseaccompanying.mapper.ServeItemMapper;
 import com.example.baseaccompanying.mapper.ServeMapper;
 import com.example.baseaccompanying.mapper.ServeTypeMapper;
 import com.example.baseaccompanying.service.ServeItemService;
-import huice.accompaniment.common.constant.ErrorInfo;
-import huice.accompaniment.common.domain.Serve;
-import huice.accompaniment.common.domain.ServeItem;
-import huice.accompaniment.common.domain.ServeType;
-import huice.accompaniment.common.enums.DelFlagEnum;
-import huice.accompaniment.common.enums.ServeEditStatus;
-import huice.accompaniment.common.enums.ServeSaleStatus;
-import huice.accompaniment.common.exception.BadRequestException;
-import huice.accompaniment.common.exception.ForbiddenOperationException;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
-import huice.accompaniment.common.utils.snowflake.Snowflake;
+import com.huice.health.common.constant.ErrorInfo;
+import com.huice.health.common.domain.Serve;
+import com.huice.health.common.domain.ServeItem;
+import com.huice.health.common.domain.ServeType;
+import com.huice.health.common.enums.DelFlagEnum;
+import com.huice.health.common.enums.ServeEditStatus;
+import com.huice.health.common.enums.ServeSaleStatus;
+import com.huice.health.common.exception.BadRequestException;
+import com.huice.health.common.exception.ForbiddenOperationException;
+import com.huice.health.common.utils.ThreadLocalUtils;
+import com.huice.health.common.utils.snowflake.Snowflake;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-import static huice.accompaniment.common.constant.ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL;
+import static com.huice.health.common.constant.ErrorInfo.Msg.REQUEST_PARAM_ILLEGAL;
 
 /**
  * 服务项表(ServeItem)表服务实现类

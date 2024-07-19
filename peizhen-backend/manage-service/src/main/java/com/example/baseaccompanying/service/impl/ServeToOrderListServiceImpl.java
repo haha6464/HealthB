@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.baseaccompanying.mapper.ServeToOrderListMapper;
 import com.example.baseaccompanying.service.ServeToOrderListService;
-import huice.accompaniment.common.domain.ServeToOrderList;
+import com.huice.health.common.domain.ServeToOrderList;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

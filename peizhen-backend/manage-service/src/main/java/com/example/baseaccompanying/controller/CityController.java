@@ -2,11 +2,11 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.CityService;
-import huice.accompaniment.common.anno.apiAuth.WhiteApi;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.core.ResponseVo;
-import huice.accompaniment.common.domain.City;
-import huice.accompaniment.common.utils.ThreadLocalUtils;
+import com.huice.health.common.anno.apiAuth.WhiteApi;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.core.ResponseVo;
+import com.huice.health.common.domain.City;
+import com.huice.health.common.utils.ThreadLocalUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

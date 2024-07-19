@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.mapper;
 
-import huice.accompaniment.common.domain.City;
-import huice.accompaniment.common.domain.vo.GetCityListVo;
+import com.huice.health.common.domain.City;
+import com.huice.health.common.domain.vo.GetCityListVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

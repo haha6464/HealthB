@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableFeignClients(basePackages = "com.health.api")
 @SpringBootApplication
-@ComponentScan({"huice.accompaniment", "com.example"})
+@ComponentScan({"huice.accompaniment", "com.example", "com.huice"})
 public class ManageServiceApplication {
 
     public static void main(String[] args) {

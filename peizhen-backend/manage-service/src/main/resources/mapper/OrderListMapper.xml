@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.baseaccompanying.mapper.OrderListMapper">
 
-    <resultMap type="huice.accompaniment.common.domain.OrderList" id="OrderListMap">
+    <resultMap type="com.huice.health.common.domain.OrderList" id="OrderListMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="cityId" column="city_id" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
@@ -270,7 +270,7 @@
     </delete>
 
 
-    <select id="adminGetListData" resultType="huice.accompaniment.common.domain.vo.AdminGetListDataVo">
+    <select id="adminGetListData" resultType="com.huice.health.common.domain.vo.AdminGetListDataVo">
         select
         (select city from city where id = city_id limit 1) as 'city',
         oder_id,

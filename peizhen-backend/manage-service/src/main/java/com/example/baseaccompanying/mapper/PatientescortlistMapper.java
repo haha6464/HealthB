@@ -1,7 +1,7 @@
 package com.example.baseaccompanying.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import huice.accompaniment.common.domain.Patientescortlist;
+import com.huice.health.common.domain.Patientescortlist;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

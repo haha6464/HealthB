@@ -1,9 +1,9 @@
 package com.example.baseaccompanying.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import huice.accompaniment.common.core.PageImpl;
-import huice.accompaniment.common.domain.Patientescortlist;
-import huice.accompaniment.common.domain.vo.AdminGetPatientEscortListVo;
+import com.huice.health.common.core.PageImpl;
+import com.huice.health.common.domain.Patientescortlist;
+import com.huice.health.common.domain.vo.AdminGetPatientEscortListVo;
 
 /**
  * (Patientescortlist)表服务接口
