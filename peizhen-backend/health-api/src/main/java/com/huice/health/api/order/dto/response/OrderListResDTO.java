@@ -1,4 +1,4 @@
-package com.health.api.order.dto.response;
+package com.huice.health.api.order.dto.response;
 
 
 import java.math.BigDecimal;

@@ -2,7 +2,7 @@ package com.example.baseaccompanying.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.example.baseaccompanying.service.OrderListService;
-import com.health.api.order.OrderApi;
+import com.huice.health.api.order.OrderApi;
 import com.huice.health.common.anno.apiAuth.WhiteApi;
 import com.huice.health.common.core.PageImpl;
 import com.huice.health.common.core.ResponseVo;

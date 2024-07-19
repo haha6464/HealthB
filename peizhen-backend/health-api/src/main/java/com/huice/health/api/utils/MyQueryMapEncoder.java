@@ -1,4 +1,4 @@
-package com.health.api.utils;
+package com.huice.health.api.utils;
 
 import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.core.JsonProcessingException;

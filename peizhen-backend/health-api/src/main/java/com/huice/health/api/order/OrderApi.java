@@ -1,7 +1,7 @@
-package com.health.api.order;
+package com.huice.health.api.order;
 
-import com.health.api.order.dto.response.OrderListResDTO;
-import com.health.api.utils.MyQueryMapEncoder;
+import com.huice.health.api.order.dto.response.OrderListResDTO;
+import com.huice.health.api.utils.MyQueryMapEncoder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
