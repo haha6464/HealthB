@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 114.55.134.155:8848
+      username: nacos
+      password: nacos
+      discovery:
+        cluster-name: BJ
+        namespace: 61a0d50e-7e02-4825-b46b-788de4fb7b08
+      config:
+        server-addr: 114.55.134.155:8848
+        namespace: 61a0d50e-7e02-4825-b46b-788de4fb7b08
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.huice.health.order.mapper
