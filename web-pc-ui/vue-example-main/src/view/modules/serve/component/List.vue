@@ -16,11 +16,10 @@
             <tr style="font-weight: bold;">
               <th>序号</th>
               <th>商品图片</th>
-              <th>服务名称</th>
-              <th>服务类型</th>
-              <th>服务医院</th>
+              <th>名称</th>
               <th>商品价格（元）</th>
-              <th>销量（件）</th>
+              <th>库存(件)</th>
+              <th>销量(件)</th>
               <th>创建时间</th>
               <th>状态</th>
               <th>操作</th>
@@ -29,13 +28,13 @@
           <tbody v-for="(obj, index) in tableData" :key="index">
             <tr>
               <td style="width: 30px;">
-                {{ (seach.page - 1) * 16 + index + 1 }}
+                {{ (seach.page ) * 16 + index + 1 }}
               </td>
               <td style="width: 70px;">
-                {{ obj.serve_item_icon }}
+                {{ obj.hospital.serve_item_icon }}
               </td>
               <td>
-                {{ obj.serve_item_name }}
+                {{ obj.serveItem.name }}
               </td>
               <td>
                 {{ obj.serve_item_type }}
@@ -44,10 +43,10 @@
                 {{ obj.serve_item_hospital }}
               </td>
               <td>
-                {{ obj.serve_price }}
+                {{ obj.sold }}
               </td>
-              <td>{{ obj.serve_sell }}</td>
-              <td>{{ obj.serve_create_time }}</td>
+              <td>{{ obj.createTime }}</td>
+             
               <td>
                 <span v-if="obj.status == 0">
                   销售中
@@ -92,10 +91,9 @@
 </template>
 
 <script>
-import { getData } from "@/api/order.js";
+import { getData } from "@/api/servemain.js";
 import { getCityList } from "@/api/city.js";
 import Button from "../../../../components/button/Button.vue";
-import { getHospitalList , findByOne} from "@/api/hospital.js";
 
 export default {
   props: ["userinfo"],
@@ -148,10 +146,9 @@ export default {
 
       //查询
       seach: {
-        status: null,
-        name: "",
-        page: 1,
-        size: 16,
+        
+        page: 0,
+        size: 10,
       },
 
       valueForVague: "", //模糊查询
@@ -162,14 +159,7 @@ export default {
 
       tableData: [
         {
-          id: 0,
-          serve_item_icon: "",
-          serve_item_name: "",
-          serve_item_type: "",
-          serve_item_hospital: "",
-          serve_price: "",
-          serve_sell: "",
-          serve_create_time: "",
+          
           status: 0,
         },
       ],
@@ -247,9 +237,11 @@ export default {
 
     //获取数据
     getListDate(val) {
-      getHospitalList(this.seach).then((res) => {
-        this.tableData = res.data.list;
-        this.count = res.data.count;
+      getData(this.seach).then((res) => {
+        this.tableData = res.data.data.list;
+        console.log(this.tableData);
+        this.count = res.data.data.count;
+        console.log(this.count);
       });
     },
   },

@@ -5,7 +5,6 @@
  */
 import axios from 'axios'
  
-
 /**
  * withCredentials: true: 表示允许发送跨域请求时携带凭据（比如 cookies、HTTP 认证信息等）。
  * 这是因为浏览器默认情况下不会发送跨域请求的凭据，但如果设置了 withCredentials: true，
@@ -39,7 +38,7 @@ http.interceptors.request.use(config => {
     //设置请求头
 
     //config.headers['token'] = "acabd829-0a80-45d0-a6ff-36a98fdbd0e2"
-    config.headers['token'] = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodWljZWppdHVhMSIsImlhdCI6MTcyMTIwNDMxNywic3ViIjoiaHVpY2VqaXR1YTEiLCJleHAiOjE3MjE4MDkxMTcsImlkIjoiMTIzIn0.SijGuyFyB2oj7836gBKpsJ_7Vd_1asVg2iZGYdUufhs"
+    config.headers['token'] = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodWljZWppdHVhMSIsImlhdCI6MTcyMTI4MTkyNCwic3ViIjoiaHVpY2VqaXR1YTEiLCJleHAiOjE3MjE4ODY3MjQsImlkIjoiMTIzIn0.8Tud01u2jpMWfY2T9ZFBYL6DnOR0heZkpzvuC9NdSPU"
     config.headers['accept'] = '*/*'
     return config;
 })

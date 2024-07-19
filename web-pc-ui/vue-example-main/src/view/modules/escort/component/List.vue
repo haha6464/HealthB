@@ -17,7 +17,7 @@
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:4px">性别&nbsp;</span>
                 <div style="float: left;">
                     <el-select v-model="valueForAccurate" placeholder="请选择性别" class="custom-select"
-                        style="float: left;width:200px;height: 20px;margin-top:4px">
+                        style="float: left;width:120px;height: 20px;margin-top:4px">
                         <el-option v-for="item in sexList" :key="item.value" :label="item.label" :value="item.value">
                         </el-option>
                     </el-select>
@@ -25,16 +25,16 @@
 
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:3px">医院&nbsp;</span>
                 <div style="float: left;">
-                    <el-select v-model="seach.cityId" placeholder="请选择" class="custom-select" style="margin-top:3px"
+                    <el-select v-model="seach.cityId" placeholder="请选择医院" class="custom-select" style="margin-top:3px"
                         @change="chooseCity">
-                        <el-option v-for="item in cityList" :key="item.value" :label="item.label" :value="item.value">
+                        <el-option v-for="item in hospitalList" :key="item.value" :label="item.label" :value="item.value">
                         </el-option>
                     </el-select>
                 </div>
 
                 <span style="font-size:16px;float:left;margin-top:2px;margin-left:15px;margin-top:3px">状态&nbsp;</span>
                 <div style="float: left;">
-                    <el-select v-model="seach.serviceType" placeholder="请选择" class="custom-select"
+                    <el-select v-model="seach.serviceType" placeholder="请选择状态" class="custom-select"
                         style="margin-top:3px" @change="chooseService">
                         <el-option v-for="item in serviceList" :key="item.value" :label="item.label"
                             :value="item.value">
@@ -51,7 +51,7 @@
             <div style="clear: both;">
                 <br />
             </div>
-
+            <!-- 表单 -->
             <div style="height: 500px;">
                 <table style="width: 100%;">
                     <thead>
@@ -71,44 +71,49 @@
                     <tbody v-for="(obj, index) in tableData" :key="index">
                         <tr>
                             <td style="width: 30px;">
-                                #
+                                {{ (seach.page ) * 16 + index + 1 }}
                             </td>
                             <td style="width: 70px;">
-                                {{ obj.city }}
+                                {{ obj.hospital.name }}
                             </td>
 
                             <td>
                                 {{ obj.patientescortlist.name }}
                             </td>
-                            
+
                             <td>
-                                <span v-if="obj.patientescortlist.gender == 0">
+                                <span v-if="obj.patientescortlist.gender == 1">
                                     男
                                 </span>
-                                <span v-else-if="obj.patientescortlist.gender == 1">
+                                <span v-else-if="obj.patientescortlist.gender == 0">
                                     女
                                 </span>
                             </td>
 
-                            <td>{{ obj.patientEscortName }}</td>
-                            <td>{{ obj.income }}</td>
+                            <td>{{ }}</td>
+
+                            <td>{{ obj.patientescortlist.rating }}</td>
                             <td>{{ obj.patientescortlist.phoneNumber }}</td>
 
                             <!-- luo -->
                             <td>{{ obj.patientescortlist.createTime }}</td>
 
                             <td>
-                                <span v-if="obj.status == 0">
-                                    待服务
+                                <span v-if="obj.patientescortlist.status == 0">
+                                    未审核
                                 </span>
-                                <span v-else-if="obj.status == 1">
-                                    进行中
+                                <span v-else-if="obj.patientescortlist.status == 1" style="color:red">
+                                    待审核
                                 </span>
-                                <span v-else-if="obj.status == 2">
-                                    已完成
+                                <span v-else-if="obj.patientescortlist.status == 2">
+                                    未认证
                                 </span>
-                                <span v-else-if="obj.status == 3">
-                                    已取消
+                                <span v-else-if="obj.patientescortlist.status == 3">
+                                    已认证
+                                </span><span v-else-if="obj.patientescortlist.status == 4">
+                                    停用
+                                </span><span v-else-if="obj.patientescortlist.status == 5">
+                                    启用
                                 </span>
                             </td>
 
@@ -118,7 +123,6 @@
                                 <el-link type="primary" style="font-size:16px">|</el-link>
                                 <el-link type="primary" style="font-size:12px" @click="edit(obj)">编辑</el-link>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -143,7 +147,7 @@
 </template>
 
 <script>
-import { getData } from "@/api/escort.js";
+import { getData } from "@/api/escortmain.js";
 import { getCityList } from "@/api/city.js";
 import Button from "../../../../components/button/Button.vue";
 
@@ -164,55 +168,56 @@ export default {
                     label: "男",
                 },
                 {
-                    value: "2",
+                    value: "0",
                     label: "女",
                 }
             ],
 
-            cityList: [
+            hospitalList: [
                 {
                     value: "1",
-                    label: "南京",
+                    label: "北京第一医院",
                 },
                 {
                     value: "2",
-                    label: "天津",
+                    label: "北京第二医院",
                 },
                 {
                     value: "3",
-                    label: "上海",
-                },
-                {
-                    value: "4",
-                    label: "日本",
-                },
-                {
-                    value: "5",
-                    label: "宇宙",
+                    label: "北京第三医院",
                 },
             ],
 
             serviceList: [
                 {
-                    value: "-1",
-                    label: "---全部---",
-                },
-                {
                     value: "0",
-                    label: "全程服务",
+                    label: "未审核",
                 },
                 {
                     value: "1",
-                    label: "VIP服务",
+                    label: "待审核",
                 },
                 {
                     value: "2",
-                    label: "普通陪诊",
+                    label: "未认证",
+                },
+                {
+                    value: "3",
+                    label: "已认证",
+                },
+                {
+                    value: "4",
+                    label: "停用",
+                },
+                {
+                    value: "5",
+                    label: "启用",
                 },
             ],
 
-            //查询
+            //查询(传入查询的参数)
             seach: {
+                
                 page: 0,
                 size: 16,
             },
@@ -220,9 +225,8 @@ export default {
             valueForVague: "", //模糊查询
             valueForAccurate: "", //精确查询
 
-            //个数
+            //个数,信息表
             count: 0,
-
             tableData: [
 
             ],
@@ -290,6 +294,7 @@ export default {
             getData(this.seach).then(res => {
                 console.log(res, "qweqewqw");
                 this.tableData = res.data.data.list;
+                console.log(this.tableData);
                 this.count = res.data.data.count;
             })
         },

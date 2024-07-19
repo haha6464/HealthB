@@ -239,6 +239,8 @@ export default {
     getListDate(val) {
       getHospitalList(this.seach).then((res) => {
         this.tableData = res.data.list;
+        console.log(this.tableData);
+        console.log(this.city);
         this.count = res.data.count;
       });
     },
