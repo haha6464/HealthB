@@ -1,4 +1,4 @@
-package huice.accompaniment.orderservice.mapper;
+package com.huice.health.order.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.huice.health.common.domain.OrderList;

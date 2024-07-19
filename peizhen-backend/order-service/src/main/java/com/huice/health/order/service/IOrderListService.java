@@ -1,4 +1,4 @@
-package huice.accompaniment.orderservice.service;
+package com.huice.health.order.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
