@@ -102,12 +102,6 @@
                 </exclusions>
                 <version>${redis.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redision.version}</version> <!-- 请根据实际情况选择版本 -->
-            </dependency>
             <!--springBoot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -120,24 +114,13 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${boot.version}</version>
             </dependency>
-            <!--mybatis-->
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
             <!--mybatis-plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.github.yulichang</groupId>
-                <artifactId>mybatis-plus-join</artifactId>
-                <version>${mybatis-join.version}</version>
-            </dependency>
+            
             <!--AMQP依赖，包含RabbitMQ-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

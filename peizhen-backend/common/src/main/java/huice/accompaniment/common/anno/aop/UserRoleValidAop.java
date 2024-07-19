@@ -39,7 +39,7 @@ public class UserRoleValidAop {
         RoleApi api = method.getAnnotation(RoleApi.class);
         Role realRole = api.role();
         if (realRole.getCode() != role) {
-            throw new HTTPException(HttpStatus.UNAUTHORIZED.value());
+            throw new RuntimeException("未认证");
         }
         Object proceed = null;
         try {
