@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @Author welsir
  * @Date 2024/6/14 11:05
  */
-@Component("huice-snowflake")
+@Component
 public class Snowflake implements Serializable, IdGenerator<Long> {
 
     private static final long serialVersionUID = 1L;
