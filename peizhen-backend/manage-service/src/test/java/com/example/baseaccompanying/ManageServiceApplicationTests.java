@@ -1,4 +1,4 @@
-package com.example.baseaccompanying;
+package com.huice.health.manage;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

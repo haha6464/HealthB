@@ -1,4 +1,4 @@
-package com.example.baseaccompanying.serviceTest;
+package com.huice.health.manage.serviceTest;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
